@@ -1,6 +1,6 @@
 ---
-layout:default
-title:来一发，么么哒
+layout: default
+title: 来一发，么么哒
 ---
 
 ##{{page.title}}
