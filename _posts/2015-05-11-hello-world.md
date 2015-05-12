@@ -3,8 +3,8 @@ layout: default
 title: 来一发，么么哒
 ---
 
-##{{page.title}}
-`{{page.date|date_to_string}}`
+##这是第一发
+`2015年5月12日`
 ============
 我就是来试试看的
 
