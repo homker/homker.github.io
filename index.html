@@ -1,0 +1,12 @@
+--
+layout:default
+title：homker的blog
+--
+
+<h2>{{page.title}}</h2>
+<p>文章列表</p>
+<ul>
+	{% for post in site.posts %}
+		<li><a href="{{site.baseurl}}{{post.url}}">{{post.title}}</a>{{post.date|date_to_string}}</li>
+	{% endfor %}
+</ul>
