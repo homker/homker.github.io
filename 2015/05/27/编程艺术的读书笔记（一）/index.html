@@ -1,0 +1,522 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>JavaScript 编程艺术的读书笔记（一） | homker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="homker">
+    
+
+    
+    <meta name="description" content="这几天复习审计复习的头昏眼花，间隙间把《javaScript DOM 编程艺术》一书看了一遍。嗯，做一做读书笔记，以后可以看看。
+DOMDOM（document object model）是文档对象模型。当宿主是浏览器，或者是需要解析标记性文本文档的时候，就会有DOM的概念。嗯，根据惯例，先讲理论。
+文档 Document文档简单的说，是字符串的集合，是标记符号的集合。对于一般的字符串而言，浏览器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 编程艺术的读书笔记（一）">
+<meta property="og:url" content="http://yoursite.com/2015/05/27/编程艺术的读书笔记（一）/index.html">
+<meta property="og:site_name" content="homker">
+<meta property="og:description" content="这几天复习审计复习的头昏眼花，间隙间把《javaScript DOM 编程艺术》一书看了一遍。嗯，做一做读书笔记，以后可以看看。
+DOMDOM（document object model）是文档对象模型。当宿主是浏览器，或者是需要解析标记性文本文档的时候，就会有DOM的概念。嗯，根据惯例，先讲理论。
+文档 Document文档简单的说，是字符串的集合，是标记符号的集合。对于一般的字符串而言，浏览器">
+<meta property="og:image" content="http://www.w3school.com.cn/i/ct_htmltree.gif">
+<meta property="og:image" content="http://i1.tietuku.com/b888f92e6a786e9e.png">
+<meta property="og:updated_time" content="2015-10-29T09:30:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript 编程艺术的读书笔记（一）">
+<meta name="twitter:description" content="这几天复习审计复习的头昏眼花，间隙间把《javaScript DOM 编程艺术》一书看了一遍。嗯，做一做读书笔记，以后可以看看。
+DOMDOM（document object model）是文档对象模型。当宿主是浏览器，或者是需要解析标记性文本文档的时候，就会有DOM的概念。嗯，根据惯例，先讲理论。
+文档 Document文档简单的说，是字符串的集合，是标记符号的集合。对于一般的字符串而言，浏览器">
+
+    
+    <link rel="alternative" href="/atom.xml" title="homker" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/logo.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="homker">homker</a></h1>
+				<h2 class="blog-motto">单身不能成为你无聊的借口</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/27/编程艺术的读书笔记（一）/" title="JavaScript 编程艺术的读书笔记（一）" itemprop="url">JavaScript 编程艺术的读书笔记（一）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="homker" target="_blank" itemprop="author">homker</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-26T16:15:17.000Z" itemprop="datePublished"> 发表于 2015-05-27</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM"><span class="toc-number">1.</span> <span class="toc-text">DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文档_Document"><span class="toc-number">1.1.</span> <span class="toc-text">文档 Document</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象_Object"><span class="toc-number">1.2.</span> <span class="toc-text">对象 Object</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型_Model"><span class="toc-number">1.3.</span> <span class="toc-text">模型 Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#节点"><span class="toc-number">1.4.</span> <span class="toc-text">节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM_的分级"><span class="toc-number">1.5.</span> <span class="toc-text">DOM 的分级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js的基本操作"><span class="toc-number">2.</span> <span class="toc-text">js的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM_0_的操作接口"><span class="toc-number">2.1.</span> <span class="toc-text">DOM 0 的操作接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方法"><span class="toc-number">2.1.1.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性"><span class="toc-number">2.1.2.</span> <span class="toc-text">属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取节点"><span class="toc-number">2.2.</span> <span class="toc-text">获取节点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#原生实现"><span class="toc-number">2.2.1.</span> <span class="toc-text">原生实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#优雅降级"><span class="toc-number">2.2.2.</span> <span class="toc-text">优雅降级</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置和获取属性"><span class="toc-number">2.3.</span> <span class="toc-text">设置和获取属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#获取属性"><span class="toc-number">2.3.1.</span> <span class="toc-text">获取属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置属性"><span class="toc-number">2.3.2.</span> <span class="toc-text">设置属性</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<p>这几天复习审计复习的头昏眼花，间隙间把《javaScript DOM 编程艺术》一书看了一遍。嗯，做一做读书笔记，以后可以看看。</p>
+<h2 id="DOM">DOM</h2><p>DOM（document object model）是文档对象模型。当宿主是浏览器，或者是需要解析标记性文本文档的时候，就会有DOM的概念。嗯，根据惯例，先讲理论。</p>
+<h3 id="文档_Document">文档 Document</h3><p>文档简单的说，是字符串的集合，是标记符号的集合。对于一般的字符串而言，浏览器并不会对他们进行过多的解析，只有当这些字符串被能被浏览器识别的标记符号包裹的时候，浏览器才会对该文档进行对象化操作，生成DOM tree。</p>
+<h3 id="对象_Object">对象 Object</h3><p>对象的话，DOM的本身之意其实就是把标记文档进行对象化，是他们能够成为可操作的对象节点。JavaSript的对象分成三类：</p>
+<ul>
+<li><p>用户定义的对象  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;&#125;; &#10;var o = new Object();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>内建对象 js语言自带的对象，其实吧，我觉得每一个引用类型都是一个自建对象啊<code>array</code>，<code>function</code>，<code>RegExp</code>,<code>Date</code>等除了那五个初始类型（<code>Null</code>,<code>Undefined</code>,<code>Boolean</code>，<code>Number</code>,<code>String</code>）</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var date = new Date();&#10;var a = [];&#10;var a = new Audio();&#10;var a = new String();&#10;//tips&#65306;new String &#24471;&#21040;&#26159;&#19968;&#20010;Object&#32780;&#19981;&#26159;string&#12290;&#10;&#8220;asdfe&#8221; === new String(&#34;asdfe&#34;);//false</span><br></pre></td></tr></table></figure>
+<ul>
+<li>宿主对象：<ul>
+<li>window Object 窗口对象模型（BOM）是最基础的宿主对象<ul>
+<li>document Obcject</li>
+<li>location </li>
+<li>history</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="模型_Model">模型 Model</h3><p>模型的话，这个我的理解是解释的对象解析的本身关系的样子。嗯，DOM的话其实就是树啦，正所谓DOM tree嘛。用来表示各个对象节点之间的关系是什么。<br>一个简单的DOM tree如下图：<img src="http://www.w3school.com.cn/i/ct_htmltree.gif" alt="DOM tree"><br><a id="more"></a></p>
+<h3 id="节点">节点</h3><p>嗯，如上图所示，每一颗文本树都有很多的节点。每一个节点都可以看作是一个可操作的对象。在DOM中，对象分为三类：</p>
+<ul>
+<li>元素节点 （element node）就是每一个标签</li>
+<li>文本节点 （text node） 元素节点中的文本对象</li>
+<li>属性节点 （attribute node） 元素节点中的属性对象</li>
+</ul>
+<p>对于下面这段html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;p id=&#34;content&#34;&#62;this is a &#60;em&#62;p&#60;/em&#62; tag&#60;/p&#62;</span><br></pre></td></tr></table></figure></p>
+<p>他的节点树是这样的：<br><img src="http://i1.tietuku.com/b888f92e6a786e9e.png" alt="节点图"><br>嗯其中的id是属性节点。</p>
+<h3 id="DOM_的分级">DOM 的分级</h3><p>最后说一下DOM的分级，DOM分成四级</p>
+<ul>
+<li>DOM 0 </li>
+<li>DOM 1</li>
+<li>DOM 2</li>
+<li>DOM 3<br>等级从0到3，DOM的可操作性原来越强，具体的内容可以看<a href="http://zh.wikipedia.org/wiki/%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B" target="_blank" rel="external">这个</a>。里面没有level 0的原因是因为它已经过时了。。。DOM 的level 2添加了对试图，样式，事件，节点操作的支持。</li>
+</ul>
+<h2 id="js的基本操作">js的基本操作</h2><p>嗯，DOM的基本的理论就在上面了，因为是小白，所以很多到东西并不是很清楚，希望大家多多指正啊～！下面说一下js的相关接口。<br>先记录一下DOM 0 级的一些操作接口，虽然很多都已经废弃了。</p>
+<h3 id="DOM_0_的操作接口">DOM 0 的操作接口</h3><h4 id="方法">方法</h4><p>一些老旧的方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.open() ; //&#25171;&#24320;document&#30340;&#25805;&#20316;&#27969;&#10;document.write() ; //&#20889;&#20837;&#10;document.writeln(); //&#20889;&#20837;&#24182;&#25442;&#34892;&#10;document.close(); //&#20851;&#38381;</span><br></pre></td></tr></table></figure></p>
+<p>上面所列的方法其实都已经不怎么用了。。。缅怀一下，当年我的第一个hello world。</p>
+<h4 id="属性">属性</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.bgColor //&#60;body&#62;&#30340;bgcolor&#23646;&#24615;&#65288;&#24050;&#19981;&#20877;&#20351;&#29992;&#65289;&#10;document.cookie //&#35774;&#32622;&#25110;&#36820;&#22238;&#19982;&#24403;&#21069;&#25991;&#26723;&#26377;&#20851;&#30340;&#25152;&#26377;cookie&#12290;&#10;document.domain //&#20851;&#20110;&#21516;&#28304;&#31574;&#30053;&#23433;&#20840;&#38480;&#21046;&#65292;&#36820;&#22238;&#24403;&#21069;&#25991;&#26723;&#30340;&#22495;&#21517;&#12290;&#10;document.lastModified //&#19968;&#20010;&#23383;&#31526;&#20018;&#65292;&#21253;&#21547;&#25991;&#26723;&#30340;&#20462;&#25913;&#26085;&#26399;&#12290;&#10;document.location //&#21644;location&#26159;&#19968;&#26679;&#30340;&#10;document.referrer //http refer&#10;document.title //&#36820;&#22238;&#24403;&#21069;&#25991;&#26723;&#30340;&#26631;&#39064;&#12290;&#10;document.URL //&#31561;&#20215;&#20110;location.href&#10;//&#20197;&#19979;&#37117;&#26159;&#25968;&#32452;&#10;document.anchors // &#25991;&#26723;&#20013;&#38170;&#30340;&#38598;&#21512;&#12290;&#10;document.applets// &#25991;&#26723;&#20013;&#23567;&#24212;&#29992;&#31243;&#24207;&#30340;&#38598;&#21512;&#12290;&#10;document.forms//&#25991;&#26723;&#20013;&#34920;&#21333;&#30340;&#38598;&#21512;&#12290;&#10;document.images// &#25991;&#26723;&#20013;&#22270;&#29255;&#30340;&#38598;&#21512;&#12290;&#10;document.links//&#25991;&#26723;&#20013;&#38142;&#25509;&#30340;&#38598;&#21512;</span><br></pre></td></tr></table></figure>
+<h3 id="获取节点">获取节点</h3><p>嗯，现在回来讲如何从DOM tree中获取一个可以操作的节点。</p>
+<h4 id="原生实现">原生实现</h4><p>最简单的方法是以下几个只针对html：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&#34;id&#34;);&#10;document.getElementsByTagName(&#34;p&#34;);//&#36825;&#37324;&#33719;&#24471;&#26159;&#19968;&#20010;&#25968;&#32452;&#10;document.getElementsByName(&#34;name&#34;);&#10;&#10;document.getElementsByClassName(&#34;class&#34;);&#10;document.queryselector(&#34;.selector&#34;); //&#24471;&#21040;&#26368;&#21518;&#19968;&#20010;&#21305;&#37197;&#30340;&#23545;&#35937;&#10;document.queryselectorAll(&#34;#all&#34;);//&#24471;&#21040;&#25152;&#26377;&#21305;&#37197;&#30340;&#25968;&#32452;</span><br></pre></td></tr></table></figure></p>
+<p>嗯，其实这些选择器是支持连用的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&#34;id&#34;).getElementByTagName(&#34;li&#34;);//&#33719;&#21462;id&#20026;id&#30340;&#26631;&#31614;&#19979;&#30340;&#25152;&#26377;li&#26631;&#31614;&#12290;</span><br></pre></td></tr></table></figure></p>
+<p>前三个是支持广泛的方法，后面的是ECMAS5之后提供的方法。我们可以用前三者来模拟后三者的实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;//&#26368;&#31616;&#21333;&#30340;&#10;&#10;document.getElementByClass = function(n) &#123; &#10;            var el = [],&#10;                _el = document.getElementsByTagName(&#39;*&#39;);&#10;            for (var i=0; i&#60;_el.length; i++ ) &#123;&#10; &#10;                if (_el[i].className == n ) &#123;&#10;                    el[el.length] = _el[i];&#10;                &#125;&#10;            &#125;&#10;            return el;&#10;        &#125;&#10;        &#10;//&#20248;&#21270;&#19968;&#19979;&#10;&#10;function getElementsByClassName(node,classname) &#123;&#10;  if (node.getElementsByClassName) &#123; //&#21028;&#26029;&#21407;&#29983;&#26159;&#21542;&#25903;&#25345;&#10;    return node.getElementsByClassName(classname);&#10;  &#125; else &#123;&#10;    return (function getElementsByClass(searchClass,node) &#123;&#10;        if ( node == null )&#10;          node = document;&#10;        var classElements = [],&#10;            els = node.getElementsByTagName(&#34;*&#34;),//&#33719;&#21462;&#25152;&#26377;&#30340;&#33410;&#28857;&#10;            elsLen = els.length,&#10;            pattern = new RegExp(&#34;(^|\\s)&#34;+searchClass+&#34;(\\s|$)&#34;), i, j;//&#20351;&#29992;&#27491;&#21017;&#21305;&#37197;&#65292;&#23454;&#29616;&#24403;&#22810;&#20010;class&#26102;&#20505;&#30340;&#21462;&#29992;&#12290;&#10;&#10;        for (i = 0, j = 0; i &#60; elsLen; i++) &#123;&#10;          if ( pattern.test(els[i].className) ) &#123;//&#22914;&#26524;&#21305;&#37197;&#25104;&#21151;&#25918;&#20837;&#26032;&#30340;&#25968;&#32452;&#10;              classElements[j] = els[i];&#10;              j++;&#10;          &#125;&#10;        &#125;&#10;        return classElements;//&#36820;&#22238;&#25968;&#32452;&#10;    &#125;)(classname, node);&#10;  &#125;&#10;&#125;&#10;&#10;//&#21999;&#65292;&#20877;&#32473;&#20986;&#19968;&#31181;&#26356;&#24039;&#22937;&#30340;&#26041;&#27861;&#10;&#10;function getElementsByClassName(node,classname)&#123;&#10;    if(node.getElementsByClassName) return node.getElementsByClassName(classname);&#10;    else&#123;&#10;        var res = [],&#10;            elems = node.getElementsByTagName(&#34;*&#34;);&#10;            for(var i = 0 ; i&#60; elems.length; i++)&#123;&#10;                if (elems[i].indexof(classname) != -1)&#123;&#10;                    res[res.length] = elems[i];&#10;                &#125;&#10;            &#125;&#10;        return res;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果对这个感兴趣的话，还可以参考<a href="http://robertnyman.com/2005/11/07/the-ultimate-getelementsbyclassname/" target="_blank" rel="external">这位大神的实现</a>。</p>
+<p>剩下两个的话，其实就有点类似sizzle的选择器实现了。嗯，就不多说什么了。嗯，这里多说一点的是，优雅降级。</p>
+<h4 id="优雅降级">优雅降级</h4><p>对于一些不兼容javascript的浏览器，通常情况下，我们要判断一下是否支持js。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if(document.getElementById)&#123;&#10;    //do something&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果多个选择器判断则会出现嵌套，就像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if(document.getElementById)&#123;&#10;    if(document.getElementsByTagName)&#123;&#10;        if(document.getElementsByName)&#123;&#10;            //do something&#10;        &#125;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>额，这样就出现了我们所痛恨的金字塔形的代码，并不友好，我们友好一点<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function()&#123;&#10;    if(!document.getElementById) return false;&#10;    //do something    &#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果有很多的话，其实可以这么写<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var d = document,&#10;    isDom = d.getElementById&#38;&#38;d.getElementsByTagName&#38;&#38;d.getElementsByName;&#10;if(!isDom) return false;</span><br></pre></td></tr></table></figure></p>
+<p>这里有一个小问题，如果多人协作，我怎么才能保证，这种对浏览器支持的判断只做一次？我的想法如下：<br>嗯，可以定义一个全局变量，用来存放判断结果，这样，每次使用的时候，对那个全局变量进行一次校验就行了。<br>如果大家有更好的想法，请告诉我～！</p>
+<h3 id="设置和获取属性">设置和获取属性</h3><h4 id="获取属性">获取属性</h4><p>这个其实很简单的啦。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&#34;id&#34;).getAttrubute(&#39;attr&#39;);</span><br></pre></td></tr></table></figure></p>
+<h4 id="设置属性">设置属性</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&#34;id&#34;).setAttrubute(&#39;attr&#39;);</span><br></pre></td></tr></table></figure>
+<p>这里要注意一点，只有对元素节点采用如上的方法哦。<br>嗯，今天就先这么多吧，明天再来。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JavaScript-DOM/">JavaScript DOM</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2015/05/27/编程艺术的读书笔记（一）/" data-title="JavaScript 编程艺术的读书笔记（一） | homker" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/05/28/编程艺术的读书笔记（二）/" title="JavaScript编程艺术的读书笔记（二）">
+  <strong>上一篇：</strong><br/>
+  <span>
+  JavaScript编程艺术的读书笔记（二）</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/05/21/html5中的声音（三）/"  title="html5中的声音（三）">
+ <strong>下一篇：</strong><br/> 
+ <span>html5中的声音（三）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/05/27/编程艺术的读书笔记（一）/" data-title="JavaScript 编程艺术的读书笔记（一）" data-url="http://yoursite.com/2015/05/27/编程艺术的读书笔记（一）/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM"><span class="toc-number">1.</span> <span class="toc-text">DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文档_Document"><span class="toc-number">1.1.</span> <span class="toc-text">文档 Document</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象_Object"><span class="toc-number">1.2.</span> <span class="toc-text">对象 Object</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型_Model"><span class="toc-number">1.3.</span> <span class="toc-text">模型 Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#节点"><span class="toc-number">1.4.</span> <span class="toc-text">节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM_的分级"><span class="toc-number">1.5.</span> <span class="toc-text">DOM 的分级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js的基本操作"><span class="toc-number">2.</span> <span class="toc-text">js的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM_0_的操作接口"><span class="toc-number">2.1.</span> <span class="toc-text">DOM 0 的操作接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方法"><span class="toc-number">2.1.1.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性"><span class="toc-number">2.1.2.</span> <span class="toc-text">属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取节点"><span class="toc-number">2.2.</span> <span class="toc-text">获取节点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#原生实现"><span class="toc-number">2.2.1.</span> <span class="toc-text">原生实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#优雅降级"><span class="toc-number">2.2.2.</span> <span class="toc-text">优雅降级</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置和获取属性"><span class="toc-number">2.3.</span> <span class="toc-text">设置和获取属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#获取属性"><span class="toc-number">2.3.1.</span> <span class="toc-text">获取属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置属性"><span class="toc-number">2.3.2.</span> <span class="toc-text">设置属性</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/JavaScript-DOM/" title="JavaScript DOM">JavaScript DOM<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html5/" title="html5">html5<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XSS/" title="XSS">XSS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/生活/" title="生活">生活<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/实习总结/" title="实习总结">实习总结<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CMD-seajs/" title="CMD seajs">CMD seajs<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/badjs/" title="badjs">badjs<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ecjtu.net" target="_blank" title="日新网">日新网</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m homker. a student from ecjtu.net. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/homker for https://github.com/homker" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:liu15jia@163.com## e.g. imjark@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="homker">homker</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"homker"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

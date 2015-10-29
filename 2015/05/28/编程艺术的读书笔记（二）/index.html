@@ -1,0 +1,486 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>JavaScript编程艺术的读书笔记（二） | homker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="homker">
+    
+
+    
+    <meta name="description" content="昨天记录了一下DOM的一些简单的操作和一些简单的实现方法，还有一点js的DOM操作，然后提到一个概念，优雅降级,与之对应的是渐进增强，其实他们都是兼容问题。
+#兼容
+问题的根源其实吧，我觉得两者是从不同的角度和方向来解决同一个问题。如何对待浏览器大战留下来的坑，以及如何照顾不同受众群体。这个问题的根源其实是http协议本身的无状态。以及计算机网络的不确定性，我们只能将很大一部分代码的基础构建在一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript编程艺术的读书笔记（二）">
+<meta property="og:url" content="http://yoursite.com/2015/05/28/编程艺术的读书笔记（二）/index.html">
+<meta property="og:site_name" content="homker">
+<meta property="og:description" content="昨天记录了一下DOM的一些简单的操作和一些简单的实现方法，还有一点js的DOM操作，然后提到一个概念，优雅降级,与之对应的是渐进增强，其实他们都是兼容问题。
+#兼容
+问题的根源其实吧，我觉得两者是从不同的角度和方向来解决同一个问题。如何对待浏览器大战留下来的坑，以及如何照顾不同受众群体。这个问题的根源其实是http协议本身的无状态。以及计算机网络的不确定性，我们只能将很大一部分代码的基础构建在一个">
+<meta property="og:updated_time" content="2015-10-29T09:30:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript编程艺术的读书笔记（二）">
+<meta name="twitter:description" content="昨天记录了一下DOM的一些简单的操作和一些简单的实现方法，还有一点js的DOM操作，然后提到一个概念，优雅降级,与之对应的是渐进增强，其实他们都是兼容问题。
+#兼容
+问题的根源其实吧，我觉得两者是从不同的角度和方向来解决同一个问题。如何对待浏览器大战留下来的坑，以及如何照顾不同受众群体。这个问题的根源其实是http协议本身的无状态。以及计算机网络的不确定性，我们只能将很大一部分代码的基础构建在一个">
+
+    
+    <link rel="alternative" href="/atom.xml" title="homker" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/logo.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="homker">homker</a></h1>
+				<h2 class="blog-motto">单身不能成为你无聊的借口</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/28/编程艺术的读书笔记（二）/" title="JavaScript编程艺术的读书笔记（二）" itemprop="url">JavaScript编程艺术的读书笔记（二）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="homker" target="_blank" itemprop="author">homker</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-28T14:58:52.000Z" itemprop="datePublished"> 发表于 2015-05-28</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题的根源"><span class="toc-number">1.</span> <span class="toc-text">问题的根源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优雅降级（Graceful_degradation）"><span class="toc-number">2.</span> <span class="toc-text">优雅降级（Graceful degradation）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#渐进增强_（Progressive_enhancement）"><span class="toc-number">3.</span> <span class="toc-text">渐进增强 （Progressive enhancement）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现"><span class="toc-number">4.</span> <span class="toc-text">实现</span></a></li></ol>
+		
+		</div>
+		
+		<p>昨天记录了一下DOM的一些简单的操作和一些简单的实现方法，还有一点js的DOM操作，然后提到一个概念，<code>优雅降级</code>,与之对应的是<code>渐进增强</code>，其实他们都是兼容问题。</p>
+<p>#兼容</p>
+<h2 id="问题的根源">问题的根源</h2><p>其实吧，我觉得两者是从不同的角度和方向来解决同一个问题。如何对待浏览器大战留下来的坑，以及如何照顾不同受众群体。这个问题的根源其实是http协议本身的无状态。以及计算机网络的不确定性，我们只能将很大一部分代码的基础构建在一个假设上面，而这个假设本身并不能被很好的印证。这样话，其实就有一个很根本的问题了，如果，宿主对象不存在，该如何处理。曾经的想法是优雅降级， 后来我们把想法更新成了渐进增强。<br>对于不同浏览器的支持可以点<a href="http://caniuse.com/" target="_blank" rel="external">这里</a>进行查询。</p>
+<h2 id="优雅降级（Graceful_degradation）">优雅降级（Graceful degradation）</h2><p>又叫平稳退化，wiki上有比较详细的<a href="http://en.wikipedia.org/wiki/Fault_tolerance" target="_blank" rel="external">解释</a>，英文好的同学可以点击去看看，嗯，说一下自己的理解，其实就是当程序运行在一个非完整环境下，对该不完整环境做的自我阉割，从而使得在该不完整情况下使用的用户能够基本完成所有交互动作。</p>
+<h2 id="渐进增强_（Progressive_enhancement）">渐进增强 （Progressive enhancement）</h2><p>淘宝UED的一篇译文写的极好，这里直接引用。</p>
+<blockquote>
+<p>“渐进增强”观点则认为应关注于内容本身。请注意其中的差别：我甚至连“浏览器”三个字都没提。</p>
+<p>内容是我们建立网站的诱因。有的网站展示它，有的则收集它，有的寻求，有的操作，还有的网站甚至会包含以上的种种，但相同点是它们全都涉及到内容。这使得“渐进增强”成为一种更为合理的设计范例。这也是它立即被 Yahoo! 所采纳并用以构建其“<a href="http://developer.yahoo.com/yui/articles/gbs/" target="_blank" rel="external">分级式浏览器支持</a> (Graded Browser Support)”策略的原因所在。<br><a href="http://ued.taobao.org/blog/2008/10/understanding-progressiveen-hancement-chs-translation/" target="_blank" rel="external">原文请点我</a></p>
+</blockquote>
+<p>##区别</p>
+<p>从不同层面和起点去看同一个问题，往往会有不同的答案，就像，我们看到这两个兼容处理。</p>
+<pre><code>当我们站在完整浏览器的角度而言，我们所面对的受众都是会自行更新最新浏览器的年轻受众而言，保持网页最酷炫，最丰满的状态往往会得到更大的收益，这时候，建立在最新浏览器支持下的优雅降级，就有其独特的优势。以最好的呈现效果为出发点，当我的呈现效果无法得到宿主环境的支持的时候，我主动阉割，用来实现交互的延续。
+
+当我们站在内容表现的出发点，以最大限度的传递内容信息为依归的去思考问题的时候，我们往往会发现从老旧浏览器出发的向上表现增强，是更好的实现方法。
+</code></pre><p>并没有什么东西是一成不变就能放之四海而皆准的，具体问题具体分析，根据业务环境的选择才是正途。正如<a href="http://blog.csdn.net/xiongzhengxiang/article/details/7999525" target="_blank" rel="external">这篇博文</a>所说，二者之间，其实并没有什么本质上的区别，更多的是思想观念和具体操作流程上的区别。<br><a id="more"></a></p>
+<h2 id="实现">实现</h2><p>说了半天理论，我们来说说怎么做，其实这两种兼容方式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;div&#62;&#10;    &#60;input type=&#34;text&#34; id=&#34;text&#34; /&#62; &#10;    &#60;a class=&#34;button&#34; id=&#34;submit&#34;&#62;&#25552;&#20132;&#60;/a&#62;&#10;&#60;/div&#62;&#10;&#60;script type=&#34;application/javascript&#34;&#62;&#10;    ;(function()&#123;&#10;        $(&#34;submit&#34;).click(function()&#123;&#10;            var text = $(&#34;text&#34;).val();&#10;            $.post(&#39;url&#39;,&#123;&#39;text&#39;:text,function(d)&#123;&#10;                // do something&#10;            &#125;&#125;);&#10;        &#125;)&#10;    &#125;)()&#10;&#60;/script&#62;</span><br></pre></td></tr></table></figure></p>
+<p>嗯，上面的代码其实在大多数浏览器下并不会有很大的兼容问题，而且书写起来简单方便，很容易被大家贴来贴去。但是，如果一旦宿主端停止了对js的支持，或者停止了对ajax的支持，上面这个程序就GG啦~！一点挽回的余地都没有啦~！嗯，我们看一下下面的写法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;form action=&#34;url&#34; method=&#34;post&#34; class=&#34;form&#34;  &#62;&#10;    &#60;input type=&#34;text&#34; id=&#34;text&#34; /&#62;&#10;    &#60;input type=&#34;submit&#34; value=&#34;&#25552;&#20132;&#34; id=&#34;submit&#34; /&#62;&#10;&#60;/form&#62;&#10;&#10;&#60;script type=&#34;application/javascript&#34;&#62;&#10;    ;(function()&#123;&#10;        $(&#34;#submit&#34;).click(function()&#123;&#10;            var text = $(&#34;text&#34;).val();&#10;            $.post(&#39;url&#39;,&#123;&#39;text&#39;:text,function(d)&#123;&#10;                // do something&#10;            &#125;&#125;);&#10;            return false;//&#25318;&#25130;&#20107;&#20214;&#65292;&#20351;&#24471;&#20107;&#20214;&#19981;&#20250;&#20882;&#27873;&#12290;&#21017;&#19981;&#20250;&#35302;&#21457;onsubmit&#20107;&#20214;&#10;        &#125;)&#10;    &#125;)()&#10;&#60;/script&#62;</span><br></pre></td></tr></table></figure>
+<p>从功能上而言，新版的和旧的是一样，使用ajax实现一个异步的登入请求，如果你可以使用ajax的话，如果，并不支持js，则会使用一般的form表单实现同步登入。这样，就算用户无法享受高级的ajax服务，也是能够完成提交表单的这一交互行为。<br>再看下面这个例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;button id=&#34;show&#34; &#62;click me~!&#60;/button&#62;&#10;&#60;img src=&#34;path\to\image&#34; id=&#34;image&#34; /&#62;&#10;&#60;script type=&#34;application/javascript&#34;&#62;&#10;    ;(function()&#123;&#10;        $(&#34;#show&#34;).click(function()&#123;&#10;            $(&#34;#image&#34;).attr(&#39;src&#39;,&#39;new\path\to\image&#39;)&#65307;&#10;        &#125;);&#10;    &#125;)()&#10;&#60;/script&#62;</span><br></pre></td></tr></table></figure></p>
+<p>这段代码应该来说超级常见，很多地方都能用到。点击更换或者出现一张图片。但是，上面的操作都大量的依靠于javascript，当宿主环境不支持的时候，我们已经完全无法进行下一步的交互，从用户体验的角度来说，这会让用户有很强的挫败感，而这种挫败感会直接导致用户的流逝。。。嗯，我们可以用一下方法来解决这个问题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;a href=&#34;path\to\image&#34; id=&#34;show&#34; &#62;click me~!&#60;/&#62;&#10;&#60;script type=&#34;application/javascript&#34;&#62;&#10;    ;(function()&#123;&#10;        $(&#34;#show&#34;).click(function()&#123;&#10;            var image = document.createElement(&#34;IMG&#34;);&#10;            $(image).attr(&#39;src&#39;,&#39;new\path\to\image&#39;)&#65307;&#10;            $(this).parent().append(image);&#10;            return false;&#10;        &#125;);&#10;    &#125;)()&#10;&#60;/script&#62;</span><br></pre></td></tr></table></figure></p>
+<p>嗯，新的代码，在支持js的环境下与上一段代码无异，运行在不支持js环境下的时候，会用一个a标签代替button，我们可以通过设置a的样式来使得a长的像一个button。这样的话，就算js不能使用，也不会莫名其妙的出现张图片。不会影响体验和使用逻辑，用户依然可以通过点击来判断是否查看图片。</p>
+<p>嗯这里使用了jquery库，所以，我们并没有对DOM操作本身进行校验，这个，如果有需要，我们还是要做的。嗯，这里提供一个js库，用来校验宿主是否兼容。<a href="http://modernizr.com/" target="_blank" rel="external">Modernizr</a> ，我们可以通过这个库来校验浏览器是否支持一些属性，然后来判断，如何优雅的实现优雅兼容。看下面这个例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;script type=&#34;text/javascript&#34; src=&#34;Scripts/modernizr-2.0.6.min.js&#34;&#62;&#60;/script&#62;&#10;        &#60;style&#62;&#10;            article  &#10;            &#123;&#10;                background: lightblue;&#10;                margin: 20px;&#10;                padding: 5px;                &#10;                width: 350px;&#10;                border-radius: 10px;&#10;                box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);&#10;            &#125;&#10;            article h1 &#123; font-size: 12px; &#125;&#10;        &#60;/style&#62;&#10;        &#60;article&#62;&#10;            &#60;header&#62;&#60;h1&#62;&#25105;&#30340;&#26631;&#39064;&#60;/h1&#62;&#60;/header&#62;&#10;            &#60;p&#62;&#25105;&#30340;&#20869;&#23481;&#60;/p&#62;&#10;        &#60;/article&#62;&#10;    &#60;script&#62;&#10;        Modernizr.load([&#123;&#10;            load: &#39;Scripts/jquery-1.6.1.min.js&#39;,&#10;            complete: function () &#123;&#10;                if (!window.jQuery) &#123;&#10;                    Modernizr.load(&#39;Scripts/jquery-1.6.1.min.js&#39;);&#10;                &#125;&#10;            &#125;&#10;        &#125;,&#10;        &#123;&#10;            test: Modernizr.borderradius || Modernizr.boxshadow,&#10;            nope: &#39;Scripts/PIE.js&#39;,&#10;            callback: function () &#123;&#10;                $(&#39;article&#39;).each(function () &#123;&#10;                    PIE.attach(this);&#10;                &#125;);&#10;            &#125;&#10;        &#125;]);&#10;    &#60;/script&#62;</span><br></pre></td></tr></table></figure></p>
+<p>但浏览器支持圆角属性的时候，会自动应用css属性，但是，当属性并不支持的时候，我们使用pie.js的脚本来动态实现，如果，连js都不兼容的话，就只能展示最基本的信息了。。。。<br>嗯，今天就说这么多，明天处理如何新建html节点，html-DOM DOM-core，和事件处理。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JavaScript-DOM/">JavaScript DOM</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2015/05/28/编程艺术的读书笔记（二）/" data-title="JavaScript编程艺术的读书笔记（二） | homker" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/05/31/编程艺术的读书笔记（三）/" title="JavaScript 编程艺术的读书笔记（三）">
+  <strong>上一篇：</strong><br/>
+  <span>
+  JavaScript 编程艺术的读书笔记（三）</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/05/27/编程艺术的读书笔记（一）/"  title="JavaScript 编程艺术的读书笔记（一）">
+ <strong>下一篇：</strong><br/> 
+ <span>JavaScript 编程艺术的读书笔记（一）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/05/28/编程艺术的读书笔记（二）/" data-title="JavaScript编程艺术的读书笔记（二）" data-url="http://yoursite.com/2015/05/28/编程艺术的读书笔记（二）/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题的根源"><span class="toc-number">1.</span> <span class="toc-text">问题的根源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优雅降级（Graceful_degradation）"><span class="toc-number">2.</span> <span class="toc-text">优雅降级（Graceful degradation）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#渐进增强_（Progressive_enhancement）"><span class="toc-number">3.</span> <span class="toc-text">渐进增强 （Progressive enhancement）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现"><span class="toc-number">4.</span> <span class="toc-text">实现</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/JavaScript-DOM/" title="JavaScript DOM">JavaScript DOM<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html5/" title="html5">html5<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XSS/" title="XSS">XSS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/生活/" title="生活">生活<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/实习总结/" title="实习总结">实习总结<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CMD-seajs/" title="CMD seajs">CMD seajs<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/badjs/" title="badjs">badjs<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ecjtu.net" target="_blank" title="日新网">日新网</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m homker. a student from ecjtu.net. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/homker for https://github.com/homker" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:liu15jia@163.com## e.g. imjark@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="homker">homker</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"homker"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

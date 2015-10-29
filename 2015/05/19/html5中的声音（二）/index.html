@@ -1,0 +1,485 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>html5中的声音（二） | homker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="homker">
+    
+
+    
+    <meta name="description" content="由上，我们已经可以很简单的在页面中播放声音了，就像这样：1&amp;#60;!DOCTYPE html&amp;#62;&amp;#10;&amp;#60;html&amp;#62;&amp;#10;    &amp;#60;head&amp;#62;&amp;#10;        &amp;#60;meta charset=&amp;#34;utf-8&amp;#34; /&amp;#62;&amp;#10;        &amp;#60;title&amp;#62;Audio&amp;#60;/title&amp;#62;&amp;#10">
+<meta property="og:type" content="article">
+<meta property="og:title" content="html5中的声音（二）">
+<meta property="og:url" content="http://yoursite.com/2015/05/19/html5中的声音（二）/index.html">
+<meta property="og:site_name" content="homker">
+<meta property="og:description" content="由上，我们已经可以很简单的在页面中播放声音了，就像这样：1&amp;#60;!DOCTYPE html&amp;#62;&amp;#10;&amp;#60;html&amp;#62;&amp;#10;    &amp;#60;head&amp;#62;&amp;#10;        &amp;#60;meta charset=&amp;#34;utf-8&amp;#34; /&amp;#62;&amp;#10;        &amp;#60;title&amp;#62;Audio&amp;#60;/title&amp;#62;&amp;#10">
+<meta property="og:image" content="http://webaudio.github.io/web-audio-api/images/modular-routing2.png">
+<meta property="og:updated_time" content="2015-10-29T09:30:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="html5中的声音（二）">
+<meta name="twitter:description" content="由上，我们已经可以很简单的在页面中播放声音了，就像这样：1&amp;#60;!DOCTYPE html&amp;#62;&amp;#10;&amp;#60;html&amp;#62;&amp;#10;    &amp;#60;head&amp;#62;&amp;#10;        &amp;#60;meta charset=&amp;#34;utf-8&amp;#34; /&amp;#62;&amp;#10;        &amp;#60;title&amp;#62;Audio&amp;#60;/title&amp;#62;&amp;#10">
+
+    
+    <link rel="alternative" href="/atom.xml" title="homker" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/logo.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="homker">homker</a></h1>
+				<h2 class="blog-motto">单身不能成为你无聊的借口</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/19/html5中的声音（二）/" title="html5中的声音（二）" itemprop="url">html5中的声音（二）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="homker" target="_blank" itemprop="author">homker</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-19T15:25:19.000Z" itemprop="datePublished"> 发表于 2015-05-19</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#audioContext_接口"><span class="toc-number">1.</span> <span class="toc-text">audioContext 接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实例化"><span class="toc-number">1.1.</span> <span class="toc-text">实例化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#播放"><span class="toc-number">1.2.</span> <span class="toc-text">播放</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#异步播放"><span class="toc-number">1.2.1.</span> <span class="toc-text">异步播放</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分析播放"><span class="toc-number">1.2.2.</span> <span class="toc-text">分析播放</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<p>由上，我们已经可以很简单的在页面中播放声音了，就像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE html&#62;&#10;&#60;html&#62;&#10;    &#60;head&#62;&#10;        &#60;meta charset=&#34;utf-8&#34; /&#62;&#10;        &#60;title&#62;Audio&#60;/title&#62;&#10;        &#60;body&#62;&#10;            &#60;button id=&#34;play&#34;&#62;play&#60;/button&#62;&#10;            &#60;button id=&#34;stop&#34;&#62;stop&#60;/button&#62;&#10;            &#60;button id=&#34;&#34;pause&#62;pause&#60;/button&#62;&#10;            &#60;script type=&#34;application/javascript&#34;&#62;&#10;            (function()&#123;&#10;                var $ = function(selector)&#123;&#10;                    return document.getElementById(selector);&#10;                &#125;,&#10;                play = $(&#34;play&#34;),&#10;                stop = $(&#34;stop&#34;),&#10;                pause = $(&#34;pause&#34;),&#10;                Audio.prototype.stop = function()&#123;&#10;                    this.pause();&#10;                    this.currentTime = 0;&#10;                &#125;,&#10;                player = neew Audio(&#34;path\to\audio&#34;);&#10;                &#10;                play.addEventListener(&#34;click&#34;,function()&#123;&#10;                    player.play();&#10;                &#125;,false);&#10;                &#10;                stop.addEventListener(&#34;click&#34;,function()&#123;&#10;                    player.stop();&#10;                &#125;,false);&#10;                &#10;                pause.addEventListener(&#34;click&#34;,function()&#123;&#10;                    player.pause();&#10;                &#125;,false);&#10;                &#10;                &#125;)();&#10;            &#60;/script&#62;&#10;        &#60;/body&#62;&#10;    &#60;/head&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure></p>
+<p>嗯，但是，这样好像并没有什么很酷炫的东西，样式什么的，去<a href="https://github.com/homker/audioPlayer" target="_blank" rel="external">我的github</a>上看成品，虽然也还是很难看。。。<br>好了，我们来点更酷炫一点的东西。我们这里要用到一个高级接口，叫做audiocontext。具体的接口说明可以参考<a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext" target="_blank" rel="external">MDN</a>，和<a href="http://webaudio.github.io/web-audio-api/" target="_blank" rel="external">W3C</a>上的解释。</p>
+<h2 id="audioContext_接口">audioContext 接口</h2><p>嗯，这个接口其实蛮有意思的，它并不能直接播放音源，但是它可以解析音源，并对音源进行一些处理，然后将音源传回给<code>Audio</code>接口进行播放。嗯，我们来看一张图。</p>
+<p><pre><br>|——————————————————-|<br>|              audioContext                              |<br>|   |—————-|               |—————-|  |<br>|   |auidoNode |     =&gt;     |  duration   |  |<br>|   |—————-|               |—————-|  |<br>|——————————————————-|<br></pre><br><a id="more"></a><br>很酷炫的字符图有木有~！这里有字符大小的bug，所以大家勉强的看一下，看不懂的，可以去github上找markdown。其中audioNode可以理解为音频源，duration理解为音频播放点。好了，这个是比较简单那的，复杂一点的，看下图：<br><img src="http://webaudio.github.io/web-audio-api/images/modular-routing2.png" alt="此处输入图片的描述"><br>嗯，<code>audiocontext</code>其实是给了一个音频的执行环境，在android开发里，context叫做上下文，嗯，并不知道js中叫什么。。。<a href="http://www.cnblogs.com/hustskyking/p/webaudio-show-audio.html" target="_blank" rel="external">胡子哥的解释</a>是环境，我觉得挺恰当的，所以也理解为环境。在这个环境中，我们可以对音频进行<code>处理</code>和<code>节流</code>还可以对字符串的输入进行<code>音频化处理</code>就是解析成声音啦。嗯，这里要注意一点的是，<code>audio</code>和<code>audiocontext</code>并不是同一个环境。。。他们之间的关系可以参照下图。</p>
+<pre>
+
+<p>|——————————————————|<br>|                  audio                                      |<br>|   |————|                |—————-|    |<br>|   |source   |    =\=&gt;   |  duration   |    |<br>|   |————|     |        |—————–|    |<br>|———————-|——————————|<br>                             |<br>                             |<br>                  |——-|——————————————————|<br>                  |         *       audioContext                                    |<br>                  |  |—————-|        |————|       |———|  |<br>                  |  |auidoNode | =&gt;  |  buffer  | =&gt;  | Dest   |  |<br>                  |  |—————-|        |————|       |———|  |<br>                  |—————————————————————|</p>
+<p></p></pre><br>这里的理解参照了胡子哥的博客和W3C的解释，英语不是很好，可能理解的不是很到位，有什么错误，大家可以指出来，相关的链接在之前已经给出。<br>好了，理论讲完了，开始看看怎么做。<p></p>
+<h3 id="实例化">实例化</h3><p>嗯，不同的浏览器对这货的支持并不是一样的，根据各浏览器厂商一贯的尿性，你会看到一堆的虽有私有接口。下面给出一个比较保险的实例化方案。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var Context = window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.msAudioContext,&#10;context = new Context();</span><br></pre></td></tr></table></figure></p>
+<h3 id="播放">播放</h3><p>播放的基本逻辑是：新建buffer -&gt; 获取buffer -&gt; 链接播放点 -&gt; 播放<br>下面给出函数代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function playSound(buffer) &#123;&#10;    var source = context.createBufferSource();&#10;    source.buffer = buffer;&#10;    source.connect(context.destination);&#10;    source.start(0);//source.noteOn(0);&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个比较简单哈，来个复杂点的，异步音频获取并播放。</p>
+<h4 id="异步播放">异步播放</h4><p>这里要使用XMLHttpRequest接口，这个接口大家都很熟悉啦，直接上代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var Context = window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.msAudioContext,&#10;    context = new Context(),&#10;    loadAudio = function(url)&#123;&#10;    var request = new XMLHttpRequest();&#10;    request.open(&#39;GET&#39;,url,true);&#10;    request.responseType = &#34;arraybuffer&#34;;//&#36825;&#37324;&#24517;&#39035;&#20026;&#32531;&#23384;&#25968;&#32452;&#30340;&#26684;&#24335;&#10;    request.onload = function()&#123;&#10;        context.decodeAudioData( request.response,function(buffer)&#123;&#10;            playSound(buffer);&#10;        &#125;,function(err)&#123;&#10;            return err;&#10;        &#125;);&#10;    request.send();&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>playSound()</code>方法参照上文即可。<br>XMLHttpRequest使用的arraybuffer类型（缓存数组），对于这个类型，可以<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer" target="_blank" rel="external">点击这里获取更详细的资料</a>。<br>嗯，我们这里可以实现一个loadAudio的封装，应该不是很难。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">define(function(require,exports,module)&#123;&#10;&#10;    exports.setconfig = function(context,url,callback)&#123;&#10;        module.context = context;&#10;        module.url = url;&#10;        module.onload = callback;&#10;    &#125;;&#10;&#10;    exports.start = function()&#123;&#10;        if (typeof(module.url) === &#34;string&#34;) &#123;&#10;            loadBuffer(module.url);&#10;        &#125;&#10;    &#125;;&#10;&#10;    var loadBuffer = function(url)&#123;&#10;        var request = new XMLHttpRequest();&#10;        request.open(&#39;GET&#39;, url, true);&#10;        request.responseType = &#34;arraybuffer&#34;;&#10;        console.log(this === module);&#10;        var loader = module;&#10;        request.onload = function () &#123;&#10;            loader.context.decodeAudioData(request.response, function (buffer) &#123;&#10;                console.log(&#34;this&#34;);&#10;                loader.onload(buffer);&#10;            &#125;, function (err) &#123;&#10;                return err;&#10;            &#125;);&#10;        &#125;;&#10;        request.send();&#10;    &#125;;&#10;&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>嗯，上面封装了一个<code>loadAudio</code>,可以直接用来获取和播放异步音频。不想异步的话，把<code>XMLHttpRequest.open()</code>的true改为false。引用的话，用了seajs.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE html&#62;&#10;&#60;html&#62;&#10;&#60;head lang=&#34;en&#34;&#62;&#10;    &#60;meta charset=&#34;UTF-8&#34;&#62;&#10;    &#60;title&#62;&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;script type=&#34;application/javascript&#34; src=&#34;../node_modules/seajs/dist/sea.js&#34;&#62;&#60;/script&#62;&#10;&#60;script type=&#34;application/javascript&#34;&#62;&#10;    seajs.config(&#123;&#10;            base: &#34;./js&#34;&#10;    &#125;);&#10;    seajs.use(&#34;../js/loadAudio&#34;,function(loadAudio)&#123;&#10;        var context = new AudioContext();&#10;        loadAudio.setconfig(context,&#34;../audio/test.mp3&#34;,function(buffer)&#123;&#10;            console.log(&#34;this&#34;);&#10;            var source = context.createBufferSource();&#10;            source.buffer = buffer;&#10;            source.connect(context.destination);&#10;            source.start(0);&#10;        &#125;);&#10;        loadAudio.start();&#10;    &#125;);&#10;&#60;/script&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure></p>
+<p>嗯，这个多说一个，其实，这里可以并不用提供完整的音频也是可以播放的，也就是说，我们可以提供Http报头为text/plain的response来播放音频，这样的话，你就可在音频上加密了~！嗯，这里给出一个php的server<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;&#9;$token = $_GET[&#39;token&#39;];&#10;&#9;$filename = &#34;../audio/&#34;.$token.&#34;.mp3&#34;;&#10;&#9;echo $filename;&#10;&#9;if(file_exists($filename))&#123; &#10;&#9;&#9;echo file_get_contents($filename);&#10;&#9;&#125;else&#123;&#10;&#9;&#9;echo &#34;hello&#34;;&#10;&#9;&#125;&#10;?&#62;</span><br></pre></td></tr></table></figure></p>
+<p>完整案例请参考github</p>
+<h4 id="分析播放">分析播放</h4><p>对于音频接口还给出了一个analyser接口，可以用来分析音频的强度，嗯，我们可以用来绘制音频图谱。基本逻辑变成了这样：<br>新建buffer -&gt; 获取buffer -&gt; 链接分析点 -&gt;重新连接到播放源 -&gt; 播放<br>analyser可以用<code>conetxt.createAnalyser()</code>来获得。嗯，我们还是来看代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//&#36825;&#37324;&#20599;&#20010;&#25042;&#65292;&#30452;&#25509;&#20351;&#29992;seajs&#30340;&#27169;&#24335;&#10;seajs.use(&#34;patn\to\loadAudio&#34;,function(loadAudio)&#123;&#10;    var context = new AudioContext(),&#10;        analyser = context.creatAnalyser(),&#10;        displayWave = function(waveByteDate)&#123;&#10;      &#9;&#9;var  canvasContext = document.getElementById(&#34;display&#34;).getContext(&#39;2d&#39;);&#10;      &#9;&#9;canvasContext.fillStyle = &#39;#66ccff&#39;;&#10;      &#9;&#9;canvasContext.clearRect(0,0,1024,100);&#10;      &#9;&#9;for(var i = 0; i &#60; waveByteDate.length; i++)&#123;&#10;      &#9;&#9;&#9;var height = (0- (waveByteDate[i]/255 * 100));&#10;      &#9;&#9;&#9;canvasContext.fillRect(i,100,1,height);&#10;      &#9;&#9;&#125;&#10;&#10;      &#9;&#125;;&#10;    loadAudio.setconfig(context,&#34;paht\to\audio&#34;,function(buffer)&#123;&#10;        var source = context.createBufferSource();&#10;        source.buffer = buffer;&#10;        source.connect(analyer);&#10;        analayer.smoothingTimeConstant = 0.8;&#10;        analayer.connect(context.destination);&#10;        var handler = setInterval(function()&#123;&#10;      &#9;&#9;&#9;var waveByteDate = new Uint8Array(analyser.frequencyBinCount);&#10;      &#9;&#9;&#9;analyser.getByteFrequencyData(waveByteDate);&#10;      &#9;&#9;&#9;displayWave(waveByteDate);//&#32472;&#21046;&#27874;&#24418;&#10;      &#9;&#9;&#125;,10)&#10;        source.start(0);&#10;        source.ended = function()&#123;&#10;      &#9;&#9;document.getElementById(&#34;wave&#34;).getContext(&#34;2d&#34;).clearRect(0,0,1024,100);&#10;      &#9;&#9;clearInterval(handler);&#10;      &#9;&#125;&#10;        source.stop = function()&#123;&#10;            if(!source.stop)&#123;&#10;            source.stop = source.noteOff;&#10;            &#125;&#10;        &#125;;&#10;    &#125;);&#10;    loadAudio.start();&#10;&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>连接到分析节点（analyer）后，我们这里要给定一个参数<code>smoothingTimeConstan</code>(平滑时间常数),这个参数的解释上对当前处理的最后一个缓存节点的最近的buffer大小和最后的buffer大小的平均值。<br>额，英语学得不好，翻译的磕磕碰碰的，大家可以看英文原版。</p>
+<blockquote>
+<p>The smoothingTimeConstant property of the AnalyserNode interface is a double value representing the averaging constant with the last analysis frame. It’s basically an average<br>between the current buffer and the last buffer the AnalyserNode processed, and results in a much smoother set of value changes over time.</p>
+<p>The smoothingTimeConstant property’s value defaults to 0.8; it must be in the range 0 to 1 (0 meaning no time averaging). If 0 is set, there is no averaging done, whereas a value of 1 means “overlap the previous and current buffer quite a lot while computing the value”, which essentially smoothes the changes across AnalyserNode.getFloatFrequencyData/AnalyserNode.getByteFrequencyData calls.</p>
+<p>In technical terms, we apply a Blackman window and smooth the values over time. The default value is good enough for most cases.</p>
+</blockquote>
+<p>嗯，看懂了，有更好的翻译，请给我留言~！谢谢思密达。</p>
+<p>我们将分析出来的数据，也就是这个<code>analyser.frequencyBinCount</code>，其实是一个无符号的二进制码，一长串~！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var waveByteDate = new Uint8Array(analyser.frequencyBinCount);&#10;analyser.getByteFrequencyData(waveByteDate);</span><br></pre></td></tr></table></figure></p>
+<p>这里进行了傅里叶变换，将声音变成了频率码，然后我们这里要把它变成一个好处理一点的8位无符号数组就是unit8array。因为，这是一瞬间的值，也就是静态值，所以在这个静态的数组里存放的是从低频到高频的所有频段的能量值。嗯，如果，觉得我说的，你看不懂，也可以参照<a href="http://www.cnblogs.com/Wayou/p/3543577.html" target="_blank" rel="external">这个博客</a>。至于傅里叶变换，请在<a href="http://www.elecfans.com/engineer/blog/20140527344277.html" target="_blank" rel="external">这里</a>获取更多的东西。最后我们用canvas把能量槽画出来，就行了，刚才我们说到，这个值是一个一瞬间的静态值，所以我们要用不停的重绘，来显示变动。canvas的讨论不在本题范围内，我就不多说了。</p>
+<p>好了，今天先讲这么多，明天讲如何编辑音频。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/html5/">html5</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2015/05/19/html5中的声音（二）/" data-title="html5中的声音（二） | homker" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/05/21/html5中的声音（三）/" title="html5中的声音（三）">
+  <strong>上一篇：</strong><br/>
+  <span>
+  html5中的声音（三）</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/05/18/html5中的声音（一）/"  title="html5中的声音（一）">
+ <strong>下一篇：</strong><br/> 
+ <span>html5中的声音（一）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/05/19/html5中的声音（二）/" data-title="html5中的声音（二）" data-url="http://yoursite.com/2015/05/19/html5中的声音（二）/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#audioContext_接口"><span class="toc-number">1.</span> <span class="toc-text">audioContext 接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实例化"><span class="toc-number">1.1.</span> <span class="toc-text">实例化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#播放"><span class="toc-number">1.2.</span> <span class="toc-text">播放</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#异步播放"><span class="toc-number">1.2.1.</span> <span class="toc-text">异步播放</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分析播放"><span class="toc-number">1.2.2.</span> <span class="toc-text">分析播放</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/JavaScript-DOM/" title="JavaScript DOM">JavaScript DOM<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html5/" title="html5">html5<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XSS/" title="XSS">XSS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/生活/" title="生活">生活<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/实习总结/" title="实习总结">实习总结<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CMD-seajs/" title="CMD seajs">CMD seajs<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/badjs/" title="badjs">badjs<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ecjtu.net" target="_blank" title="日新网">日新网</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m homker. a student from ecjtu.net. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/homker for https://github.com/homker" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:liu15jia@163.com## e.g. imjark@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="homker">homker</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"homker"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

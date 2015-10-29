@@ -1,0 +1,510 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>XSS攻击笔记 | homker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="homker">
+    
+
+    
+    <meta name="description" content="#XSS（Cross-site scripting）
+中文名叫跨站攻击脚本,这个攻击方式很是厉害。他经常会出现于一些，你可能永远都想不清楚的地方，然后，突然给你一下，让你不知所云，然后莫名其妙的中枪。
+攻击原理基于js的编译即执行的机制，和其不完善的脚本权限控制，我们很容易构造一个基于js的攻击payload。嗯，google给了一份关于web app 的XSS的介绍，可以点击这里获取。嗯，说道x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XSS攻击笔记">
+<meta property="og:url" content="http://yoursite.com/2015/06/09/XSS攻击笔记/index.html">
+<meta property="og:site_name" content="homker">
+<meta property="og:description" content="#XSS（Cross-site scripting）
+中文名叫跨站攻击脚本,这个攻击方式很是厉害。他经常会出现于一些，你可能永远都想不清楚的地方，然后，突然给你一下，让你不知所云，然后莫名其妙的中枪。
+攻击原理基于js的编译即执行的机制，和其不完善的脚本权限控制，我们很容易构造一个基于js的攻击payload。嗯，google给了一份关于web app 的XSS的介绍，可以点击这里获取。嗯，说道x">
+<meta property="og:updated_time" content="2015-10-29T09:30:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="XSS攻击笔记">
+<meta name="twitter:description" content="#XSS（Cross-site scripting）
+中文名叫跨站攻击脚本,这个攻击方式很是厉害。他经常会出现于一些，你可能永远都想不清楚的地方，然后，突然给你一下，让你不知所云，然后莫名其妙的中枪。
+攻击原理基于js的编译即执行的机制，和其不完善的脚本权限控制，我们很容易构造一个基于js的攻击payload。嗯，google给了一份关于web app 的XSS的介绍，可以点击这里获取。嗯，说道x">
+
+    
+    <link rel="alternative" href="/atom.xml" title="homker" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/logo.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="homker">homker</a></h1>
+				<h2 class="blog-motto">单身不能成为你无聊的借口</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/06/09/XSS攻击笔记/" title="XSS攻击笔记" itemprop="url">XSS攻击笔记</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="homker" target="_blank" itemprop="author">homker</a>
+		
+  <p class="article-time">
+    <time datetime="2015-06-09T07:42:26.000Z" itemprop="datePublished"> 发表于 2015-06-09</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#攻击原理"><span class="toc-number">1.</span> <span class="toc-text">攻击原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#反射"><span class="toc-number">1.1.</span> <span class="toc-text">反射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#映射"><span class="toc-number">1.2.</span> <span class="toc-text">映射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编码"><span class="toc-number">1.3.</span> <span class="toc-text">编码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反射型XSS"><span class="toc-number">1.4.</span> <span class="toc-text">反射型XSS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM_XSS"><span class="toc-number">1.5.</span> <span class="toc-text">DOM XSS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#存储型XSS"><span class="toc-number">1.6.</span> <span class="toc-text">存储型XSS</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#防御方法"><span class="toc-number">2.</span> <span class="toc-text">防御方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#过滤输入"><span class="toc-number">2.1.</span> <span class="toc-text">过滤输入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#htmlDecode"><span class="toc-number">2.2.</span> <span class="toc-text">htmlDecode</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>#XSS（Cross-site scripting）</p>
+<p>中文名叫跨站攻击脚本,这个攻击方式很是厉害。他经常会出现于一些，你可能永远都想不清楚的地方，然后，突然给你一下，让你不知所云，然后莫名其妙的中枪。</p>
+<h1 id="攻击原理">攻击原理</h1><p>基于js的编译即执行的机制，和其不完善的脚本权限控制，我们很容易构造一个基于js的攻击payload。嗯，google给了一份关于web app 的XSS的介绍，可以点击<a href="https://www.google.com/about/appsecurity/learning/xss/" target="_blank" rel="external">这里</a>获取。嗯，说道xss攻击，其本质在于其的脚本能力，精悍短小而不易发现，同时，利用脚本的映射性，将攻击性变得特别的诡异。嗯，讲攻击分类之前，先说几个概念性比较强的东西。</p>
+<h2 id="反射">反射</h2><blockquote>
+<p>在计算机科学中，反射是指计算机程序在运行时（Run<br>time）可以访问、检测和修改它本身状态或行为的一种能力。用比喻来说，那种程序能够“观察”并且修改自己的行为。要注意反射和内省（type<br>introspection）的区别。</p>
+</blockquote>
+<p>以上内容来自<a href="http://zh.wikipedia.org/wiki/%E5%8F%8D%E5%B0%84_%28%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%29" target="_blank" rel="external">wiki</a>。说白了，就是程序自己修改自己。</p>
+<h2 id="映射">映射</h2><p>不知道从哪里看到的理解，感觉有点道理，放进来。不是学数学出身，所以并不是很清楚在纯数学里，这个东西是怎么定义。找了很多资料，但是并不能很明确的找到一个官方的定义。wiki中给出的数学概念，映射是函数的一种，看<a href="http://zh.wikipedia.org/wiki/%E6%98%A0%E5%B0%84" target="_blank" rel="external">这里</a>，和<a href="http://zh.wikipedia.org/wiki/%E5%87%BD%E6%95%B0" target="_blank" rel="external">这里</a>。个人的理解就比较简单啦，把一个函数（function）A的运行环境放到另一个函数B的运行环境下面运行，则我们定义为，A映射在B下。并不知道这个理解对不对啊。那么回到XSS里面来，简单的说，就是一些攻击代码被映射到了正常代码下面，在正常代码的运行环境中运行了攻击代码，导致了一些不可控的事情的发生。</p>
+<h2 id="编码">编码</h2><p><a href="http://zh.wikipedia.org/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BC%96%E7%A0%81" target="_blank" rel="external">编码</a>这个东西，说起来很奇怪哈，从我和php打交道开始，它就一直萦绕在我的身边根本甩不开，而且很麻烦啊。什么GBK UTF-8 GB2312 ，但是这些都是我们常用的编码集。这些编码的根基是ASCII码表，这个并不需要我多说什么，但是我们一般看到的ASCII码表示是十进制的，但是，计算机的编码不是只有这一种啊，还有八进制，十六进制啊。当然，上面说的都是正统的编码，也就是通用的编码，还有一部分叫做html实体的编码格式则更是让人抓狂。介绍内容看<a href="http://www.w3school.com.cn/html/html_entities.asp" target="_blank" rel="external">这里</a>。这些实体的本来目的是为了防止html解析出现混乱，但是后来变成了各种payload的利用对象。还有一堆的js编码格式，哦，对了，还有url base64编码嗯，反正这个世界语言一多，就各种编码漫天飞。对应到xss当中，我们在过滤标签的和关键的时候，各种编码就让你目不暇接，分分钟想着，你妹，这TM也行。嗯，水平有限，就不多说了，有兴趣的同学，可以参考<a href="http://drops.wooyun.org/tips/689" target="_blank" rel="external">这里</a>。<br><a id="more"></a><br>上面对两个可能会产生理解障碍的词汇做了一个自己的理解，然后，我们回头头来看XSS的攻击。还是举个例子来的痛快。<br>首先，我们先来单纯的写一个将url里面的query信息输出在页面中。</p>
+<ul>
+<li>index.html</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE html&#62;&#10;&#60;html&#62;&#10;&#60;head lang=&#34;en&#34;&#62;&#10;    &#60;meta charset=&#34;UTF-8&#34;&#62;&#10;    &#60;title&#62;test&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#60;div class=&#34;content&#34;&#62;&#10;&#10;&#60;/div&#62;&#10;&#60;script type=&#34;application/javascript&#34; src=&#34;script/app.js&#34;&#62;&#60;/script&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>app.js</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(function()&#123;&#10;    function getquery()&#123;&#10;       var query = &#123;&#125;,&#10;           url = document.documentURI||location.href,&#10;           url = url.split(&#34;?&#34;)[1];&#10;        if(!url) return;&#10;        for(var i = 0; i&#60; url.length; i++)&#123;&#10;            var get = url[i].split(&#34;=&#34;);&#10;            if(!get) return;&#10;            query[get[0]] = get[1];&#10;        &#125;&#10;        return query;&#10;    &#125;&#10;    var content = document.querySelector(&#34;.content&#34;);&#10;    for(value in getquery())&#123;&#10;        content.innerHTML += value +&#34;:&#34;+getquery()[value]+&#34;&#60;br/&#62;&#34;;&#10;    &#125;&#10;&#10;&#125;)();</span><br></pre></td></tr></table></figure>
+<p>嗯，代码基本就是这样，然后我们看看怎么攻击。<br>最开始啊，我是想着，我们直接构造一个<code>&lt;script&gt;</code>就可以了嘛，应该不是很难，所以，就有了如下的url<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:63342/test/index.html?test=&#60;script&#62;alert(&#39;a&#39;);&#60;/script&#62;</span><br></pre></td></tr></table></figure></p>
+<p>我以为会直接构造出，简单的XSS攻击，但是too young，too simple，chrome分分钟交你做人系列。<br>实际上，这条url被提交的时候，会是如下的状态：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:63342/test/index.html?test=%3Cscript%3Ealert(%27a%27)%3C/script%3E</span><br></pre></td></tr></table></figure></p>
+<p>被url编译了一次，ie的话，直接整个就给你过滤掉了。。。心好塞。。。但是，你会发现，这个好像是编码漏洞唉，如果输入的是中文或者特殊符号的话，就不能用了，所以代码段应该会有decodeURI才对，我们加上去，再来一发，我去，too young too~！这里还有浏览器的第二个机制<a href="https://chrome-apps-docs-chs.appspot.com/extensions/contentSecurityPolicy.html" target="_blank" rel="external">CSP</a>，所以，你期待的XSS还是不会发生。。。但是你会发现，yeah，这个script的脚本好像已经被渲染了，但是没有执行而已，但是如果是业务需要的话，它应该正常显示才对啊，嗯，我们对他进行一次html编码。就有了如下的代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(function()&#123;&#10;    function getquery()&#123;&#10;        var query = &#123;&#125;,&#10;            url = location.search,&#10;            url = (url.indexOf(&#34;?&#34;) !== -1)?url.split(&#34;?&#34;)[1]:null,&#10;            url = url&#38;&#38;(url.indexOf(&#34;&#38;&#34;) !== -1)?url:url.split(&#34;&#38;&#34;);&#10;        console.log(url);&#10;        if(!url) return;&#10;        for(var i = 0; i&#60; url.length; i++)&#123;&#10;            var get = url[i].split(&#34;=&#34;);&#10;            if(!get) return;&#10;            query[get.shift()] = get.join(&#34;=&#34;);&#10;        &#125;&#10;        return query;&#10;    &#125;&#10;    var content = document.querySelector(&#34;.content&#34;),&#10;        query = getquery();&#10;    for(value in query)&#123;&#10;        content.innerHTML += value +&#34;:&#34;+htmlencode(decodeURI(query[value]))+&#34;&#60;br/&#62;&#34;;&#10;    &#125;&#10;    function htmlencode(s)&#123;&#10;        var div = document.createElement(&#39;div&#39;);&#10;        div.appendChild(document.createTextNode(s));&#10;        return div.innerHTML;&#10;    &#125;&#10;    function htmldecode(s)&#123;&#10;        var div = document.createElement(&#39;div&#39;);&#10;        div.innerHTML = s;&#10;        return div.innerText || div.textContent;&#10;    &#125;&#10;&#125;)();</span><br></pre></td></tr></table></figure></p>
+<p>这下业务代码应该没有漏洞了，不管你输入什么，我们都可以在页面上显示出来，但是我们接着想想如何XSS，这个的编码是安全的吗？其实并不是，来，我们来个新的payload。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:63342/test/index.html?test=%3Cimg%20src=%22%22%20onerror=%22alert(%27a%27)%22/%3E</span><br></pre></td></tr></table></figure></p>
+<p>这里使用img标签，通过他的onerror来触发XSS，简直防不胜防。。。那我们怎么办呢，嘻嘻嘻，这个东西，我们把代码改一下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(function()&#123;&#10;    function getquery()&#123;&#10;       var query = &#123;&#125;,&#10;           url = location.search,&#10;           url = (url.indexOf(&#34;?&#34;) !== -1)?url.split(&#34;?&#34;)[1]:null,&#10;           url = url&#38;&#38;(url.indexOf(&#34;&#38;&#34;) !== -1)?url:url.split(&#34;&#38;&#34;);&#10;        if(!url) return;&#10;        for(var i = 0; i&#60; url.length; i++)&#123;&#10;            var get = url[i].split(&#34;=&#34;);&#10;            for(var j = 0; j&#60;get.length;j++)&#123;&#10;                get[j] = htmlencode(decodeURI(get[j]));&#10;            &#125;&#10;            console.log(get);&#10;            if(!get) return;&#10;            query[get.shift()] = get.join(&#34;=&#34;);&#10;        &#125;&#10;        return query;&#10;    &#125;&#10;    var content = document.querySelector(&#34;.content&#34;),&#10;        query = getquery();&#10;    for(value in query))&#123;&#10;        console.log(query[value]+&#34;A&#34;);&#10;       content.innerHTML += value +&#34;:&#34;+query[value]+&#34;&#60;br/&#62;&#34;;&#10;    &#125;&#10;&#10;    function htmlencode(s)&#123;&#10;        var div = document.createElement(&#39;div&#39;);&#10;        div.appendChild(document.createTextNode(s));&#10;        return div.innerHTML;&#10;    &#125;&#10;    function htmldecode(s)&#123;&#10;        var div = document.createElement(&#39;div&#39;);&#10;        div.innerHTML = s;&#10;        return div.innerText || div.textContent;&#10;    &#125;&#10;&#125;)();</span><br></pre></td></tr></table></figure></p>
+<p>这里的话，本身就有一个很奇葩的编码习惯，我们通过切割字符串来获取query的值，好像很不优雅，嗯，我们先看看优雅的写法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function getQueryString()&#123;&#10;        var result = location.search.match(new RegExp(&#34;[\?\&#38;][^\?\&#38;]+=[^\?\&#38;]+&#34;,&#34;g&#34;));&#10;        if(result == null)&#123;&#10;            return &#34;&#34;;&#10;        &#125;&#10;        for(var i = 0; i &#60; result.length; i++)&#123;&#10;            result[i] = result[i].substring(1);&#10;        &#125;&#10;        return result;&#10;    &#125;</span><br></pre></td></tr></table></figure></p>
+<p><del>优雅的写法下，我们很容易就发现他对于字符串的处理是大块大块的处理，这样的，就算整体编码还是会触发XSS，除非，你吃饱了撑得，不嫌麻烦的话，把字符做一个替换的话，也可以解决这个问题。但是，我们回过头来看下我们这种不优雅的写法，先把字符串按”=”切割，这个地方我就已经不把它当可执行代码看了，然后先行uri解码和转码，这样的小段解码和转码之后，得到的是一堆html实体字符，他是不会运行的，就算你把他们拼起来。嗯，这里举了个小栗子啊，其实要破解的话，还是有办法的啊，能力有限，我就不深究了。</del><br>好吧，为以上的low bee 言论做出深刻的检讨，我们来看看更优雅的解决方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(function()&#123;&#10;    function getquery()&#123;&#10;        var __a=&#123;&#39;&#38;&#39;:&#39;&#38;amp;&#39;,&#39;&#60;&#39;:&#39;&#38;lt;&#39;,&#39;&#62;&#39;:&#39;&#38;gt;&#39;,&#39;&#34;&#39;:&#39;&#38;quot;&#39;,&#34;&#39;&#34;:&#39;&#38;#39;&#39;&#125;,&#10;            __b=/[&#38;&#60;&#62;&#34;&#39;]/g,&#10;            query = &#123;&#125;,&#10;            result = decodeURI(location.search).match(new RegExp(&#34;[\?\&#38;][^\?\&#38;]+=[^\?\&#38;]+&#34;,&#34;g&#34;));&#10;        console.log(result);&#10;        if(result == null)&#123;&#10;            return &#34;&#34;;&#10;        &#125;&#10;        for(var i = 0; i &#60; result.length; i++)&#123;&#10;            result[i] = result[i].substring(1).split(&#39;=&#39;);&#10;            query[result[i].shift()] = result[i].join(&#39;=&#39;).replace(__b, function (m) &#123;return __a[m]&#125;);&#10;        &#125;&#10;        console.log(query);&#10;        return query;&#10;    &#125;&#10;    var content = document.querySelector(&#34;.content&#34;),&#10;        query = getquery();&#10;    for(value in query)&#123;&#10;        content.innerHTML += value +&#34;:&#34;+query[value]+&#34;&#60;br/&#62;&#34;;&#10;    &#125;&#10;&#125;)();</span><br></pre></td></tr></table></figure>
+<p>#XSS分类<br>上面一大段用一个例子和一堆的说明性的文字介绍了XSS是什么，下面我们简单的讲一下分类。</p>
+<ul>
+<li>反射型XSS</li>
+<li>DOM XSS</li>
+<li>持久型XSS</li>
+</ul>
+<h2 id="反射型XSS">反射型XSS</h2><p>将你的代码通过某种手段映射到运行环境，修改了原先的代码，这样的话，构成了XSS。举个栗子。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//index.php&#10;&#60;?&#10;    if($_GET[&#39;s&#39;])&#123;&#10;        echo $_GET[&#39;s&#39;];&#10;    &#125;&#10;?&#62;</span><br></pre></td></tr></table></figure></p>
+<p>我们很容易构造如下的payload进行攻击。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/XSS/index.php?s=%3Cscript%3Ealert(%271%27)%3C/script%3E</span><br></pre></td></tr></table></figure></p>
+<p>前提是，你不会遇到CSP。</p>
+<h2 id="DOM_XSS">DOM XSS</h2><p>通过构造DOM节点来实现XSS攻击。举个栗子啊。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;form action=&#34;./&#34; method=&#34;post&#34;&#62;&#10;&#9;&#60;input class=&#34;xss&#34; name=&#34;name&#34; type=&#34;text&#34; value=&#34;&#60;?php echo @$_POST[&#39;name&#39;] ?&#62;&#34; /&#62;&#10;&#9;&#60;input type=&#34;submit&#34; value=&#34;submit&#34;/&#62;&#10;&#60;/form&#62;</span><br></pre></td></tr></table></figure></p>
+<p>比如这样，构造的话，在input框里输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#34; onclick=&#34;alert(1)&#34;</span><br></pre></td></tr></table></figure></p>
+<p>额，前提也是没有CSP的啊，不然这些简单的payload都是会被拦截的。<br>通过如上的构造，会有如下的代码效果。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;input class=&#34;xss&#34; name=&#34;name&#34; type=&#34;text&#34; value=&#34;&#34; onclick=&#34;alet(1)&#34; /&#62;</span><br></pre></td></tr></table></figure></p>
+<p>嗯，是不是感受到了这个世界满满的恶意，人和人最基本的信任在哪里，居然还敢说我是个好人。。。</p>
+<h2 id="存储型XSS">存储型XSS</h2><p>当攻击代码被存储到了数据库上，当从数据库中读取的时候，在渲染的时候触发了DOM XSS构成的XSS攻击，叫做存储型XSS。不单独举例子了，各种例子满大街都是啦。</p>
+<h1 id="防御方法">防御方法</h1><p>首先啊，我觉得的啊，这个世界就没有什么一劳永逸的事情，所有的对抗，都是不断升级的，针对不同的业务场景进行不同的具体的分析之后的XSS的防御才是靠谱的啊，如果非要拿出一个万用的XSS防御，我觉得这个比较天真啊。但是，是不是所有的XSS都要单独处理啊？肯定不是啊，世界有个性也有共性的嘛，先把共性打碎，再来研究个性嘛。嗯，所以，以下讨论的都是针对XSS共性的处理方法，并不是万用的处理方法，针对不同的XSS攻击还是要有针对性的进行分析后得出具体的个性化的解决法案。一下的解决方案，都是基于js的啊，php和其他后台语言不在讨论之列，但是理论是想通的啦，使用的库不一样而已啦。</p>
+<h2 id="过滤输入">过滤输入</h2><p>http本来就是无状态的协议，<del>你不知道我在干嘛，我也不知道你在干嘛，我为什么要天真的认为，你会爱我？</del>所以，不要相信所有的输入，就算她是你暗恋了很久的妹子，你永远不知道她会对你做什么。。。</p>
+<p>过滤的话，分白名单过滤和黑名单过滤，意思的话，都很好理解，不多说了，嗯，这里给一个github上开源的白名单过滤方案，<a href="https://github.com/leizongmin/js-xss" target="_blank" rel="external">看这</a>。将一些不要的东西进行过滤，使之能够干净的存在于你需要的地方。</p>
+<p>这里还有一个问题，如果，你在前端过滤了一遍，后端是不是还要再过滤一遍。这个还是要的啊，要保持职业严谨性和职业的怀疑态度。<del>审计学得真好</del></p>
+<h2 id="htmlDecode">htmlDecode</h2><p>在最开始的方法里，我们使用的方法就是html编码，将js代码变成html实体编码，以此来避免运行。这里给出两种编码方式。<br>一种是黑名单变换<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private static String htmlEncode(char c) &#123;&#10;    switch(c) &#123;&#10;       case &#39;&#38;&#39;:&#10;           return&#34;&#38;amp;&#34;;&#10;       case &#39;&#60;&#39;:&#10;           return&#34;&#38;lt;&#34;;&#10;       case &#39;&#62;&#39;:&#10;           return&#34;&#38;gt;&#34;;&#10;       case &#39;&#34;&#39;:&#10;           return&#34;&#38;quot;&#34;;&#10;       case &#39; &#39;:&#10;           return&#34;&#38;nbsp;&#34;;&#10;       default:&#10;           return c +&#34;&#34;;&#10;    &#125;&#10;&#125;&#10; &#10;/** &#23545;&#20256;&#20837;&#30340;&#23383;&#31526;&#20018;str&#36827;&#34892;Html encode&#36716;&#25442; */&#10;public static String htmlEncode(String str) &#123;&#10;    if(str ==null || str.trim().equals(&#34;&#34;))   return str;&#10;    StringBuilder encodeStrBuilder = new StringBuilder();&#10;    for (int i = 0, len = str.length(); i &#60; len; i++) &#123;&#10;       encodeStrBuilder.append(htmlEncode(str.charAt(i)));&#10;    &#125;&#10;    return encodeStrBuilder.toString();&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>嗯，上面那个其实是个low bee 我们看这个才是王道.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var __a=&#123;&#39;&#38;&#39;:&#39;&#38;amp;&#39;,&#39;&#60;&#39;:&#39;&#38;lt;&#39;,&#39;&#62;&#39;:&#39;&#38;gt;&#39;,&#39;&#34;&#39;:&#39;&#38;quot;&#39;,&#34;&#39;&#34;:&#39;&#38;#39;&#39;&#125;,&#10;      __b=/[&#38;&#60;&#62;&#34;&#39;]/g;&#10;&#10;return str.replace(__b, function (m) &#123;return __a[m]&#125;);&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>嗯，这个针对常见的不干净的字符进行转换，然后替换。还有就是利用一点小技巧啦。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function htmlencode(s)&#123;&#10;        var div = document.createElement(&#39;div&#39;);&#10;        div.appendChild(document.createTextNode(s));&#10;        return div.innerHTML;&#10;    &#125;&#10;    function htmldecode(s)&#123;&#10;        var div = document.createElement(&#39;div&#39;);&#10;        div.innerHTML = s;&#10;        return div.innerText || div.textContent;&#10;    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>参考这个<a href="http://www.cnblogs.com/ghd258/archive/2009/10/18/1274429.html" target="_blank" rel="external">博客</a>。<br>嗯，基本上就是这些了，明天有空的话，记一下常用的攻击平台。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/XSS/">XSS</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2015/06/09/XSS攻击笔记/" data-title="XSS攻击笔记 | homker" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/09/17/badjs二次开发指南/" title="badjs二次开发指南">
+  <strong>上一篇：</strong><br/>
+  <span>
+  badjs二次开发指南</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/05/31/编程艺术的读书笔记（三）/"  title="JavaScript 编程艺术的读书笔记（三）">
+ <strong>下一篇：</strong><br/> 
+ <span>JavaScript 编程艺术的读书笔记（三）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/06/09/XSS攻击笔记/" data-title="XSS攻击笔记" data-url="http://yoursite.com/2015/06/09/XSS攻击笔记/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#攻击原理"><span class="toc-number">1.</span> <span class="toc-text">攻击原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#反射"><span class="toc-number">1.1.</span> <span class="toc-text">反射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#映射"><span class="toc-number">1.2.</span> <span class="toc-text">映射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编码"><span class="toc-number">1.3.</span> <span class="toc-text">编码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反射型XSS"><span class="toc-number">1.4.</span> <span class="toc-text">反射型XSS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM_XSS"><span class="toc-number">1.5.</span> <span class="toc-text">DOM XSS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#存储型XSS"><span class="toc-number">1.6.</span> <span class="toc-text">存储型XSS</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#防御方法"><span class="toc-number">2.</span> <span class="toc-text">防御方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#过滤输入"><span class="toc-number">2.1.</span> <span class="toc-text">过滤输入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#htmlDecode"><span class="toc-number">2.2.</span> <span class="toc-text">htmlDecode</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/JavaScript-DOM/" title="JavaScript DOM">JavaScript DOM<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html5/" title="html5">html5<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XSS/" title="XSS">XSS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/生活/" title="生活">生活<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/实习总结/" title="实习总结">实习总结<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CMD-seajs/" title="CMD seajs">CMD seajs<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/badjs/" title="badjs">badjs<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ecjtu.net" target="_blank" title="日新网">日新网</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m homker. a student from ecjtu.net. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/homker for https://github.com/homker" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:liu15jia@163.com## e.g. imjark@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="homker">homker</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"homker"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

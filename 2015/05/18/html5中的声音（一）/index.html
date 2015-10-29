@@ -1,0 +1,509 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>html5中的声音（一） | homker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="homker">
+    
+
+    
+    <meta name="description" content="额，这是一个很久之前的项目了，但是因为这是第一个完全属于我自己的项目，所以我还是记录一下，用来怀冕一下，曾经那个少不更事的我，所做的那些事情。项目地址
+#如何在页面上播放声音嗯，传统的方式，flash，额，因为我不会flash编程，所以直接放弃，我们来找点高大上一点的东西好不好～！所以，ie6,7,8什么的都去死吧～！
+html5 audio 标签在html5中，对于声音的定义很方便哦，用了一个标">
+<meta property="og:type" content="article">
+<meta property="og:title" content="html5中的声音（一）">
+<meta property="og:url" content="http://yoursite.com/2015/05/18/html5中的声音（一）/index.html">
+<meta property="og:site_name" content="homker">
+<meta property="og:description" content="额，这是一个很久之前的项目了，但是因为这是第一个完全属于我自己的项目，所以我还是记录一下，用来怀冕一下，曾经那个少不更事的我，所做的那些事情。项目地址
+#如何在页面上播放声音嗯，传统的方式，flash，额，因为我不会flash编程，所以直接放弃，我们来找点高大上一点的东西好不好～！所以，ie6,7,8什么的都去死吧～！
+html5 audio 标签在html5中，对于声音的定义很方便哦，用了一个标">
+<meta property="og:updated_time" content="2015-10-29T09:30:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="html5中的声音（一）">
+<meta name="twitter:description" content="额，这是一个很久之前的项目了，但是因为这是第一个完全属于我自己的项目，所以我还是记录一下，用来怀冕一下，曾经那个少不更事的我，所做的那些事情。项目地址
+#如何在页面上播放声音嗯，传统的方式，flash，额，因为我不会flash编程，所以直接放弃，我们来找点高大上一点的东西好不好～！所以，ie6,7,8什么的都去死吧～！
+html5 audio 标签在html5中，对于声音的定义很方便哦，用了一个标">
+
+    
+    <link rel="alternative" href="/atom.xml" title="homker" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/logo.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="homker">homker</a></h1>
+				<h2 class="blog-motto">单身不能成为你无聊的借口</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/18/html5中的声音（一）/" title="html5中的声音（一）" itemprop="url">html5中的声音（一）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="homker" target="_blank" itemprop="author">homker</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-18T14:57:34.000Z" itemprop="datePublished"> 发表于 2015-05-18</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#html5_audio_标签"><span class="toc-number">1.</span> <span class="toc-text">html5 audio 标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#html5_source_标签"><span class="toc-number">2.</span> <span class="toc-text">html5 source 标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#javascript接口"><span class="toc-number">3.</span> <span class="toc-text">javascript接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#audio"><span class="toc-number">3.1.</span> <span class="toc-text">audio</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方法"><span class="toc-number">3.1.1.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性"><span class="toc-number">3.1.2.</span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#事件"><span class="toc-number">3.1.3.</span> <span class="toc-text">事件</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<p>额，这是一个很久之前的项目了，但是因为这是第一个完全属于我自己的项目，所以我还是记录一下，用来怀冕一下，曾经那个少不更事的我，所做的那些事情。<a href="https://github.com/homker/audioPlayer" target="_blank" rel="external">项目地址</a></p>
+<p>#如何在页面上播放声音<br>嗯，传统的方式，<code>flash</code>，额，因为我不会flash编程，所以直接放弃，我们来找点高大上一点的东西好不好～！所以，ie6,7,8什么的都去死吧～！</p>
+<h2 id="html5_audio_标签">html5 audio 标签</h2><p>在html5中，对于声音的定义很方便哦，用了一个标签来解决这个问题。嗯，简单看一下用法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!--&#26368;&#31616;&#21333;&#30340;--&#62;&#10;&#60;audio src=&#34;path/to/audio&#34;&#62; &#10;    &#20320;&#30340;&#27983;&#35272;&#22120;&#22909;&#20687;&#24182;&#19981;&#25903;&#25345;audio&#26631;&#31614;&#10;&#60;/audio&#62;&#10;&#60;!--&#38468;&#21152;&#28857;&#21151;&#33021;&#24590;&#20040;&#26679;&#65311;--&#62;&#10;&#60;audio autoplay loop contorls preload muted src=&#34;path/to/audio&#34;&#62;&#10;    &#20320;&#30340;&#27983;&#35272;&#22120;&#22909;&#20687;&#19981;&#25903;&#25345;audio&#26631;&#31614;&#10;&#60;/audio&#62;</span><br></pre></td></tr></table></figure></p>
+<p>看，是不是很简单，我去，这个标签简直简单到像<code>&lt;img src=&quot;path\to\image&quot; \&gt;</code>～！来解释一下那几个属性。</p>
+<ul>
+<li>autoplay 是否在音频加载完毕的时候自动播放。 </li>
+<li>loop 是否循环播放</li>
+<li>contorls 是否显示浏览器的默认播放样式</li>
+<li>preload 是否预加载</li>
+<li>muted 是否静音</li>
+<li>src 这个就不用解释了吧，大家都懂</li>
+</ul>
+<p>根据html5的规范，只要在标签内注明了的属性，其属性值则为true，不然则为false。当然这些属性自然是可以用js来修改的，我们稍后来解释。</p>
+<h2 id="html5_source_标签">html5 source 标签</h2><p>嗯，其实还有扩展，我们知道啊，mp3是上个世纪的产物啦，无论从哪个角度来说，都已经远远不能满足我们的需求了。为了佐证，可以参考<a href="http://bbs.imp3.net/thread-879493-1-1.html" target="_blank" rel="external">这个论坛的帖子</a>。<br>嗯，所以为了使我们的音频能有更好的音质和更cool的元素，我们可以这样写我们的<code>&lt;audio&gt;</code>标签。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;audio&#62;&#10;    &#60;source src=&#34;path/to/aac&#34; type=&#34;audio/mp4&#34; /&#62;&#10;    &#60;source src=&#34;path/to/ogg&#34; type=&#34;audio/ogg&#34; /&#62;&#10;    &#60;source src=&#34;path/to/wav&#34; type=&#34;audio/wav&#34; /&#62;&#10;    &#60;source src=&#34;path/to/mp3&#34; type=&#34;audio/mp3&#34;  /&#62;&#10;    &#20320;&#30340;&#27983;&#35272;&#22120;&#24182;&#19981;&#25903;&#25345;&#36825;&#20010;&#19996;&#35199;&#12290;&#10;&#60;/audio&#62;</span><br></pre></td></tr></table></figure></p>
+<p>通过<code>&lt;source&gt;</code>标签来讲音频源引入，而且，这个地方可以引用多个音频源哦，加载顺序是由上至下寻址。根据渐进增强的原则，支持性最为广泛的mp3应该放在最底下，音质最好，但是支持性并不是很强的放在最顶上，当然，如果是在移动端，要重新思考这个问题，因为涉及到码率和取样率，文件大小等一堆的问题，这里就不赘述了。我比较推崇的方式是，当文件大小相差不大的时候尽量取音质好的。这里涉及到的几个采样率啊，码率啊，具体的解释可以参考<a href="http://www.zhihu.com/question/20351692" target="_blank" rel="external">知呼上的解释</a>，和这个<a href="http://blog.csdn.net/wghhdzwzqbx02/article/details/7392059" target="_blank" rel="external">博客</a>，还有<a href="http://blog.sina.com.cn/s/blog_7032e6960100zzhn.html" target="_blank" rel="external">这个</a>。<br><a id="more"></a></p>
+<h2 id="javascript接口">javascript接口</h2><p>上面讲了纯粹的html5对音频的支持，现在我们来看看浏览器在js API上对这个还有什么有意思的东西。</p>
+<h3 id="audio">audio</h3><p>第一个就是audio咯，这个用法的话，并没有什么很特别的东西。先说一下常用的方法。</p>
+<h4 id="方法">方法</h4><p>嗯，还是直接举例子比较直观，Don’t BB ，give me your code。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> //&#26368;&#31616;&#21333;&#30340;&#10; var player = new Audio(&#34;path\to\audio&#34;).play();&#10; &#10; //&#21152;&#19978;&#31867;&#22411;&#21028;&#26029;&#10; var player = new Audio();&#10; if(player.canPlayType(&#39;audio/ogg&#39;))&#123;&#10;    player.src = &#34;path\to\ogg&#34;;&#10;    player.play();&#10; &#125;&#10; &#10; //tips:&#10; console.log(new Audio === getElementsByTagName(&#34;audio&#34;)[0]); //true&#10; &#10; //&#21152;&#19978;&#20107;&#20214;&#30417;&#21548;,&#24403;&#39029;&#38754;&#21152;&#36733;&#23436;&#25104;&#26102;&#24320;&#22987;&#25773;&#25918;&#10; windows.addEventListener(&#39;load&#39;,function()&#123;&#10;    document.getElementsByTagName(&#34;audio&#34;)[0].play();&#10; &#125;,false);&#10; &#10;//&#28857;&#20987;id&#20026;pause&#30340;button&#26102;&#65292;&#25773;&#25918;&#26242;&#20572;&#10;var player = new Audio(&#34;path\to\audio&#34;).play(),&#10;    pause = document.getElementById(&#34;pause&#34;);&#10;    pause.addEventListener(&#39;click&#39;,function()&#123;&#10;        player.pause();&#10;    &#125;,false)&#10;//&#36825;&#37324;&#35201;&#27880;&#24847;&#19968;&#19979;&#65292;audio&#26412;&#36523;&#24182;&#27809;&#26377;&#25552;&#20379;stop()&#26041;&#27861;&#65292;&#22914;&#26524;&#24819;&#23454;&#29616;&#36825;&#20010;&#21151;&#33021;&#65292;&#25105;&#20204;&#35201;&#25163;&#21160;&#23454;&#29616;&#36825;&#20010;&#26041;&#27861;&#12290;&#10; Audio.prototype.stop = function()&#123;&#10;    this.pause();&#10;    this.currentTime = 0;&#10;&#125;;&#10;            &#10;//&#33719;&#21462;&#21152;&#36733;&#30334;&#20998;&#27604;&#10;player = new Audio(); //&#19981;&#35201;&#20889;&#25104;&#20102; player = new Audio().play();&#10;var  loaded = Math.floor(player.buffered.end(0) / player.duration  * 100 ); // &#24403;&#21069;&#21152;&#36733;&#30340;&#30334;&#20998;&#27604;&#10;var played = Math.floor(player.played.end(0) / player.duration * 100); // &#24403;&#21069;&#25773;&#25918;&#30340;&#30334;&#20998;&#27604;</span><br></pre></td></tr></table></figure></p>
+<p>正如所见，audio 本身就给了很多专属方法，比如说<code>play()</code>,<code>pause()</code>,<code>canPlayType()</code>额，好像其实并不多，还有就是对于<code>played</code>,<code>buffered</code>，<code>seekable</code>这三个TimeRanges对象，有<code>start()</code>和<code>end()</code>方法，用来获取时间节点。对于这两个函数的具体含义可以参考<a href="http://www.w3school.com.cn/tags/av_prop_buffered.asp" target="_blank" rel="external">w3c对它的定义</a>。</p>
+<h4 id="属性">属性</h4><p>接下来，看看属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var player = new Audio();&#10;player.src = &#34;path\to\audio&#34;;&#10;player.controls = true;&#10;player.autoplay = true;&#10;player.loop = true;&#10;player.muted = true;&#10;player.preload = true; //&#22914;&#26524;&#20540;&#20026;metadata&#21017;&#21152;&#36733;&#20803;&#25968;&#25454;&#65288;&#26102;&#38271;&#65292;&#25968;&#25454;&#24103;&#65289;&#10;player.buffered; // &#24050;&#21152;&#36733;&#30340;&#25968;&#25454;&#22823;&#23567;&#10;player.played; // &#24050;&#25773;&#25918;&#30340;&#25968;&#25454;&#22823;&#23567;&#10;player.currentTime;// &#25773;&#25918;&#22120;&#24212;&#35813;&#36339;&#36807;&#30340;&#26102;&#38388;&#10;player.volume;//&#38899;&#37327;&#22823;&#22823;&#23567;&#10;player.playbackRate;//&#25773;&#25918;&#30340;&#36895;&#24230;&#10;player.defaultPlaybackRate;//&#40664;&#35748;&#25773;&#25918;&#36895;&#29575;&#12290;&#10;player.duration;//&#38899;&#39057;&#30340;&#25345;&#32493;&#26102;&#38271;</span><br></pre></td></tr></table></figure></p>
+<p>感觉好像并没有什么好解释的。。。要说的，就是playbackRate，这个值的话，正常情况下是1.0 , 0 ~ 1表示慢速，&gt;1 是加速 ，&lt;0 表示回放。然而并有哪家浏览器实现了回放。。。= =，反正我在chrome 和 FF下测试时这样的。</p>
+<h4 id="事件">事件</h4><p>事件就比较多了，除了DOM本身所带的那些事件，还有下面一堆的事件。</p>
+<ul>
+<li>loadstart 开始请求加载</li>
+<li>stalled 尝试加载数据，但是未能请求到</li>
+<li>progress 加载中。。。</li>
+<li>loadedmetadata 时长等元数据加载完毕</li>
+<li>waiting 由于未缓冲到足够的时长而不能够播放</li>
+<li>canplay 已经缓冲到足够播放的时长</li>
+<li>canplaythrough 已全部缓冲，可顺利播放</li>
+<li>suspend 已经缓冲大量数据</li>
+<li>play 开始播放，调用了play()方法或者autoplay</li>
+<li>timeupdate currentTime 属性发生改变时触发该事件</li>
+<li>pause 调用了pause()方法</li>
+<li>seeking 当currentTime到了一个为缓冲的时间点上</li>
+<li>seeked  currentTime所在时间点已经缓冲</li>
+<li>ended 播放结束 这里是currentTime == duration，而不是我们实现的stop()</li>
+<li>durationchange duration数据发生改变，这个东西，一般在loadedmetadata之前会发生。</li>
+<li>volumechange 音量改变时</li>
+<li>ratechange 速率改变时</li>
+<li>abort 用户要求停止加载媒体。额，我的理解是把页面关了。。。</li>
+<li>error 由于网络错误导致的音频未加载</li>
+<li>emptied 发生了错误</li>
+</ul>
+<p>嗯，好像很多的样子，事件的话，用addEventListener监听一下就好了嘛~！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> var count = 0,&#10;    player = new Audio(&#34;path\to\audio&#34;);&#10;    player.play();&#10;    player.addEventListener(&#34;loadstart&#34;,function()&#123;&#10;            count++;&#10;            console.log(count + &#34;- loadstart&#34;);&#10;        &#125;,false);&#10;    player.addEventListener(&#34;stalled&#34;,function()&#123;&#10;        count++;&#10;        console.log(count + &#34;- stalled&#34;);&#10;    &#125;,false);&#10;    player.addEventListener(&#34;progress&#34;,function()&#123;&#10;        count++;&#10;        console.log(count + &#34;- progress&#34;);&#10;    &#125;,false);&#10;    player.addEventListener(&#34;loadedmetadata&#34;,function()&#123;&#10;        count++;&#10;        console.log(count + &#34;- loadedmetadata&#34;);&#10;    &#125;,false);&#10;    player.addEventListener(&#34;waiting&#34;,function()&#123;&#10;        count++;&#10;        console.log(count + &#34;- waiting&#34;);&#10;    &#125;,false);&#10;    player.addEventListener(&#34;canplay&#34;,function()&#123;&#10;        count++;&#10;        console.log(count + &#34;- canplay&#34;);&#10;    &#125;,false);&#10;    player.addEventListener(&#34;canplaythrough&#34;,function()&#123;&#10;        count++;&#10;        console.log(count + &#34;- canplaythrough&#34;);&#10;    &#125;,false);&#10;    player.addEventListener(&#34;suspend&#34;,function()&#123;&#10;        count++;&#10;        console.log(count + &#34;- suspend&#34;);&#10;    &#125;,false);&#10;    player.addEventListener(&#34;play&#34;,function()&#123;&#10;        count++;&#10;        console.log(count + &#34;- play&#34;);&#10;    &#125;,false);&#10;    &#10;/*&#10;2015-05-18 22:44:42.885 test.html:38 1- loadstart&#10;2015-05-18 22:44:42.924 test.html:50 2- loadedmetadata&#10;2015-05-18 22:44:42.968 test.html:46 3- progress&#10;2015-05-18 22:44:42.969 test.html:66 4- suspend&#10;2015-05-18 22:44:43.892 test.html:58 5- canplay&#10;2015-05-18 22:44:43.892 test.html:62 6- canplaythrough&#10;2015-05-18 22:44:51.200 test.html:70 7- play&#10;2015-05-18 22:44:53.029 test.html:46 8- progress&#10;2015-05-18 22:44:53.030 test.html:66 9- suspend&#10;2015-05-18 22:44:55.091 test.html:46 10- progress&#10;2015-05-18 22:44:55.091 test.html:66 11- suspend&#10;2015-05-18 22:44:57.129 test.html:46 12- progress&#10;2015-05-18 22:44:57.130 test.html:66 13- suspend&#10;2015-05-18 22:44:59.189 test.html:46 14- progress&#10;2015-05-18 22:44:59.190 test.html:66 15- suspend&#10;2015-05-18 22:45:00.603 test.html:58 16- canplay&#10;2015-05-18 22:45:00.604 test.html:62 17- canplaythrough&#10;...&#10;*/</span><br></pre></td></tr></table></figure></p>
+<p>嗯，今天就先写这么多吧，明天开始写audioConetext接口。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/html5/">html5</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2015/05/18/html5中的声音（一）/" data-title="html5中的声音（一） | homker" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/05/19/html5中的声音（二）/" title="html5中的声音（二）">
+  <strong>上一篇：</strong><br/>
+  <span>
+  html5中的声音（二）</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/05/17/关于CMD的思考/"  title="关于CMD的思考">
+ <strong>下一篇：</strong><br/> 
+ <span>关于CMD的思考
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/05/18/html5中的声音（一）/" data-title="html5中的声音（一）" data-url="http://yoursite.com/2015/05/18/html5中的声音（一）/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#html5_audio_标签"><span class="toc-number">1.</span> <span class="toc-text">html5 audio 标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#html5_source_标签"><span class="toc-number">2.</span> <span class="toc-text">html5 source 标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#javascript接口"><span class="toc-number">3.</span> <span class="toc-text">javascript接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#audio"><span class="toc-number">3.1.</span> <span class="toc-text">audio</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方法"><span class="toc-number">3.1.1.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性"><span class="toc-number">3.1.2.</span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#事件"><span class="toc-number">3.1.3.</span> <span class="toc-text">事件</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/JavaScript-DOM/" title="JavaScript DOM">JavaScript DOM<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html5/" title="html5">html5<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XSS/" title="XSS">XSS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/生活/" title="生活">生活<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/实习总结/" title="实习总结">实习总结<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CMD-seajs/" title="CMD seajs">CMD seajs<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/badjs/" title="badjs">badjs<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ecjtu.net" target="_blank" title="日新网">日新网</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m homker. a student from ecjtu.net. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/homker for https://github.com/homker" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:liu15jia@163.com## e.g. imjark@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="homker">homker</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"homker"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
