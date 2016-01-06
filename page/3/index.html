@@ -55,10 +55,9 @@
 					
 					<li>
  					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:yoursite.com">
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
 					</form>
 					
 					</li>
@@ -68,6 +67,145 @@
     </header>
     <div id="container">
       <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/18/html5中的声音（一）/" title="html5中的声音（一）" itemprop="url">html5中的声音（一）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="homker" target="_blank" itemprop="author">homker</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-18T14:57:34.000Z" itemprop="datePublished"> 发表于 2015-05-18</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>额，这是一个很久之前的项目了，但是因为这是第一个完全属于我自己的项目，所以我还是记录一下，用来怀冕一下，曾经那个少不更事的我，所做的那些事情。<a href="https://github.com/homker/audioPlayer">项目地址</a></p>
+<p>#如何在页面上播放声音<br>嗯，传统的方式，<code>flash</code>，额，因为我不会flash编程，所以直接放弃，我们来找点高大上一点的东西好不好～！所以，ie6,7,8什么的都去死吧～！</p>
+<h2 id="html5_audio__u6807_u7B7E"><a href="#html5_audio__u6807_u7B7E" class="headerlink" title="html5 audio 标签"></a>html5 audio 标签</h2><p>在html5中，对于声音的定义很方便哦，用了一个标签来解决这个问题。嗯，简单看一下用法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!--&#26368;&#31616;&#21333;&#30340;--&#62;&#10;&#60;audio src=&#34;path/to/audio&#34;&#62; &#10;    &#20320;&#30340;&#27983;&#35272;&#22120;&#22909;&#20687;&#24182;&#19981;&#25903;&#25345;audio&#26631;&#31614;&#10;&#60;/audio&#62;&#10;&#60;!--&#38468;&#21152;&#28857;&#21151;&#33021;&#24590;&#20040;&#26679;&#65311;--&#62;&#10;&#60;audio autoplay loop contorls preload muted src=&#34;path/to/audio&#34;&#62;&#10;    &#20320;&#30340;&#27983;&#35272;&#22120;&#22909;&#20687;&#19981;&#25903;&#25345;audio&#26631;&#31614;&#10;&#60;/audio&#62;</span><br></pre></td></tr></table></figure></p>
+<p>看，是不是很简单，我去，这个标签简直简单到像<code>&lt;img src=&quot;path\to\image&quot; \&gt;</code>～！来解释一下那几个属性。</p>
+<ul>
+<li>autoplay 是否在音频加载完毕的时候自动播放。 </li>
+<li>loop 是否循环播放</li>
+<li>contorls 是否显示浏览器的默认播放样式</li>
+<li>preload 是否预加载</li>
+<li>muted 是否静音</li>
+<li>src 这个就不用解释了吧，大家都懂</li>
+</ul>
+<p>根据html5的规范，只要在标签内注明了的属性，其属性值则为true，不然则为false。当然这些属性自然是可以用js来修改的，我们稍后来解释。</p>
+<h2 id="html5_source__u6807_u7B7E"><a href="#html5_source__u6807_u7B7E" class="headerlink" title="html5 source 标签"></a>html5 source 标签</h2><p>嗯，其实还有扩展，我们知道啊，mp3是上个世纪的产物啦，无论从哪个角度来说，都已经远远不能满足我们的需求了。为了佐证，可以参考<a href="http://bbs.imp3.net/thread-879493-1-1.html">这个论坛的帖子</a>。<br>嗯，所以为了使我们的音频能有更好的音质和更cool的元素，我们可以这样写我们的<code>&lt;audio&gt;</code>标签。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;audio&#62;&#10;    &#60;source src=&#34;path/to/aac&#34; type=&#34;audio/mp4&#34; /&#62;&#10;    &#60;source src=&#34;path/to/ogg&#34; type=&#34;audio/ogg&#34; /&#62;&#10;    &#60;source src=&#34;path/to/wav&#34; type=&#34;audio/wav&#34; /&#62;&#10;    &#60;source src=&#34;path/to/mp3&#34; type=&#34;audio/mp3&#34;  /&#62;&#10;    &#20320;&#30340;&#27983;&#35272;&#22120;&#24182;&#19981;&#25903;&#25345;&#36825;&#20010;&#19996;&#35199;&#12290;&#10;&#60;/audio&#62;</span><br></pre></td></tr></table></figure></p>
+<p>通过<code>&lt;source&gt;</code>标签来讲音频源引入，而且，这个地方可以引用多个音频源哦，加载顺序是由上至下寻址。根据渐进增强的原则，支持性最为广泛的mp3应该放在最底下，音质最好，但是支持性并不是很强的放在最顶上，当然，如果是在移动端，要重新思考这个问题，因为涉及到码率和取样率，文件大小等一堆的问题，这里就不赘述了。我比较推崇的方式是，当文件大小相差不大的时候尽量取音质好的。这里涉及到的几个采样率啊，码率啊，具体的解释可以参考<a href="http://www.zhihu.com/question/20351692">知呼上的解释</a>，和这个<a href="http://blog.csdn.net/wghhdzwzqbx02/article/details/7392059">博客</a>，还有<a href="http://blog.sina.com.cn/s/blog_7032e6960100zzhn.html">这个</a>。<br>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/05/18/html5中的声音（一）/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/html5/">html5</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/05/18/html5中的声音（一）/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/05/18/html5中的声音（一）/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/17/关于CMD的思考/" title="关于CMD的思考" itemprop="url">关于CMD的思考</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="homker" target="_blank" itemprop="author">homker</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-17T08:22:00.000Z" itemprop="datePublished"> 发表于 2015-05-17</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>最近在学习<a href="http://seajs.org/docs/#intro"><code>sea.js</code></a>的用法，sea.js是一个基于<a href="https://github.com/seajs/seajs/issues/242"><code>CMD</code></a>规范的js<a href="https://github.com/seajs/seajs/issues/547"><code>模块化</code></a>加载框架。然后发现他和php的差别还是蛮大哈，有一些问题，就开始在脑中转啊转，记录下来，以免下次脑洞又大开了。</p>
+<p>#CMD</p>
+<h2 id="u4EC0_u4E48_u662FCMD"><a href="#u4EC0_u4E48_u662FCMD" class="headerlink" title="什么是CMD"></a>什么是CMD</h2><p>CMD（Common Module Definition）说白了就是一个前端规范，他规定了一个长的好看的<code>模块</code>（Module）应该长成什么样。那为什么要用CMD呢？要解释为什么用CMD我们要先知道什么是模块(module)。。。为了表示我还是有严谨性思维的，我们以下的讨论都只局限在<code>javascript</code>的大前提下。</p>
+<h3 id="u4EC0_u4E48_u662F_u6A21_u5757"><a href="#u4EC0_u4E48_u662F_u6A21_u5757" class="headerlink" title="什么是模块"></a>什么是模块</h3><p><a href="http://zh.wikipedia.org/wiki/%E6%A8%A1%E7%B5%84_%28%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%29">wiki上对于模块的定义如下</a>：</p>
+<blockquote>
+<p>软件模块（Module）是一套一致而互相有紧密关连的软件组织。它分别包含了程序和数据结构两部分。<br>现代软件开发往往利用模块作合成的单位。<br>模块的接口表达了由该模块提供的功能和调用它时所需的元素。<br>模块是可能分开地被编写的单位。这使他们可再用和允许广泛人员同时协作编写及研究不同的模块。</p>
+</blockquote>
+<p>解释的其实都比较清楚了，简单的说，就是一个可以复用，替换的数据和执行体的集合。<br>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/05/17/关于CMD的思考/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/CMD-seajs/">CMD seajs</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/05/17/关于CMD的思考/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/05/17/关于CMD的思考/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
 
    
     
@@ -88,7 +226,7 @@
 </header>
     <div class="article-content">
         
-        <h1 id="PHP_学习指南">PHP 学习指南</h1><p><code>php学习</code>                                  <code>2014 11 29</code>                                         <code>homker</code>  </p>
+        <h1 id="PHP__u5B66_u4E60_u6307_u5357"><a href="#PHP__u5B66_u4E60_u6307_u5357" class="headerlink" title="PHP 学习指南"></a>PHP 学习指南</h1><p><code>php学习</code>                                  <code>2014 11 29</code>                                         <code>homker</code>  </p>
 <ul>
 <li>PHP的使用环境</li>
 <li>PHP的基本语法</li>
@@ -97,7 +235,7 @@
 <li>PHP和文件的读写</li>
 <li>PHP和oop</li>
 </ul>
-<h2 id="PHP的使用环境">PHP的使用环境</h2><ul>
+<h2 id="PHP_u7684_u4F7F_u7528_u73AF_u5883"><a href="#PHP_u7684_u4F7F_u7528_u73AF_u5883" class="headerlink" title="PHP的使用环境"></a>PHP的使用环境</h2><ul>
 <li>php 是一门脚本语言通常用来处理页面端传输过来的数据，并将数据和数据库进行交互。</li>
 <li>php 是一门运行在虚拟机上的语言，这个特点和java的机制是一样的。</li>
 <li>php 是一门运行在服务器上的语言，当然，这个特点在php5.4之后被削弱了，php可以通过<code>Artisan</code> 来运行属于自己的控制台程序，但是大多数情况下，我们还是会使用<code>apache</code>或者<code>nginx</code>来运行php的程序，这样能够减少我们很多工作量，同时提高我们的工作效率。</li>
@@ -164,7 +302,7 @@
 </header>
     <div class="article-content">
         
-        <h1 id="2015年樱花坠落时，我们在武汉">2015年樱花坠落时，我们在武汉</h1><p>嗯，去武汉面了个试，虽然没有看到樱花，没有在武大看到自己想看到的东西，但是总体还是收获了不少的东西。 </p>
+        <h1 id="2015_u5E74_u6A31_u82B1_u5760_u843D_u65F6_uFF0C_u6211_u4EEC_u5728_u6B66_u6C49"><a href="#2015_u5E74_u6A31_u82B1_u5760_u843D_u65F6_uFF0C_u6211_u4EEC_u5728_u6B66_u6C49" class="headerlink" title="2015年樱花坠落时，我们在武汉"></a>2015年樱花坠落时，我们在武汉</h1><p>嗯，去武汉面了个试，虽然没有看到樱花，没有在武大看到自己想看到的东西，但是总体还是收获了不少的东西。 </p>
 <p>面的是腾讯，其实自己的简历挂的还是蛮冤的啊，什么自己是南方人，自己想留在南方，卧槽，你起码要问一下对面那个学长以后可能会在哪工作呀，真是笨的要死。。。<br>好了腾讯面试问了如下的几个问题，就记得这么多了，剩下的什么时候想起来，再什么时候告诉你们好了。<br>
         
         
@@ -304,6 +442,8 @@
 	 
 	<div class="social-font" class="clearfix">
 		
+		<a href="http://weibo.com/homker## e.g. wuchong1014 or 2176287895 for http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
 		
 		<a href="https://github.com/homker for https://github.com/homker" target="_blank" class="icon-github" title="github"></a>
 		
@@ -312,6 +452,8 @@
 		
 		
 		
+		
+		<a href="https://www.zhihu.com/people/homker## e.g. jark  for http://www.zhihu.com/people/jark" target="_blank" class="icon-zhihu" title="知乎"></a>
 		
 		
 		
@@ -322,7 +464,7 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
 		
 		<a href="/about" target="_blank" title="homker">homker</a>
 		

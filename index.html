@@ -55,10 +55,9 @@
 					
 					<li>
  					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:yoursite.com">
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
 					</form>
 					
 					</li>
@@ -68,6 +67,161 @@
     </header>
     <div id="container">
       <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/01/06/react杂谈/" title="react杂谈" itemprop="url">react杂谈</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="homker" target="_blank" itemprop="author">homker</a>
+		
+  <p class="article-time">
+    <time datetime="2016-01-06T04:26:26.000Z" itemprop="datePublished"> 发表于 2016-01-06</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>#React 杂谈<br>@auther 【homker】    @date 【2015 11 30】 </p>
+<p>最近接触React蛮多的，把一些东西记录下来，为了后面更好的学习。</p>
+<h2 id="React_u662F_u4EC0_u4E48"><a href="#React_u662F_u4EC0_u4E48" class="headerlink" title="React是什么"></a>React是什么</h2><p>在<a href="http://facebook.github.io/react/">reactjs.org</a>的官网上，是这么说的哈：</p>
+<blockquote>
+<p>A JAVASCRIPT LIBRARY FOR BUILDING USER INTERFACES</p>
+</blockquote>
+<p>那么，很简单喽，这个<code>库</code>，就是一个帮助开发者更好的处理<code>用户界面</code>的东西。</p>
+<p>这里注意两个点：</p>
+<ul>
+<li>这是一个用户界面的库</li>
+<li>这是一个库</li>
+</ul>
+<h3 id="Library__u5E93"><a href="#Library__u5E93" class="headerlink" title="Library 库"></a>Library 库</h3><p>作为一个库，区别于<a href="http://https://angularjs.org/"><code>angular</code></a>，同时也区别于<a href="http://vuejs.org/"><code>vue</code></a>,虽然这里有一点问题还待商榷的是，vue好像没有说自己是一个框架还是一个库，但是，我个人更偏向于把它看成是前者。那么好了，如果，认为是一个库，那么作为一个库，他只是提供一个<code>辅助工具</code>，来帮助你解决问题，而是不是提出一个完整的解决方案，所以，你会发现，现在react是很自由的，你可以选择任何你喜欢的东西和它搭配在一起工作，他们也能工作的很好。同时，问题也来了，因为他是一个库，所以，有很多东西就变的很不确定。</p>
+<h2 id="u4E3A_u4EC0_u4E48_u8981_u7528react"><a href="#u4E3A_u4EC0_u4E48_u8981_u7528react" class="headerlink" title="为什么要用react"></a>为什么要用react</h2><p>使用react的原因有很多，鄙人愚钝，觉得其中比较明显的原因如下：</p>
+<h3 id="u7EC4_u4EF6_u5316"><a href="#u7EC4_u4EF6_u5316" class="headerlink" title="组件化"></a>组件化</h3><p>react中非常明确的提出了组件(component)的概念，这个组件的概念，不单单指的是web component还包括了native component。而组件化的同时，也自然而然的带来了组件的<code>生命周期</code>。并且，结构代码的<code>语义化</code>在组件化的同时得到了更高层次的实现。</p>
+<p>一个react的组件应该看起来是酱的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> React= <span class="built_in">require</span>(<span class="string">'react'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> App = React.createClass(&#123;</span><br><span class="line">	</span><br><span class="line">	getInitStates()&#123;</span><br><span class="line">		<span class="keyword">return</span> &#123;&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	componentWillMount()&#123;</span><br><span class="line">		<span class="comment">//do some thing</span></span><br><span class="line">	&#125;,</span><br><span class="line">	componentWillUpdate()&#123;</span><br><span class="line">		<span class="comment">//do some thing</span></span><br><span class="line">	&#125;,</span><br><span class="line">	render()&#123;</span><br><span class="line">		<span class="keyword">return</span> (</span><br><span class="line">			<span class="xml"><span class="tag">&lt;<span class="title">div</span>&gt;</span>hello word<span class="tag">&lt;<span class="title">span</span>&gt;</span>this.props.user<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">		)</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>其中App，就是组件啦，在ES6中，你可以定义为一个class，就像酱：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> React,&#123;Component&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> App extends Component&#123;</span><br><span class="line">	render()&#123;</span><br><span class="line">		<span class="keyword">return</span> (</span><br><span class="line">			<span class="xml"><span class="tag">&lt;<span class="title">div</span>&gt;</span>hello word<span class="tag">&lt;<span class="title">span</span>&gt;</span>this.props.user<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">		)</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>个人认为：<br>组件化的本质其实是对view层的封装。将繁重的view层的变化操作从数据流变化操作中脱离出来，实现数据层和view层的分离。也就是说，在整个代码的组织结构中，数据层将不再处理样式或者说显示上的不同，而是，只要关心数据本身的变化，然后告诉react，变化后的数据集（Date set），剩下的view层变化由react来完成。这样导致了，react希望的数据流每次都是<code>完整</code>的，而不是一个数据片段。这也导致了，react希望使用不可修改类型的数据格式来保证每次的数据是<code>新</code>的。同时，对于数据层而言，自然就希望view层的所有变化应该是可预见的。我提供怎么样的<code>新</code>数据，你就给我显示出来。</p>
+<h4 id="u751F_u547D_u5468_u671F"><a href="#u751F_u547D_u5468_u671F" class="headerlink" title="生命周期"></a>生命周期</h4><p>然后，在其内部定义了生命周期，共有四个。如图：<br><img src="http://i12.tietuku.com/1e9353ba5d18babd.png" alt="生命周期图"><br>从生命周期的名字，很清楚的就知道啦，执行顺序如图所示。<br><img src="http://i12.tietuku.com/ec754618bd00d657.png" alt="生命周期图"></p>
+<p>组件的生命周期还要注意两点：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ReactDom.render(<span class="xml"><span class="tag">&lt;<span class="title">MyComponent</span> /&gt;</span>, body);</span><br><span class="line">ReactDom.unmountComponentAtNode(body);</span><br><span class="line">ReactDom.render(<span class="tag">&lt;<span class="title">MyComponent</span> /&gt;</span>, body);</span></span><br></pre></td></tr></table></figure></p>
+<p>上面的代码是 ReactDom将组件挂载在真实的DOM上的。当然还有移除的方法。要注意的地方是，这里挂载的时候，DOM必须是已经存在着的，不然并不可以啊。也就是说，如果你挂载在动态的DOM的时候，一定要确保DOM是已经生成的，并且真真正正的存在着。<br>对于React中，生命周期具体的管理方法可以参考这篇文章：<a href="http://zhuanlan.zhihu.com/purerender/20312691">React LifeStyle</a>。</p>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2016/01/06/react杂谈/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/01/06/react杂谈/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/01/06/react杂谈/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/01/06/《JavaScript函数式编程》读书笔记/" title="《JavaScript函数式编程》读书笔记" itemprop="url">《JavaScript函数式编程》读书笔记</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="homker" target="_blank" itemprop="author">homker</a>
+		
+  <p class="article-time">
+    <time datetime="2016-01-06T04:25:49.000Z" itemprop="datePublished"> 发表于 2016-01-06</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="u300AJavaScript_u51FD_u6570_u5F0F_u7F16_u7A0B_u300B_u8BFB_u4E66_u7B14_u8BB0"><a href="#u300AJavaScript_u51FD_u6570_u5F0F_u7F16_u7A0B_u300B_u8BFB_u4E66_u7B14_u8BB0" class="headerlink" title="《JavaScript函数式编程》读书笔记"></a>《JavaScript函数式编程》读书笔记</h1><p>JavaScript是一门很神奇的语言，作为一门现代化的语言，他有很多很有特色的东西，这些东西，让我们看到了一个十分自由化的未来，你永远都不知道，自己是不是掌握了这门奇葩的要命的语言。本文，可能没有那么多高深的编程技巧，有的更多的是，对编程本身的理解。因为，不知道自己有多白痴，所以，要记录下来，等到自己不白痴的时候，就能缅怀当年那个白痴的自己了。</p>
+<h2 id="u4EC0_u4E48_u662F_u51FD_u6570_u5F0F_u7F16_u7A0B"><a href="#u4EC0_u4E48_u662F_u51FD_u6570_u5F0F_u7F16_u7A0B" class="headerlink" title="什么是函数式编程"></a>什么是函数式编程</h2><p>所谓函数式编程，是把函数本身上升到<code>一等公民</code>的地位，进行编程构建。在书中，作者用了这么一句话来形容函数式编程：</p>
+<blockquote>
+<p>函数式编程通过使用函数来将值转换成抽象单元，接着用于构建软件系统。</p>
+</blockquote>
+<p>额，那么好，我们先回忆一下什么叫函数。</p>
+<h3 id="u51FD_u6570"><a href="#u51FD_u6570" class="headerlink" title="函数"></a>函数</h3><blockquote>
+<p>一般的，在一个变化过程中，有两个变量x、y，如果给定一个x值，相应的就确定唯一的一个y，那么就称y是x的函数，其中x是自变量，y是因变量，x的取值范围叫做这个函数的定义域，相应y的取值范围叫做函数的值域。</p>
+</blockquote>
+<p>这是数学中的定义，简单的说，函数就是从A到B的<code>关系映射</code>。在计算机中，我们将多条语句组成的程序段（程序块）叫做函数，一个函数本身应该有一定的意义。和数学定义相当的是，变量的生命周期所在的函数空间，为变量的定义域。</p>
+<h3 id="u9762_u5411_u51FD_u6570_u7684_u7F16_u7A0B"><a href="#u9762_u5411_u51FD_u6570_u7684_u7F16_u7A0B" class="headerlink" title="面向函数的编程"></a>面向函数的编程</h3><p>所谓函数式编程，我们又可以叫做是面向函数的编程。所谓面向函数就是使用函数来作为我们分析和抽象程序的主要工具。</p>
+<p>嗯，首先，我们继续来复习一下</p>
+<ul>
+<li>什么叫做面向过程。</li>
+</ul>
+<blockquote>
+<p>“面向过程”(Procedure Oriented)是一种以过程为中心的编程思想。“面向过程”也可称之为“面向记录”编程思想，他们不支持丰富的“面向对象”特性（比如继承、多态），并且它们不允许混合持久化状态和域逻辑。</p>
+</blockquote>
+<p>其实，说白了，就是想到什么写什么。</p>
+<ul>
+<li>什么叫做面向对象</li>
+</ul>
+<blockquote>
+<p>按人们认识客观世界的系统思维方式，采用基于对象（实体）的概念建立模型，模拟客观世界分析、设计、实现软件的办法。通过面向对象的理念使计算机软件系统能与现实世界中的系统一一对应。</p>
+</blockquote>
+<p>在面向对象中，我们都知道<code>类</code>和<code>对象</code>是两个很重要的概念。</p>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2016/01/06/《JavaScript函数式编程》读书笔记/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/01/06/《JavaScript函数式编程》读书笔记/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/01/06/《JavaScript函数式编程》读书笔记/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
 
    
     
@@ -89,7 +243,7 @@
     <div class="article-content">
         
         <p>今天是我来腾讯六十九天的日子， 迎着南山冉冉升起的朝阳，我不得不和诸位说再见了。在腾讯实习的日子里，我所收获的，远比我付出的多的多的多。</p>
-<h1 id="回顾一下，自己这段时间的实习">回顾一下，自己这段时间的实习</h1><ul>
+<h1 id="u56DE_u987E_u4E00_u4E0B_uFF0C_u81EA_u5DF1_u8FD9_u6BB5_u65F6_u95F4_u7684_u5B9E_u4E60"><a href="#u56DE_u987E_u4E00_u4E0B_uFF0C_u81EA_u5DF1_u8FD9_u6BB5_u65F6_u95F4_u7684_u5B9E_u4E60" class="headerlink" title="回顾一下，自己这段时间的实习"></a>回顾一下，自己这段时间的实习</h1><ul>
 <li>业务需求： 处理的多是，纯前端的一些小需求。<ul>
 <li>排行榜排序</li>
 <li>排行版显示能力实现</li>
@@ -167,15 +321,15 @@
     <div class="article-content">
         
         <p>#badjs是什么</p>
-<pre><code>badjs是一个基于<span class="keyword">node</span>.<span class="identifier"></span><span class="title">js</span>的监控终端js错误的系统，包括js错误上报,错误信息统计和分析，数据可视化分析。
+<pre><code>badjs是一个基于node.js的监控终端js错误的系统，包括js错误上报,错误信息统计和分析，数据可视化分析。
 </code></pre><p><i class="icon-exclamation-sign"></i>  假装你已经拥有所有的前置能力要求，如果并不是这样的话，在最后面有详细说明。</p>
-<h1 id="首先，看看badjs都有些什么">首先，看看badjs都有些什么</h1><p>先看图：<br><img src="http://i3.tietuku.com/faccb59a53dacb06.png" alt="此处输入图片的描述"></p>
+<h1 id="u9996_u5148_uFF0C_u770B_u770Bbadjs_u90FD_u6709_u4E9B_u4EC0_u4E48"><a href="#u9996_u5148_uFF0C_u770B_u770Bbadjs_u90FD_u6709_u4E9B_u4EC0_u4E48" class="headerlink" title="首先，看看badjs都有些什么"></a>首先，看看badjs都有些什么</h1><p>先看图：<br><img src="http://i3.tietuku.com/faccb59a53dacb06.png" alt="此处输入图片的描述"></p>
 <p>在其开源的<a href="https://github.com/BetterJS">github</a>上，我们能很清晰的看到，整个badjs的结构还是很清晰的，主要是以下几个组件，嗯，整套系统都是用node写的。整个都是js的狂欢。</p>
-<pre><code>-<span class="ruby"> badjs-web（管理端）
-</span>-<span class="ruby"> badjs-storage（存储端）
-</span>-<span class="ruby"> badjs-report（终端上报）
-</span>-<span class="ruby"> badjs-accepter（服务端接收）</span>
-</code></pre><h1 id="然后，从宏观上的看一下BadJs都干了些什么。">然后，从宏观上的看一下BadJs都干了些什么。</h1><p>##在浏览器端<br>    这一部分，主要是badjs-report，他的任务是捕捉js的报错，并把报错进行上报。这一部分，主要是要在页面中引入js，并配置，这一部分并不属于二次开发的范畴中，所以，不详述了。</p>
+<pre><code>- badjs-web（管理端）
+- badjs-storage（存储端）
+- badjs-report（终端上报）
+- badjs-accepter（服务端接收）
+</code></pre><h1 id="u7136_u540E_uFF0C_u4ECE_u5B8F_u89C2_u4E0A_u7684_u770B_u4E00_u4E0BBadJs_u90FD_u5E72_u4E86_u4E9B_u4EC0_u4E48_u3002"><a href="#u7136_u540E_uFF0C_u4ECE_u5B8F_u89C2_u4E0A_u7684_u770B_u4E00_u4E0BBadJs_u90FD_u5E72_u4E86_u4E9B_u4EC0_u4E48_u3002" class="headerlink" title="然后，从宏观上的看一下BadJs都干了些什么。"></a>然后，从宏观上的看一下BadJs都干了些什么。</h1><p>##在浏览器端<br>    这一部分，主要是badjs-report，他的任务是捕捉js的报错，并把报错进行上报。这一部分，主要是要在页面中引入js，并配置，这一部分并不属于二次开发的范畴中，所以，不详述了。</p>
 <p>##在服务器端<br>在服务端，整套badjs包括接收端，存储端和管理端共三个部分，这三个部分都是基于express的框架。</p>
 <ul>
 <li>badjs-web</li>
@@ -242,13 +396,13 @@
         
         <p>#XSS（Cross-site scripting）</p>
 <p>中文名叫跨站攻击脚本,这个攻击方式很是厉害。他经常会出现于一些，你可能永远都想不清楚的地方，然后，突然给你一下，让你不知所云，然后莫名其妙的中枪。</p>
-<h1 id="攻击原理">攻击原理</h1><p>基于js的编译即执行的机制，和其不完善的脚本权限控制，我们很容易构造一个基于js的攻击payload。嗯，google给了一份关于web app 的XSS的介绍，可以点击<a href="https://www.google.com/about/appsecurity/learning/xss/">这里</a>获取。嗯，说道xss攻击，其本质在于其的脚本能力，精悍短小而不易发现，同时，利用脚本的映射性，将攻击性变得特别的诡异。嗯，讲攻击分类之前，先说几个概念性比较强的东西。</p>
-<h2 id="反射">反射</h2><blockquote>
+<h1 id="u653B_u51FB_u539F_u7406"><a href="#u653B_u51FB_u539F_u7406" class="headerlink" title="攻击原理"></a>攻击原理</h1><p>基于js的编译即执行的机制，和其不完善的脚本权限控制，我们很容易构造一个基于js的攻击payload。嗯，google给了一份关于web app 的XSS的介绍，可以点击<a href="https://www.google.com/about/appsecurity/learning/xss/">这里</a>获取。嗯，说道xss攻击，其本质在于其的脚本能力，精悍短小而不易发现，同时，利用脚本的映射性，将攻击性变得特别的诡异。嗯，讲攻击分类之前，先说几个概念性比较强的东西。</p>
+<h2 id="u53CD_u5C04"><a href="#u53CD_u5C04" class="headerlink" title="反射"></a>反射</h2><blockquote>
 <p>在计算机科学中，反射是指计算机程序在运行时（Run<br>time）可以访问、检测和修改它本身状态或行为的一种能力。用比喻来说，那种程序能够“观察”并且修改自己的行为。要注意反射和内省（type<br>introspection）的区别。</p>
 </blockquote>
 <p>以上内容来自<a href="http://zh.wikipedia.org/wiki/%E5%8F%8D%E5%B0%84_%28%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%29">wiki</a>。说白了，就是程序自己修改自己。</p>
-<h2 id="映射">映射</h2><p>不知道从哪里看到的理解，感觉有点道理，放进来。不是学数学出身，所以并不是很清楚在纯数学里，这个东西是怎么定义。找了很多资料，但是并不能很明确的找到一个官方的定义。wiki中给出的数学概念，映射是函数的一种，看<a href="http://zh.wikipedia.org/wiki/%E6%98%A0%E5%B0%84">这里</a>，和<a href="http://zh.wikipedia.org/wiki/%E5%87%BD%E6%95%B0">这里</a>。个人的理解就比较简单啦，把一个函数（function）A的运行环境放到另一个函数B的运行环境下面运行，则我们定义为，A映射在B下。并不知道这个理解对不对啊。那么回到XSS里面来，简单的说，就是一些攻击代码被映射到了正常代码下面，在正常代码的运行环境中运行了攻击代码，导致了一些不可控的事情的发生。</p>
-<h2 id="编码">编码</h2><p><a href="http://zh.wikipedia.org/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BC%96%E7%A0%81">编码</a>这个东西，说起来很奇怪哈，从我和php打交道开始，它就一直萦绕在我的身边根本甩不开，而且很麻烦啊。什么GBK UTF-8 GB2312 ，但是这些都是我们常用的编码集。这些编码的根基是ASCII码表，这个并不需要我多说什么，但是我们一般看到的ASCII码表示是十进制的，但是，计算机的编码不是只有这一种啊，还有八进制，十六进制啊。当然，上面说的都是正统的编码，也就是通用的编码，还有一部分叫做html实体的编码格式则更是让人抓狂。介绍内容看<a href="http://www.w3school.com.cn/html/html_entities.asp">这里</a>。这些实体的本来目的是为了防止html解析出现混乱，但是后来变成了各种payload的利用对象。还有一堆的js编码格式，哦，对了，还有url base64编码嗯，反正这个世界语言一多，就各种编码漫天飞。对应到xss当中，我们在过滤标签的和关键的时候，各种编码就让你目不暇接，分分钟想着，你妹，这TM也行。嗯，水平有限，就不多说了，有兴趣的同学，可以参考<a href="http://drops.wooyun.org/tips/689">这里</a>。<br>
+<h2 id="u6620_u5C04"><a href="#u6620_u5C04" class="headerlink" title="映射"></a>映射</h2><p>不知道从哪里看到的理解，感觉有点道理，放进来。不是学数学出身，所以并不是很清楚在纯数学里，这个东西是怎么定义。找了很多资料，但是并不能很明确的找到一个官方的定义。wiki中给出的数学概念，映射是函数的一种，看<a href="http://zh.wikipedia.org/wiki/%E6%98%A0%E5%B0%84">这里</a>，和<a href="http://zh.wikipedia.org/wiki/%E5%87%BD%E6%95%B0">这里</a>。个人的理解就比较简单啦，把一个函数（function）A的运行环境放到另一个函数B的运行环境下面运行，则我们定义为，A映射在B下。并不知道这个理解对不对啊。那么回到XSS里面来，简单的说，就是一些攻击代码被映射到了正常代码下面，在正常代码的运行环境中运行了攻击代码，导致了一些不可控的事情的发生。</p>
+<h2 id="u7F16_u7801"><a href="#u7F16_u7801" class="headerlink" title="编码"></a>编码</h2><p><a href="http://zh.wikipedia.org/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BC%96%E7%A0%81">编码</a>这个东西，说起来很奇怪哈，从我和php打交道开始，它就一直萦绕在我的身边根本甩不开，而且很麻烦啊。什么GBK UTF-8 GB2312 ，但是这些都是我们常用的编码集。这些编码的根基是ASCII码表，这个并不需要我多说什么，但是我们一般看到的ASCII码表示是十进制的，但是，计算机的编码不是只有这一种啊，还有八进制，十六进制啊。当然，上面说的都是正统的编码，也就是通用的编码，还有一部分叫做html实体的编码格式则更是让人抓狂。介绍内容看<a href="http://www.w3school.com.cn/html/html_entities.asp">这里</a>。这些实体的本来目的是为了防止html解析出现混乱，但是后来变成了各种payload的利用对象。还有一堆的js编码格式，哦，对了，还有url base64编码嗯，反正这个世界语言一多，就各种编码漫天飞。对应到xss当中，我们在过滤标签的和关键的时候，各种编码就让你目不暇接，分分钟想着，你妹，这TM也行。嗯，水平有限，就不多说了，有兴趣的同学，可以参考<a href="http://drops.wooyun.org/tips/689">这里</a>。<br>
         
         
         <p class="article-more-link">
@@ -275,149 +429,6 @@
 	
 	  	<span></span>
 		<a href="/2015/06/09/XSS攻击笔记/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/06/09/XSS攻击笔记/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/05/31/编程艺术的读书笔记（三）/" title="JavaScript 编程艺术的读书笔记（三）" itemprop="url">JavaScript 编程艺术的读书笔记（三）</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="homker" target="_blank" itemprop="author">homker</a>
-		
-  <p class="article-time">
-    <time datetime="2015-05-30T16:18:41.000Z" itemprop="datePublished"> 发表于 2015-05-31</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>#DOM-CORE &amp; HTML-DOM </p>
-<p>对于什么是DOM而言，之前，已经讨论过了，现在我们重新回过头来，分析和思考一下，有关于DOM的一些分类上的区别。</p>
-<blockquote>
-<p>什么是 DOM？<br>    DOM 是 W3C（万维网联盟）的标准。<br>    DOM 定义了访问 HTML 和 XML 文档的标准：<br>    “W3C 文档对象模型 （DOM）    是中立于平台和语言的接口，它允许程序和脚本动态地访问和更新文档的内容、结构和样式。”<br>W3C DOM 标准被分为 3 个不同的部分：<br>核心 DOM - 针对任何结构化文档的标准模型<br>XML DOM - 针对 XML 文档的标准模型<br>HTML DOM - 针对 HTML 文档的标准模型</p>
-</blockquote>
-<p>上文是<a href="http://www.w3school.com.cn/htmldom/dom_nodes.asp">w3c</a>对DOM的分类，基本上就是DOM-CORE 和HTML-DOM，XML-DOM不在讨论范围以内，我们暂且不管。<br>先说DOM-CORE吧</p>
-<p>##DOM-CORE</p>
-<p>满足软件开发者和Web脚本编写者，访问和操控产品项目中包含的可解析的HTML和XML内容。这个是COM-CORE的定义，从定义上看，HTML-CORE并不是单独提供给javascript的哦，也就是说，其他的语言也是可以通过HTML-CORE来操作DOM的哦，嗯，为了证实这一点，我们就用全世界最好的语言（<code>php</code>）来写一段。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;?php&#10;$Doc = new DOMDocument();&#10;$Doc-&#62;load(&#34;test.html&#34;);&#10;&#10;$d = $Doc-&#62;documentElement;&#10;foreach ($d-&#62;childNodes AS $item)&#10;  &#123;&#10;  print $item-&#62;nodeName . &#34; = &#34; . $item-&#62;nodeValue . &#34;&#60;br /&#62;&#34;;&#10;  &#125;&#10;?&#62;</span><br></pre></td></tr></table></figure></p>
-<p>这里用到了一段html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE html&#62;&#10;&#60;html&#62;&#10;&#60;head&#62;&#10;    &#60;meta charset=&#34;utf-8&#34; /&#62;&#10;    &#60;title&#62;test&#60;/title&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;    &#60;p&#62;hello world&#60;/p&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure></p>
-<p>嗯，然后，你就会得到以下的输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#text = &#10;head = test &#10;#text = &#10;body = hello world &#10;#text =</span><br></pre></td></tr></table></figure></p>
-<p>虽然不是很强大，但是也是可以的哦，嗯，以上代码的运行环境在php5以上。更多的内容参考<a href="http://php.net/manual/en/class.domimplementation.php">这里</a>。</p>
-<p>回到js的上面，DOM-CORE对应的操作其实更多的是体现在DOM-CORE是基于<code>节点的（NODE-BASE）</code>，其所有的操作都是基于该节点的操作，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;a href=&#34;url&#34; id=&#34;id&#34; &#62;this is a a elemt &#60;/a&#62;&#10;&#60;script&#62;&#10;//&#33719;&#21462; #id &#30340;href&#23646;&#24615;&#20540;&#10;    var node = document.getElementById(&#39;id&#39;);&#10;    var url = node.attattributes[&#39;href&#39;].value;&#10;//&#30417;&#21548; #id &#30340;click&#20107;&#20214;&#10;    node.onclick = function(e)&#123;&#10;        //do some thing&#10;    &#125;&#10;//&#21019;&#24314;&#19968;&#20010;&#33410;&#28857;&#10;    document.createElement();&#10;    document.createTextNode();&#10;&#60;/script&#62;</span><br></pre></td></tr></table></figure></p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/05/31/编程艺术的读书笔记（三）/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/JavaScript-DOM/">JavaScript DOM</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/05/31/编程艺术的读书笔记（三）/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/05/31/编程艺术的读书笔记（三）/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/05/28/编程艺术的读书笔记（二）/" title="JavaScript编程艺术的读书笔记（二）" itemprop="url">JavaScript编程艺术的读书笔记（二）</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="homker" target="_blank" itemprop="author">homker</a>
-		
-  <p class="article-time">
-    <time datetime="2015-05-28T14:58:52.000Z" itemprop="datePublished"> 发表于 2015-05-28</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>昨天记录了一下DOM的一些简单的操作和一些简单的实现方法，还有一点js的DOM操作，然后提到一个概念，<code>优雅降级</code>,与之对应的是<code>渐进增强</code>，其实他们都是兼容问题。</p>
-<p>#兼容</p>
-<h2 id="问题的根源">问题的根源</h2><p>其实吧，我觉得两者是从不同的角度和方向来解决同一个问题。如何对待浏览器大战留下来的坑，以及如何照顾不同受众群体。这个问题的根源其实是http协议本身的无状态。以及计算机网络的不确定性，我们只能将很大一部分代码的基础构建在一个假设上面，而这个假设本身并不能被很好的印证。这样话，其实就有一个很根本的问题了，如果，宿主对象不存在，该如何处理。曾经的想法是优雅降级， 后来我们把想法更新成了渐进增强。<br>对于不同浏览器的支持可以点<a href="http://caniuse.com/">这里</a>进行查询。</p>
-<h2 id="优雅降级（Graceful_degradation）">优雅降级（Graceful degradation）</h2><p>又叫平稳退化，wiki上有比较详细的<a href="http://en.wikipedia.org/wiki/Fault_tolerance">解释</a>，英文好的同学可以点击去看看，嗯，说一下自己的理解，其实就是当程序运行在一个非完整环境下，对该不完整环境做的自我阉割，从而使得在该不完整情况下使用的用户能够基本完成所有交互动作。</p>
-<h2 id="渐进增强_（Progressive_enhancement）">渐进增强 （Progressive enhancement）</h2><p>淘宝UED的一篇译文写的极好，这里直接引用。</p>
-<blockquote>
-<p>“渐进增强”观点则认为应关注于内容本身。请注意其中的差别：我甚至连“浏览器”三个字都没提。</p>
-<p>内容是我们建立网站的诱因。有的网站展示它，有的则收集它，有的寻求，有的操作，还有的网站甚至会包含以上的种种，但相同点是它们全都涉及到内容。这使得“渐进增强”成为一种更为合理的设计范例。这也是它立即被 Yahoo! 所采纳并用以构建其“<a href="http://developer.yahoo.com/yui/articles/gbs/">分级式浏览器支持</a> (Graded Browser Support)”策略的原因所在。<br><a href="http://ued.taobao.org/blog/2008/10/understanding-progressiveen-hancement-chs-translation/">原文请点我</a></p>
-</blockquote>
-<p>##区别</p>
-<p>从不同层面和起点去看同一个问题，往往会有不同的答案，就像，我们看到这两个兼容处理。</p>
-<pre><code>当我们站在完整浏览器的角度而言，我们所面对的受众都是会自行更新最新浏览器的年轻受众而言，保持网页最酷炫，最丰满的状态往往会得到更大的收益，这时候，建立在最新浏览器支持下的优雅降级，就有其独特的优势。以最好的呈现效果为出发点，当我的呈现效果无法得到宿主环境的支持的时候，我主动阉割，用来实现交互的延续。
-
-当我们站在内容表现的出发点，以最大限度的传递内容信息为依归的去思考问题的时候，我们往往会发现从老旧浏览器出发的向上表现增强，是更好的实现方法。
-</code></pre><p>并没有什么东西是一成不变就能放之四海而皆准的，具体问题具体分析，根据业务环境的选择才是正途。正如<a href="http://blog.csdn.net/xiongzhengxiang/article/details/7999525">这篇博文</a>所说，二者之间，其实并没有什么本质上的区别，更多的是思想观念和具体操作流程上的区别。<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/05/28/编程艺术的读书笔记（二）/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/JavaScript-DOM/">JavaScript DOM</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/05/28/编程艺术的读书笔记（二）/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/05/28/编程艺术的读书笔记（二）/" data-count-type="comments">&nbsp;</a>
 	
 </div>
 
@@ -530,6 +541,8 @@
 	 
 	<div class="social-font" class="clearfix">
 		
+		<a href="http://weibo.com/homker## e.g. wuchong1014 or 2176287895 for http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
 		
 		<a href="https://github.com/homker for https://github.com/homker" target="_blank" class="icon-github" title="github"></a>
 		
@@ -538,6 +551,8 @@
 		
 		
 		
+		
+		<a href="https://www.zhihu.com/people/homker## e.g. jark  for http://www.zhihu.com/people/jark" target="_blank" class="icon-zhihu" title="知乎"></a>
 		
 		
 		
@@ -548,7 +563,7 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
 		
 		<a href="/about" target="_blank" title="homker">homker</a>
 		

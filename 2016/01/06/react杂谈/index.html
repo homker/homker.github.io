@@ -1,0 +1,639 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>react杂谈 | homker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="homker">
+    
+
+    
+    <meta name="description" content="#React 杂谈@auther 【homker】    @date 【2015 11 30】 
+最近接触React蛮多的，把一些东西记录下来，为了后面更好的学习。
+React是什么在reactjs.org的官网上，是这么说的哈：
+
+A JAVASCRIPT LIBRARY FOR BUILDING USER INTERFACES
+
+那么，很简单喽，这个库，就是一个帮助开发者更好的处理用户界面的东">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react杂谈">
+<meta property="og:url" content="http://yoursite.com/2016/01/06/react杂谈/index.html">
+<meta property="og:site_name" content="homker">
+<meta property="og:description" content="#React 杂谈@auther 【homker】    @date 【2015 11 30】 
+最近接触React蛮多的，把一些东西记录下来，为了后面更好的学习。
+React是什么在reactjs.org的官网上，是这么说的哈：
+
+A JAVASCRIPT LIBRARY FOR BUILDING USER INTERFACES
+
+那么，很简单喽，这个库，就是一个帮助开发者更好的处理用户界面的东">
+<meta property="og:image" content="http://i12.tietuku.com/1e9353ba5d18babd.png">
+<meta property="og:image" content="http://i12.tietuku.com/ec754618bd00d657.png">
+<meta property="og:image" content="http://img.kuqin.com/upimg/allimg/140717/23231024J-0.png">
+<meta property="og:image" content="http://img.kuqin.com/upimg/allimg/140717/2323105V3-1.png">
+<meta property="og:image" content="https://facebook.github.io/flux/img/flux-simple-f8-diagram-with-client-action-1300w.png">
+<meta property="og:image" content="http://segmentfault.com/img/bVqcAp">
+<meta property="og:image" content="http://i12.tietuku.com/4816de0039fa1119.png">
+<meta property="og:image" content="http://static.zybuluo.com/homker/k682nhxj9b3ceyymjnut2kax/45CBFC3D-97E7-42A5-BBF3-DC44F6190B2B.png">
+<meta property="og:image" content="http://mmbiz.qpic.cn/mmbiz/0aYRVN1mAJzzAeUSb3pibBQicicMZlwhvEGymrtqKxdqTtA9Z2ttjGhkADsNQct1UMAJF8jzoCVfpphXWulDjHltA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="http://static.zybuluo.com/homker/w7pk5rp4mnhjgxbal8om5sto/1368B751-C35D-4F79-A068-F6A8888F9D39.png">
+<meta property="og:updated_time" content="2016-01-06T04:31:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react杂谈">
+<meta name="twitter:description" content="#React 杂谈@auther 【homker】    @date 【2015 11 30】 
+最近接触React蛮多的，把一些东西记录下来，为了后面更好的学习。
+React是什么在reactjs.org的官网上，是这么说的哈：
+
+A JAVASCRIPT LIBRARY FOR BUILDING USER INTERFACES
+
+那么，很简单喽，这个库，就是一个帮助开发者更好的处理用户界面的东">
+
+    
+    <link rel="alternative" href="/atom.xml" title="homker" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/logo.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="homker">homker</a></h1>
+				<h2 class="blog-motto">单身不能成为你无聊的借口</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/01/06/react杂谈/" title="react杂谈" itemprop="url">react杂谈</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="homker" target="_blank" itemprop="author">homker</a>
+		
+  <p class="article-time">
+    <time datetime="2016-01-06T04:26:26.000Z" itemprop="datePublished"> 发表于 2016-01-06</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#React_u662F_u4EC0_u4E48"><span class="toc-number">1.</span> <span class="toc-text">React是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Library__u5E93"><span class="toc-number">1.1.</span> <span class="toc-text">Library 库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E3A_u4EC0_u4E48_u8981_u7528react"><span class="toc-number">2.</span> <span class="toc-text">为什么要用react</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC4_u4EF6_u5316"><span class="toc-number">2.1.</span> <span class="toc-text">组件化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u751F_u547D_u5468_u671F"><span class="toc-number">2.1.1.</span> <span class="toc-text">生命周期</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6027_u80FD"><span class="toc-number">2.2.</span> <span class="toc-text">性能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u591A_u7AEF_u53EF_u79FB_u690D"><span class="toc-number">2.3.</span> <span class="toc-text">多端可移植</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5982_u4F55_u4F7F_u7528react_uFF1F"><span class="toc-number">3.</span> <span class="toc-text">如何使用react？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#React_Web"><span class="toc-number">3.1.</span> <span class="toc-text">React Web</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#React_JSX"><span class="toc-number">3.1.1.</span> <span class="toc-text">React JSX</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#React_Router"><span class="toc-number">3.1.2.</span> <span class="toc-text">React Router</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#React_Flux"><span class="toc-number">3.1.3.</span> <span class="toc-text">React Flux</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#React_Redux"><span class="toc-number">3.1.3.1.</span> <span class="toc-text">React Redux</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#React_Native"><span class="toc-number">3.2.</span> <span class="toc-text">React Native</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u76EE_u5F55_u7ED3_u6784"><span class="toc-number">3.2.1.</span> <span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u5E95_u5C42_u67B6_u6784"><span class="toc-number">3.2.2.</span> <span class="toc-text">底层架构</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#android"><span class="toc-number">3.2.2.1.</span> <span class="toc-text">android</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#mReactRootView"><span class="toc-number">3.2.2.1.1.</span> <span class="toc-text">mReactRootView</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#mReactInstanceManager"><span class="toc-number">3.2.2.1.2.</span> <span class="toc-text">mReactInstanceManager</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#node-server"><span class="toc-number">3.2.2.2.</span> <span class="toc-text">node-server</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u4EE3_u7801_u590D_u7528"><span class="toc-number">3.2.3.</span> <span class="toc-text">代码复用</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<p>#React 杂谈<br>@auther 【homker】    @date 【2015 11 30】 </p>
+<p>最近接触React蛮多的，把一些东西记录下来，为了后面更好的学习。</p>
+<h2 id="React_u662F_u4EC0_u4E48"><a href="#React_u662F_u4EC0_u4E48" class="headerlink" title="React是什么"></a>React是什么</h2><p>在<a href="http://facebook.github.io/react/" target="_blank" rel="external">reactjs.org</a>的官网上，是这么说的哈：</p>
+<blockquote>
+<p>A JAVASCRIPT LIBRARY FOR BUILDING USER INTERFACES</p>
+</blockquote>
+<p>那么，很简单喽，这个<code>库</code>，就是一个帮助开发者更好的处理<code>用户界面</code>的东西。</p>
+<p>这里注意两个点：</p>
+<ul>
+<li>这是一个用户界面的库</li>
+<li>这是一个库</li>
+</ul>
+<h3 id="Library__u5E93"><a href="#Library__u5E93" class="headerlink" title="Library 库"></a>Library 库</h3><p>作为一个库，区别于<a href="http://https://angularjs.org/" target="_blank" rel="external"><code>angular</code></a>，同时也区别于<a href="http://vuejs.org/" target="_blank" rel="external"><code>vue</code></a>,虽然这里有一点问题还待商榷的是，vue好像没有说自己是一个框架还是一个库，但是，我个人更偏向于把它看成是前者。那么好了，如果，认为是一个库，那么作为一个库，他只是提供一个<code>辅助工具</code>，来帮助你解决问题，而是不是提出一个完整的解决方案，所以，你会发现，现在react是很自由的，你可以选择任何你喜欢的东西和它搭配在一起工作，他们也能工作的很好。同时，问题也来了，因为他是一个库，所以，有很多东西就变的很不确定。</p>
+<h2 id="u4E3A_u4EC0_u4E48_u8981_u7528react"><a href="#u4E3A_u4EC0_u4E48_u8981_u7528react" class="headerlink" title="为什么要用react"></a>为什么要用react</h2><p>使用react的原因有很多，鄙人愚钝，觉得其中比较明显的原因如下：</p>
+<h3 id="u7EC4_u4EF6_u5316"><a href="#u7EC4_u4EF6_u5316" class="headerlink" title="组件化"></a>组件化</h3><p>react中非常明确的提出了组件(component)的概念，这个组件的概念，不单单指的是web component还包括了native component。而组件化的同时，也自然而然的带来了组件的<code>生命周期</code>。并且，结构代码的<code>语义化</code>在组件化的同时得到了更高层次的实现。</p>
+<p>一个react的组件应该看起来是酱的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> React= <span class="built_in">require</span>(<span class="string">'react'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> App = React.createClass(&#123;</span><br><span class="line">	</span><br><span class="line">	getInitStates()&#123;</span><br><span class="line">		<span class="keyword">return</span> &#123;&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	componentWillMount()&#123;</span><br><span class="line">		<span class="comment">//do some thing</span></span><br><span class="line">	&#125;,</span><br><span class="line">	componentWillUpdate()&#123;</span><br><span class="line">		<span class="comment">//do some thing</span></span><br><span class="line">	&#125;,</span><br><span class="line">	render()&#123;</span><br><span class="line">		<span class="keyword">return</span> (</span><br><span class="line">			<span class="xml"><span class="tag">&lt;<span class="title">div</span>&gt;</span>hello word<span class="tag">&lt;<span class="title">span</span>&gt;</span>this.props.user<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">		)</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>其中App，就是组件啦，在ES6中，你可以定义为一个class，就像酱：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> React,&#123;Component&#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> App extends Component&#123;</span><br><span class="line">	render()&#123;</span><br><span class="line">		<span class="keyword">return</span> (</span><br><span class="line">			<span class="xml"><span class="tag">&lt;<span class="title">div</span>&gt;</span>hello word<span class="tag">&lt;<span class="title">span</span>&gt;</span>this.props.user<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">		)</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>个人认为：<br>组件化的本质其实是对view层的封装。将繁重的view层的变化操作从数据流变化操作中脱离出来，实现数据层和view层的分离。也就是说，在整个代码的组织结构中，数据层将不再处理样式或者说显示上的不同，而是，只要关心数据本身的变化，然后告诉react，变化后的数据集（Date set），剩下的view层变化由react来完成。这样导致了，react希望的数据流每次都是<code>完整</code>的，而不是一个数据片段。这也导致了，react希望使用不可修改类型的数据格式来保证每次的数据是<code>新</code>的。同时，对于数据层而言，自然就希望view层的所有变化应该是可预见的。我提供怎么样的<code>新</code>数据，你就给我显示出来。</p>
+<h4 id="u751F_u547D_u5468_u671F"><a href="#u751F_u547D_u5468_u671F" class="headerlink" title="生命周期"></a>生命周期</h4><p>然后，在其内部定义了生命周期，共有四个。如图：<br><img src="http://i12.tietuku.com/1e9353ba5d18babd.png" alt="生命周期图"><br>从生命周期的名字，很清楚的就知道啦，执行顺序如图所示。<br><img src="http://i12.tietuku.com/ec754618bd00d657.png" alt="生命周期图"></p>
+<p>组件的生命周期还要注意两点：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ReactDom.render(<span class="xml"><span class="tag">&lt;<span class="title">MyComponent</span> /&gt;</span>, body);</span><br><span class="line">ReactDom.unmountComponentAtNode(body);</span><br><span class="line">ReactDom.render(<span class="tag">&lt;<span class="title">MyComponent</span> /&gt;</span>, body);</span></span><br></pre></td></tr></table></figure></p>
+<p>上面的代码是 ReactDom将组件挂载在真实的DOM上的。当然还有移除的方法。要注意的地方是，这里挂载的时候，DOM必须是已经存在着的，不然并不可以啊。也就是说，如果你挂载在动态的DOM的时候，一定要确保DOM是已经生成的，并且真真正正的存在着。<br>对于React中，生命周期具体的管理方法可以参考这篇文章：<a href="http://zhuanlan.zhihu.com/purerender/20312691" target="_blank" rel="external">React LifeStyle</a>。</p>
+<a id="more"></a>
+<h3 id="u6027_u80FD"><a href="#u6027_u80FD" class="headerlink" title="性能"></a>性能</h3><p>react最早的时候，是为了解决在web上，html处理中，高度变化的DOM的性能问题。为了能够让html的DOM处理变的更加合理和高效，facebook的前端团队推出了他们自己的解决方案，react。</p>
+<p>嗯，首先说下我们传统的解决方案：<br>比如，我们要修改页面中的一个<code>span</code>标签中的内容。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="title">title</span>&gt;</span>a sample of DOM<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span> = "<span class="attribute">container</span>"&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"demo-span"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"application/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">			<span class="keyword">var</span> demoSpan = <span class="built_in">document</span>.querySelector(<span class="string">'.demo-span'</span>);</span><br><span class="line">			demoSpan.innerText = <span class="string">'some thing you want'</span>;</span><br><span class="line">		</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>嗯，很简单。选中它，然后修改它。</p>
+<p>需要我们注意的一点，我们在这里的修改是实实在在的DOM。那么我们修改之后，浏览器会对应修改他的DOM tree 和render Tree，重新更新render Layer。</p>
+<p>这个一个<code>span</code>,如果我们要改的是一个大型的<code>ul</code>呢？</p>
+<p>那么这个时候，你会发现你的每一次修改的背后，都需要付出非常大得修改成本，虽然，你可能只是要修改一个span。</p>
+<p>如同所知，所有的HTML最后的显示结构可以认为是一个树，那么，每一次修改的本质，其实把一颗树变成另一颗树。嗯，判断哪一个节点要修改的过程我们叫做diff DOM，那么一个diff DOM的算法，其实就是把一个树变成另一个树的算法咯。这个算法，根据我们数据结构老师教给我们的，最优算法实现的时间复杂度是O( n^3 )，好像很复杂的样子哈。。。</p>
+<p>react通过两个假设，魔术般的把整个的diff DOM算法的复杂度从O( n^3 ) 变成了 O( n )。（从算法复杂度的角度考虑，react在处理超大规模DOM节点修改上面应该会有着惊人的表现）。react 提出的两个假设是：</p>
+<ul>
+<li>两个相同组件产生类似的DOM结构，两个不同的组件产生不同的DOM结构。</li>
+<li>对于同一层次的一组子节点，他们可以通过唯一的id进行区分。</li>
+</ul>
+<p>嗯，第一点，简直简单暴力。这个假设前提，导致react不会再去对比一个复杂的子DOM树，而是在组件级别做DOM diff。我把这种行为叫做component diff</p>
+<p>第二个假设，告诉了我们react在component diff的时候的具体做法，他是按照层次进行diff的，也就是说，react在进行component diff的时候并没有遍历树，而是按照树状结构做层次对比。哈哈哈，是时候拿出着些图了：</p>
+<p><img src="http://img.kuqin.com/upimg/allimg/140717/23231024J-0.png" alt="component diff 图"></p>
+<p>对于长列表而言，<br><img src="http://img.kuqin.com/upimg/allimg/140717/2323105V3-1.png" alt="长列表 diff图"></p>
+<p>通过如上的两个假设，基本解决了component级别的diff问题。</p>
+<p>当然在具体的界面更新逻辑中还有<code>批量化处理</code>和<code>选择性子树渲染</code>的优化，简单的说，就是在组件树种，你调用了setState，那么该组件就会被标记为dirty，在一个事件循环中，所有被标记为dirty的组件将会调用其render()函数。当然，你也可以通过调用生命周期当中的<code>componentWillUpdate()</code>来控制其是否需要更新，藉此来提高性能。</p>
+<h3 id="u591A_u7AEF_u53EF_u79FB_u690D"><a href="#u591A_u7AEF_u53EF_u79FB_u690D" class="headerlink" title="多端可移植"></a>多端可移植</h3><p>react可以很自然的运行在server端，web端，native端。基本上能够实现一套代码四处运行，这种星辰大海的梦想，当然必须要选择的咯，怎么能拒绝呢？</p>
+<h2 id="u5982_u4F55_u4F7F_u7528react_uFF1F"><a href="#u5982_u4F55_u4F7F_u7528react_uFF1F" class="headerlink" title="如何使用react？"></a>如何使用react？</h2><p>好了，上面记述了下react的what和why，下面来how~！首先，我们分两个大得方向：</p>
+<ul>
+<li>web</li>
+<li>native</li>
+</ul>
+<h3 id="React_Web"><a href="#React_Web" class="headerlink" title="React Web"></a>React Web</h3><p>在web端，我们可以选择的技术栈其实很多的。但是呢，我个人比较倾向于React+Redux+webpack来实现。但是，中间还会带有很多其他的东西。首先，我们要理解是JSX</p>
+<h4 id="React_JSX"><a href="#React_JSX" class="headerlink" title="React JSX"></a>React JSX</h4><p>在react渲染的时候，支持一种很像XML的语言，叫JSX，官方的定义是：</p>
+<blockquote>
+<p>JSX 是一个看起来很像 XML 的 JavaScript 语法扩展。React 可以用来做简单的 JSX 句法转换。</p>
+</blockquote>
+<p>实际上，jsx是允许你使用XML的语法来定义你的react渲染结构和布局。<br>比如说酱：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> Head <span class="keyword">from</span> <span class="string">'../components/head.jsx'</span></span><br><span class="line"><span class="keyword">import</span> Body <span class="keyword">from</span> <span class="string">'../components/body.jsx'</span></span><br><span class="line"></span><br><span class="line">class App extends React.Componets &#123;</span><br><span class="line">	render () &#123;</span><br><span class="line">		return (</span><br><span class="line">			&lt;div&gt;</span><br><span class="line">				&lt;Head/&gt;</span><br><span class="line">				&lt;Body/&gt;</span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">		)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过JSX的格式的引入，使得react的组件的组合变得非常容易。但是需要注意的一点是，定义组件的时候，首字母要大写，然后，每一次render必须要有一个根节点。</p>
+<p>在使用JSX的时候，我们时刻的记住一点，JSX只是一个XML的解释性语言，所以，本质就是字符串。</p>
+<h4 id="React_Router"><a href="#React_Router" class="headerlink" title="React Router"></a>React Router</h4><p>这里，我们还要提到一个很酷炫的东西叫做react router。react router为单页面应用（SPA）提供了一个很好的路由表处理机制。通过react router来进行路由分发，能够很方便的去实现单页面中的页面切换。就像酱：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//router</span></span><br><span class="line">    <span class="keyword">let</span> routes = (</span><br><span class="line">        <span class="xml"><span class="tag">&lt;<span class="title">Route</span> <span class="attribute">path</span>=<span class="value">"/"</span> <span class="attribute">component</span>=<span class="value">&#123;App&#125;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">Route</span> <span class="attribute">path</span>=<span class="value">"main"</span> <span class="attribute">component</span>=<span class="value">&#123;Main&#125;</span> <span class="attribute">onEnter</span>=<span class="value">&#123;authCheck&#125;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">Route</span> <span class="attribute">path</span>=<span class="value">"login"</span> <span class="attribute">component</span>=<span class="value">&#123;Login&#125;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">Route</span> <span class="attribute">path</span>=<span class="value">"logout"</span> <span class="attribute">component</span>=<span class="value">&#123;Logout&#125;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">Route</span>&gt;</span></span><br><span class="line">    )</span>;</span><br></pre></td></tr></table></figure>
+<p>其中<code>App</code>,<code>Main</code>,<code>Login</code>,<code>Logout</code>都是单屏组件。通过history来进行状态的切换和更新。就像酱</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.props.history.replaceState(<span class="literal">null</span>,location.state.nextPathname)</span><br></pre></td></tr></table></figure>
+<p>额，这里的history很明显的是从父组件继承下来的，所以，你要修改一下，你的根组件的render函数。就像酱：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="title">Router</span> <span class="attribute">history</span>=<span class="value">&#123;history&#125;</span>&gt;</span>&#123;routes&#125;<span class="tag">&lt;/<span class="title">Router</span>&gt;</span>,document.getElementById('container'))</span></span><br></pre></td></tr></table></figure>
+<p>但是这里有一个问题，根路由。所谓根路由就是在最顶端的那个组件，同时一个路由，这个组件的任务就是分发路由。照理来说，这个设计是没有问题的，但是，有个很坑的地方，就是这个router是在数据流顶端的，乃至于事件流顶端。如果我想在事件流当中去修改这个东西的时候，我们会发现，没有办法去修改。因为，它并不在我们的事件流范围内。所以，redux提出了一个新的redux-router来封装router。</p>
+<p>这里引用redux-router中的一段话。</p>
+<blockquote>
+<p>This library allows you to keep your router state inside your Redux store. So getting the current pathname, query, and params is as easy as selecting any other part of your application state.</p>
+</blockquote>
+<p>来说明其作用。</p>
+<p>在使用的时候，我们的Root节点就变成下面这个样子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//router</span></span><br><span class="line">  <span class="keyword">let</span> routes = (</span><br><span class="line">      <span class="xml"><span class="tag">&lt;<span class="title">Route</span> <span class="attribute">path</span>=<span class="value">"/"</span> <span class="attribute">component</span>=<span class="value">&#123;App&#125;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">Route</span> <span class="attribute">path</span>=<span class="value">"main"</span> <span class="attribute">component</span>=<span class="value">&#123;Main&#125;</span> <span class="attribute">onEnter</span>=<span class="value">&#123;authCheck&#125;</span>/&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">Route</span> <span class="attribute">path</span>=<span class="value">"login"</span> <span class="attribute">component</span>=<span class="value">&#123;Login&#125;</span>/&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">Route</span> <span class="attribute">path</span>=<span class="value">"logout"</span> <span class="attribute">component</span>=<span class="value">&#123;Logout&#125;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="title">Route</span>&gt;</span></span><br><span class="line">  )</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> Root = React.createClass(&#123;</span><br><span class="line">      render()&#123;</span><br><span class="line">          <span class="keyword">return</span> (</span><br><span class="line">              <span class="xml"><span class="tag">&lt;<span class="title">Provider</span> <span class="attribute">store</span>=<span class="value">&#123;store&#125;</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="title">ReduxRouter</span>&gt;</span>&#123;routes&#125;<span class="tag">&lt;/<span class="title">ReduxRouter</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="title">Provider</span>&gt;</span></span><br><span class="line">          )</span></span><br><span class="line">      &#125;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<p>其中，最外层的Provider封装是redux加上去的。</p>
+<h4 id="React_Flux"><a href="#React_Flux" class="headerlink" title="React Flux"></a>React Flux</h4><p>好了，现在我们要来说react提出的另一个很有创意的东西。flux。一个事件流/数据流模型。</p>
+<blockquote>
+<p>Flux is the application architecture that Facebook uses for building client-side web applications. It complements React’s composable view components by utilizing a unidirectional data flow. It’s more of a pattern rather than a formal framework, and you can start using Flux immediately without a lot of new code.</p>
+</blockquote>
+<p>之所以说很有创意，是因为flux提出了一个单循环的事件流/数据流模型。所谓的单循环，说明了事件和数据的本身是有生命性，每一次新发起得事件也好，数据也罢，都是区别于上次事件和数据的本身。说的好像很抽象，我们先看一个图，对，奏是flux的官方说明图。<br><img src="https://facebook.github.io/flux/img/flux-simple-f8-diagram-with-client-action-1300w.png" alt="flux事件流图"></p>
+<p>图中，有四个东西</p>
+<ul>
+<li>Action  动作</li>
+<li>Dispatcher  分发者</li>
+<li>Store 数据商店/数据仓库</li>
+<li>View 视图</li>
+</ul>
+<p>这四个东西，代表了四个处理工位，每一个工位都只做属于自己的那一件事，那就是加工和处理流水线上的数据，并把加工好的数据扔给下一个工位。工业化的数据处理方式，要求每一次处理数据的时候，拿到的都是一个<code>完整的独立的</code>数据集，而不应该是一个残次品，或者说是数据片段。</p>
+<p>为什么要强调完整独立的呢，因为，javascript语言本身的一些特性。我们知道，在javascript当中，数据类型分成两大种，基础类型和引用类型。基础类型只有6个，number，boolen，Object，null，undefined，string。其他的都是引用数据类型。所谓引用数据类型，就是他们都是Object原型链上的表达。换句话说，他们都是一个指针，指向了对应的Object类型的数据。所以，在javascript中，简单的赋值绝大多数是在拷贝指针，所有基于指针的修改是联动的，但是在react的数据流中，要求将数据的修改独立出来，也就是要求，我们要使用的是深拷贝，而不是简单的赋值。这个很容易犯错。</p>
+<p>简单的说一下各个部分是干嘛的。</p>
+<p>Action是动作，定义了一个完整的动作过程。其动作本身应该是可以理解的。比如说，在todo列表中添加一条新的数据。这个叫动作。而鼠标点击了添加按钮叫做点击事件。二者要加以区分。</p>
+<p>Dispatcher分发者，作用是把不同的Action分发给不同的store，这个在不同的flux的实践中有着不同的考量，在reflux中，干脆就取消了，没了。。。因为他们觉得太复杂了。但是在flux官方本身，却是很是推崇，他们提供的flux中<a href="https://github.com/facebook/flux/blob/master/src/Dispatcher.js" target="_blank" rel="external">Dispatcher</a>的实现建议。</p>
+<p>Store数据仓库，但是在flux中，我比较倾向于翻译成数据商店。Action的本意是一个完整的动作，比如说在总得点赞数中加1。那么dispatcher就把这个Action派送到点赞数这个数据商店，然后从点赞数商店中获取完整的点赞数组，或者对象。并把数据发给view</p>
+<p>view就是react啦，他就会把数据显示出来，奏事酱。</p>
+<p>个人认为，四个东西代表了数据处理的四个步骤。数据往何去（dispatcher），数据从何来（Store），数据该如何修改（Action），数据该如何显示（view）。</p>
+<p><em>tips:还有一个问题。如何判定事件的发生？</em></p>
+<p>对于每一个动作(Action)的发生，我们认为其都是新的Action，为了标示其的发生，我们用State来标识。也就是说，每发生一次Action就会有对应的State的改变。那么我们可以认为，对于数据流，事件流的管理，可以认为是对各个组件的状态集合的管理。</p>
+<h5 id="React_Redux"><a href="#React_Redux" class="headerlink" title="React Redux"></a>React Redux</h5><p>redux是flux思想的一种实现。他和react没有必然的联系。你可以把它用在任何处理状态管理的地方。都是可以的。</p>
+<p>在<a href="http://redux.js.org/" target="_blank" rel="external">其官网</a>中是酱介绍自己的。</p>
+<blockquote>
+<p>Redux is a predictable state container for JavaScript apps.</p>
+</blockquote>
+<p>简单的说，redux是javascript的状态容器，提供了可预测的状态管理。<br>但是redux对flux的具体实现有自己的区别。首先，redux提出了自己的三条基本哲学：</p>
+<blockquote>
+<ul>
+<li>Single source of truth (单一数据源)</li>
+<li>State is read-only  (state是只读的)</li>
+<li>Mutations are written as pure functions (使用纯函数来执行修改)</li>
+</ul>
+</blockquote>
+<p>三条哲学的背后，隐藏了作者对于flux个性化的理解。</p>
+<p><img src="http://segmentfault.com/img/bVqcAp" alt="redux的流程图"></p>
+<p>抽象成图就是酱的。</p>
+<p>嗯，很清晰的一点：就是单循环数据流。主要有这么几个部分组成：</p>
+<ul>
+<li>store</li>
+<li>view</li>
+<li>action</li>
+<li>reducer</li>
+<li>middleware</li>
+</ul>
+<p>嗯，这里和flux一致的东西就不累述了，我们着重的说一下redux的革新的地方。在redux中，store不再是一个程序体，而是被抽象成为了一个类似于女皇的存在，他统领和分发所有的Action。就像酱：<br><img src="http://i12.tietuku.com/4816de0039fa1119.png" alt="redux流程图"><br>在redux中，只有一个store，store中拥有dispatch方法，通过dispatch方法来调度和触发所有的Action。在程序体中，它通过连接到组件实体，把dispatch函数注入到props当中去，就像酱：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//连接</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connect(mapState2Props)(Main);</span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line"> <span class="keyword">this</span>.props.dispatch(commmitComments(user, message));</span><br></pre></td></tr></table></figure>
+<p>其中，commitComments就是Action。</p>
+<p>所谓的reducer是一个纯函数，他是用来处理Action的。一个reducer看起来就像这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">getAllMessage</span>(<span class="params">state = &#123;&#125;, action</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (action.type) &#123;</span><br><span class="line">        <span class="keyword">case</span> SHOW_ALL:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;,Messages(state,action),&#123;</span><br><span class="line">                <span class="comment">//TODO 添加新状态</span></span><br><span class="line">            &#125;);</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> state;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>很明显，这是一个很简单的纯函数。他的任务就是，维护一个state树，根据Action来修改这个state树。而state树，又会通过mapstate2props函数映射给props。就像这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapState2Props</span>(<span class="params">_state</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> &#123;user,commitMessage,getAllMessage,reciveMessage&#125; = _state;</span><br><span class="line">    <span class="keyword">let</span> _items = getAllMessage.messages ? [...getAllMessage.messages] : [];</span><br><span class="line">    _items = _items.concat(commitMessage.messages||[]).concat(reciveMessage.messages||[]).sort(<span class="function"><span class="keyword">function</span>(<span class="params">pre,nex</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (pre.date - nex.date)||-<span class="number">1</span> ;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'items'</span>,_items);</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        user,</span><br><span class="line">        items:[..._items]</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后，view层就能重新渲染新的数据啦。</p>
+<p>在新一个Action发出时，到reducer之前，我们可以通过一个middleware来改变一些事情。比如通过使用高阶函数（high-order function）来进行更复杂的reducer处理。</p>
+<p><em>tips：需要注意的是：</em><br>在redux的实践中，大量的使用了函数化编程的思维，什么高阶函数啊，复合函数啊，柯理函数呀。<br>这里顺带举几个例子，帮自己回忆一下。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">	<span class="comment">//复合</span></span><br><span class="line">	<span class="keyword">var</span> a =<span class="function"><span class="keyword">function</span>（<span class="title">x</span>）</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">'say:'</span>+x</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> x</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">var</span> c = <span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> a(b(x))</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="comment">//c('hello') --&gt; say hello	</span></span><br><span class="line">	<span class="comment">//柯理化</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">var</span> a = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">y</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> x+y;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">var</span> b = a(<span class="number">1</span>)；</span><br><span class="line">	<span class="keyword">var</span> c = b(<span class="number">1</span>);</span><br><span class="line">	c===<span class="number">2</span>;<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<h3 id="React_Native"><a href="#React_Native" class="headerlink" title="React Native"></a>React Native</h3><p>做这个之前，首先，你要能翻墙。。。最好是能有台mac。。。<br>额，科学上网的原因并不是因为镜像，而是因为google比百度靠谱多了。特别是在搜索上面。。。有台Mac的原因嘛，听说facebook的程序员们都用mac，所以并不知道react-native在windows上的兼容性到底如何。。。哈哈哈，玩笑话啦。主要是在mac上，移动端友好一点。</p>
+<p>嗯，因为只有andorid，并且相对于ios更熟悉android开发，所以下文都是以andorid的开发为例。自己接触react-native的开发时间不长，有很多地方都不是很懂，所以如有错误，请诸位多多包涵。</p>
+<h4 id="u76EE_u5F55_u7ED3_u6784"><a href="#u76EE_u5F55_u7ED3_u6784" class="headerlink" title="目录结构"></a>目录结构</h4><p><img src="http://static.zybuluo.com/homker/k682nhxj9b3ceyymjnut2kax/45CBFC3D-97E7-42A5-BBF3-DC44F6190B2B.png" alt="45CBFC3D-97E7-42A5-BBF3-DC44F6190B2B.png-49.9kB"></p>
+<p>对于目录结构而言，我们能够很清晰的看到，有几个很熟悉的目录，andorid，ios，分别是为了兼容两个不同平台的个平台文件。node_modules，这个文件夹，大家都很清楚啦。其他的文件，大家一看也都明白，不多说。</p>
+<h4 id="u5E95_u5C42_u67B6_u6784"><a href="#u5E95_u5C42_u67B6_u6784" class="headerlink" title="底层架构"></a>底层架构</h4><p>嗯，首先，看张图。这张图来自腾讯QQ空间的终端团队。<br><img src="http://mmbiz.qpic.cn/mmbiz/0aYRVN1mAJzzAeUSb3pibBQicicMZlwhvEGymrtqKxdqTtA9Z2ttjGhkADsNQct1UMAJF8jzoCVfpphXWulDjHltA/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="react-native图片"><br>看起来很简单的一张图，其实还是蛮复杂的。这里有三层，一层是java，一层c++，一层js。嗯，java层和js层其实都很好理解。组件和其的生命周期是在js层管理的，java层是andorid的底层通信。c++层是构建了一个Bridge。用来做js的编译，同时保持java和js之前的通信。</p>
+<p>但是，只看这张图，肯定会有疑问，为什么要徒徒加C++这一层，js直接和java通信岂不是更好，更直接！这个嘛，是执行效率的问题吧。</p>
+<p>就像我们知道的那样，运行一个React-Native项目的时候，需要在根目录运行</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">react-native run-andorid</span><br></pre></td></tr></table></figure>
+<p>而执行，这个命令，我们会发现实际上执行android编译安装到指定虚拟机的命令，同时也运行了一个start Server的命令。这个server就是react-native packager server。也就是说，react-native的运行分成了两部分。</p>
+<ul>
+<li>android （Native）</li>
+<li>node-server （react）</li>
+</ul>
+<p>我们分开来分析。首先讲andorid（Native）。</p>
+<h5 id="android"><a href="#android" class="headerlink" title="android"></a>android</h5><p>首先，要知道andorid的application的运行机制才行。对于一个传统的application而言，最重要的东西就是activity啦。打开React-Native的andorid 的目录文档。一看文件结构。很是熟悉呀。<br><img src="http://static.zybuluo.com/homker/w7pk5rp4mnhjgxbal8om5sto/1368B751-C35D-4F79-A068-F6A8888F9D39.png" alt="1368B751-C35D-4F79-A068-F6A8888F9D39.png-91.2kB"><br>这个很明显是一个典型的android项目的文件结构。嗯，这个就很熟悉啦，直接打开其activity来看看他都干了些什么。</p>
+<p>在其<code>onCreate</code>函数中，有如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Override&#10;protected void onCreate(Bundle savedInstanceState) &#123;&#10;    super.onCreate(savedInstanceState);&#10;    mReactRootView = new ReactRootView(this);&#10;&#10;    mReactInstanceManager = ReactInstanceManager.builder()&#10;            .setApplication(getApplication())&#10;            .setBundleAssetName(&#34;index.android.bundle&#34;)&#10;            .setJSMainModuleName(&#34;index.android&#34;)&#10;            .addPackage(new MainReactPackage())&#10;            .setUseDeveloperSupport(BuildConfig.DEBUG)&#10;            .setInitialLifecycleState(LifecycleState.RESUMED)&#10;            .build();&#10;&#10;    mReactRootView.startReactApplication(mReactInstanceManager, &#34;RX&#34;, null);&#10;&#10;    setContentView(mReactRootView);&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>所谓万变不离其宗。andorid上所有的变化都必须要遵循andorid的底层接口和运行时。无论你是java也好，js也罢，亦或是世界上最好的语言php（<a href="http://www.phpforandroid.net/doku.php" target="_blank" rel="external">php for andorid</a>）。其实都是如此。很容易看见，在activity中，新建了一个mReactRootView，通过，mReactInstanceManager 来引入一个index.andorid.bundle来渲染这个mReacRootView，实现react和android 的整合。</p>
+<p>嗯，这里提到了两个重要的组件。</p>
+<ul>
+<li>一个是mReactRootView</li>
+<li>一个是mReactInstanceManager</li>
+</ul>
+<h6 id="mReactRootView"><a href="#mReactRootView" class="headerlink" title="mReactRootView"></a>mReactRootView</h6><p>嗯，从类的继承关系上来看，mReactRootView 继承自SizeMonitoringFrameLayout,而这个SizeMonitoringFrameLayout又很明显是继承自FragmeLayout，而FragmeLayout是android中非常常见的一种布局。同时也是最简单的布局，它只是定义了一个界面，没有对界面做任何布局上得限制。<br>至于SizeMonitoringFragmeLayout是个什么东西，从名字上就能很清楚的看出来。提供一个大小改变的接口，来提供改变大小的能力。<br>而，rootView本身是处理了一些触摸事件的传递和本省的一些生命周期的管理。</p>
+<h6 id="mReactInstanceManager"><a href="#mReactInstanceManager" class="headerlink" title="mReactInstanceManager"></a>mReactInstanceManager</h6><p>这个组件比较复杂了，他完成了对index.android.bundle文件的获取。而这个index.android.bundle的获取是可以通过网络获取的，其实在debug的时候就是这样的，虚拟机会发出对本地的index.andorid.bundle的请求。就像这样。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localhost:8081/index.android.bundle?platform=android&#38;dev=true</span><br></pre></td></tr></table></figure></p>
+<p>当然，你可以把它打包到本地，一起发布。放在asset目录下面就好了。<br>具体的操作方法，可以参考<a href="http://www.race604.com/rn-android-standalone-apk/" target="_blank" rel="external">这篇文章</a>。<br>获取到相应的bundle文件之后，将会把文件中的代码交给javascript core去执行和调用底层的接口。</p>
+<p>react-native官方文档中也提到了，我们可以请求如下的链接来在chrome中调试我们的react-native代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localhost:8081/debugger-ui</span><br></pre></td></tr></table></figure></p>
+<p>嗯，那么简单的说，在andorid端，react-native会像其他的app一样，遵循andorid app的一切。这样的话，大家甚至可以在一个已经开发好的app中，通过activity的嵌入来动态加载react-native。</p>
+<h5 id="node-server"><a href="#node-server" class="headerlink" title="node-server"></a>node-server</h5><p>说了半天，发现好像，这个东西就是围绕着index.andorid.bundle来跑的。说来说去，都和这货分不开干系。这货到底是个什么！</p>
+<p>我们发现。在react-native的调试过程中，它自己拉起了一个node-server来执行js的编译和babel的解析。是的，react-native天然支持ES6，甚至ES7的一部分特性。因为，代码被编译过啊！在node-server中，会把我们在index.andorid.js中的代码和各种依赖打包编译成一个index.andorid.bundle。</p>
+<p>鄙人能力有限，并不能完全解释清楚其中的奥妙，大家可以参考下面两篇，来加深理解。<br>一篇是QQ空间团队的<a href="http://mp.weixin.qq.com/s?__biz=MzI1MTA1MzM2Nw==&amp;mid=207782506&amp;idx=1&amp;sn=3ff6b03c0d59fbda406f64739d9272cf" target="_blank" rel="external">React Native For Android 架构初探</a><br>一篇是淘宝前端团队的<a href="http://taobaofed.org/blog/2015/11/25/react-native-android-debug/index.html" target="_blank" rel="external">使用 JS 构建跨平台的原生应用（二）：React Native for Android 调试技术剖析</a></p>
+<h4 id="u4EE3_u7801_u590D_u7528"><a href="#u4EE3_u7801_u590D_u7528" class="headerlink" title="代码复用"></a>代码复用</h4><p>react给我们带来的一点是，代码可以在多端复用。这个地方，其实有一点要清晰的是，并不是说react的代码可以一行不改，直接放入到react-native中去运行。因为，你会发现，react-native会有各自不同的组件，而且，react-native的andorid端和ios端的组件也各有各的。。。</p>
+<p>那是不是react的开发和一般开发就没有区别了嘛？<br>并不是，毕竟redux（flux）部分的代码是可以复用的。但是，ui层的代码，你还是要乖乖的重写。但是，你可以很容易的根据文档，用以前的思维去写这些东西。除了事件系统有一点不一样以外，其他的都是一样的。虽然没有完全实现，一次编写四处运行，但是，照着这个方向发展下去，抹去各端差异是时间早晚的事，在不久的将来，一定会实现，一处编写，四处运行的。</p>
+<p>###思考</p>
+<p>react给我带来的到底是什么？私以为，除了如何高效的处理DOM，如何去组建化。还有一点是，react带来的数据和ui分流的思想。ui层的处理其实就是像盖房子，房子盖好了，它是可预见的，实实在在的，你可以真真切切的知道它就是这样的。而数据就好像是房子中的电线，水管，煤气。在建房子的时候，埋入到房子当中，是可预见的。而用户在房子当中使用这些的时候，并不会因外，使用了电，使用了水，就改变了房子本身的结构。也就是说，数据层和ui层分离之后，数据层把要显示的数据完完整整的丢给ui层去处理，自己不去干扰。而事件的处理则升格成为动作来处理。事件本身由ui层来屏蔽，在数据层，只保留要处理的动作（Action）,比如，添加一条XXXX评论.而不是，处理，button click。通过如此，数据层的代码可以实现单独优化和多段无差别复用，而ui层的代码则可以更加专注于ui层本身。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/01/06/react杂谈/" data-title="react杂谈 | homker" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/01/06/《JavaScript函数式编程》读书笔记/"  title="《JavaScript函数式编程》读书笔记">
+ <strong>下一篇：</strong><br/> 
+ <span>《JavaScript函数式编程》读书笔记
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/01/06/react杂谈/" data-title="react杂谈" data-url="http://yoursite.com/2016/01/06/react杂谈/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#React_u662F_u4EC0_u4E48"><span class="toc-number">1.</span> <span class="toc-text">React是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Library__u5E93"><span class="toc-number">1.1.</span> <span class="toc-text">Library 库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E3A_u4EC0_u4E48_u8981_u7528react"><span class="toc-number">2.</span> <span class="toc-text">为什么要用react</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC4_u4EF6_u5316"><span class="toc-number">2.1.</span> <span class="toc-text">组件化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u751F_u547D_u5468_u671F"><span class="toc-number">2.1.1.</span> <span class="toc-text">生命周期</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6027_u80FD"><span class="toc-number">2.2.</span> <span class="toc-text">性能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u591A_u7AEF_u53EF_u79FB_u690D"><span class="toc-number">2.3.</span> <span class="toc-text">多端可移植</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5982_u4F55_u4F7F_u7528react_uFF1F"><span class="toc-number">3.</span> <span class="toc-text">如何使用react？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#React_Web"><span class="toc-number">3.1.</span> <span class="toc-text">React Web</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#React_JSX"><span class="toc-number">3.1.1.</span> <span class="toc-text">React JSX</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#React_Router"><span class="toc-number">3.1.2.</span> <span class="toc-text">React Router</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#React_Flux"><span class="toc-number">3.1.3.</span> <span class="toc-text">React Flux</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#React_Redux"><span class="toc-number">3.1.3.1.</span> <span class="toc-text">React Redux</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#React_Native"><span class="toc-number">3.2.</span> <span class="toc-text">React Native</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u76EE_u5F55_u7ED3_u6784"><span class="toc-number">3.2.1.</span> <span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u5E95_u5C42_u67B6_u6784"><span class="toc-number">3.2.2.</span> <span class="toc-text">底层架构</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#android"><span class="toc-number">3.2.2.1.</span> <span class="toc-text">android</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#mReactRootView"><span class="toc-number">3.2.2.1.1.</span> <span class="toc-text">mReactRootView</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#mReactInstanceManager"><span class="toc-number">3.2.2.1.2.</span> <span class="toc-text">mReactInstanceManager</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#node-server"><span class="toc-number">3.2.2.2.</span> <span class="toc-text">node-server</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u4EE3_u7801_u590D_u7528"><span class="toc-number">3.2.3.</span> <span class="toc-text">代码复用</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/JavaScript-DOM/" title="JavaScript DOM">JavaScript DOM<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html5/" title="html5">html5<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XSS/" title="XSS">XSS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/生活/" title="生活">生活<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/实习总结/" title="实习总结">实习总结<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CMD-seajs/" title="CMD seajs">CMD seajs<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/badjs/" title="badjs">badjs<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ecjtu.net" target="_blank" title="日新网">日新网</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m homker. a student from ecjtu.net. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/homker## e.g. wuchong1014 or 2176287895 for http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/homker for https://github.com/homker" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="https://www.zhihu.com/people/homker## e.g. jark  for http://www.zhihu.com/people/jark" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:liu15jia@163.com## e.g. imjark@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="homker">homker</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"homker"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

@@ -1,0 +1,603 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>《JavaScript函数式编程》读书笔记 | homker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="homker">
+    
+
+    
+    <meta name="description" content="《JavaScript函数式编程》读书笔记JavaScript是一门很神奇的语言，作为一门现代化的语言，他有很多很有特色的东西，这些东西，让我们看到了一个十分自由化的未来，你永远都不知道，自己是不是掌握了这门奇葩的要命的语言。本文，可能没有那么多高深的编程技巧，有的更多的是，对编程本身的理解。因为，不知道自己有多白痴，所以，要记录下来，等到自己不白痴的时候，就能缅怀当年那个白痴的自己了。
+什么是函">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《JavaScript函数式编程》读书笔记">
+<meta property="og:url" content="http://yoursite.com/2016/01/06/《JavaScript函数式编程》读书笔记/index.html">
+<meta property="og:site_name" content="homker">
+<meta property="og:description" content="《JavaScript函数式编程》读书笔记JavaScript是一门很神奇的语言，作为一门现代化的语言，他有很多很有特色的东西，这些东西，让我们看到了一个十分自由化的未来，你永远都不知道，自己是不是掌握了这门奇葩的要命的语言。本文，可能没有那么多高深的编程技巧，有的更多的是，对编程本身的理解。因为，不知道自己有多白痴，所以，要记录下来，等到自己不白痴的时候，就能缅怀当年那个白痴的自己了。
+什么是函">
+<meta property="og:updated_time" content="2016-01-06T04:32:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《JavaScript函数式编程》读书笔记">
+<meta name="twitter:description" content="《JavaScript函数式编程》读书笔记JavaScript是一门很神奇的语言，作为一门现代化的语言，他有很多很有特色的东西，这些东西，让我们看到了一个十分自由化的未来，你永远都不知道，自己是不是掌握了这门奇葩的要命的语言。本文，可能没有那么多高深的编程技巧，有的更多的是，对编程本身的理解。因为，不知道自己有多白痴，所以，要记录下来，等到自己不白痴的时候，就能缅怀当年那个白痴的自己了。
+什么是函">
+
+    
+    <link rel="alternative" href="/atom.xml" title="homker" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/logo.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="homker">homker</a></h1>
+				<h2 class="blog-motto">单身不能成为你无聊的借口</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/01/06/《JavaScript函数式编程》读书笔记/" title="《JavaScript函数式编程》读书笔记" itemprop="url">《JavaScript函数式编程》读书笔记</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="homker" target="_blank" itemprop="author">homker</a>
+		
+  <p class="article-time">
+    <time datetime="2016-01-06T04:25:49.000Z" itemprop="datePublished"> 发表于 2016-01-06</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u300AJavaScript_u51FD_u6570_u5F0F_u7F16_u7A0B_u300B_u8BFB_u4E66_u7B14_u8BB0"><span class="toc-number">1.</span> <span class="toc-text">《JavaScript函数式编程》读书笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4EC0_u4E48_u662F_u51FD_u6570_u5F0F_u7F16_u7A0B"><span class="toc-number">1.1.</span> <span class="toc-text">什么是函数式编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u51FD_u6570"><span class="toc-number">1.1.1.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u9762_u5411_u51FD_u6570_u7684_u7F16_u7A0B"><span class="toc-number">1.1.2.</span> <span class="toc-text">面向函数的编程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E3A_u4EC0_u4E48_u8981_u7528_u51FD_u6570_u5F0F_u7F16_u7A0B"><span class="toc-number">1.2.</span> <span class="toc-text">为什么要用函数式编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u636E_u548C_u884C_u4E3A_u7684_u5173_u7CFB"><span class="toc-number">1.2.1.</span> <span class="toc-text">数据和行为的关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E13_u6CE8_u4E8E_u8FC7_u7A0B_u672C_u8EAB"><span class="toc-number">1.2.2.</span> <span class="toc-text">专注于过程本身</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5982_u4F55_u4F7F_u7528_u51FD_u6570_u5F0F_u7F16_u7A0B"><span class="toc-number">1.3.</span> <span class="toc-text">如何使用函数式编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u7B49_u516C_u6C11"><span class="toc-number">1.3.1.</span> <span class="toc-text">一等公民</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EAF_u51FD_u6570__uFF08Pure_Function_uFF09"><span class="toc-number">1.3.2.</span> <span class="toc-text">纯函数 （Pure Function）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u53EF_u9884_u89C1_u6027"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">可预见性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u5B8C_u6574_u6027"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">完整性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u53EF_u6D4B_u8BD5"><span class="toc-number">1.3.2.3.</span> <span class="toc-text">可测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u53EF_u7EC4_u5408_uFF08compose_uFF09"><span class="toc-number">1.3.3.</span> <span class="toc-text">可组合（compose）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u9AD8_u9636_u51FD_u6570_uFF08high-order_function_uFF09"><span class="toc-number">1.3.4.</span> <span class="toc-text">高阶函数（high-order function）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u67EF_u7406_u5316_u51FD_u6570_uFF08curry_uFF09"><span class="toc-number">1.3.4.1.</span> <span class="toc-text">柯理化函数（curry）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#u67EF_u7406_u65B9_u5411"><span class="toc-number">1.3.4.1.1.</span> <span class="toc-text">柯理方向</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u90E8_u5206_u5F15_u7528"><span class="toc-number">1.3.4.2.</span> <span class="toc-text">部分引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u7EC4_u5408"><span class="toc-number">1.3.4.3.</span> <span class="toc-text">组合</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u57FA_u4E8E_u6D41_u7684_u7F16_u7A0B"><span class="toc-number">1.3.5.</span> <span class="toc-text">基于流的编程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u94FE_u5F0F_u7F16_u7A0B"><span class="toc-number">1.3.5.1.</span> <span class="toc-text">链式编程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#promise"><span class="toc-number">1.3.5.2.</span> <span class="toc-text">promise</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u603B_u7ED3"><span class="toc-number">1.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="u300AJavaScript_u51FD_u6570_u5F0F_u7F16_u7A0B_u300B_u8BFB_u4E66_u7B14_u8BB0"><a href="#u300AJavaScript_u51FD_u6570_u5F0F_u7F16_u7A0B_u300B_u8BFB_u4E66_u7B14_u8BB0" class="headerlink" title="《JavaScript函数式编程》读书笔记"></a>《JavaScript函数式编程》读书笔记</h1><p>JavaScript是一门很神奇的语言，作为一门现代化的语言，他有很多很有特色的东西，这些东西，让我们看到了一个十分自由化的未来，你永远都不知道，自己是不是掌握了这门奇葩的要命的语言。本文，可能没有那么多高深的编程技巧，有的更多的是，对编程本身的理解。因为，不知道自己有多白痴，所以，要记录下来，等到自己不白痴的时候，就能缅怀当年那个白痴的自己了。</p>
+<h2 id="u4EC0_u4E48_u662F_u51FD_u6570_u5F0F_u7F16_u7A0B"><a href="#u4EC0_u4E48_u662F_u51FD_u6570_u5F0F_u7F16_u7A0B" class="headerlink" title="什么是函数式编程"></a>什么是函数式编程</h2><p>所谓函数式编程，是把函数本身上升到<code>一等公民</code>的地位，进行编程构建。在书中，作者用了这么一句话来形容函数式编程：</p>
+<blockquote>
+<p>函数式编程通过使用函数来将值转换成抽象单元，接着用于构建软件系统。</p>
+</blockquote>
+<p>额，那么好，我们先回忆一下什么叫函数。</p>
+<h3 id="u51FD_u6570"><a href="#u51FD_u6570" class="headerlink" title="函数"></a>函数</h3><blockquote>
+<p>一般的，在一个变化过程中，有两个变量x、y，如果给定一个x值，相应的就确定唯一的一个y，那么就称y是x的函数，其中x是自变量，y是因变量，x的取值范围叫做这个函数的定义域，相应y的取值范围叫做函数的值域。</p>
+</blockquote>
+<p>这是数学中的定义，简单的说，函数就是从A到B的<code>关系映射</code>。在计算机中，我们将多条语句组成的程序段（程序块）叫做函数，一个函数本身应该有一定的意义。和数学定义相当的是，变量的生命周期所在的函数空间，为变量的定义域。</p>
+<h3 id="u9762_u5411_u51FD_u6570_u7684_u7F16_u7A0B"><a href="#u9762_u5411_u51FD_u6570_u7684_u7F16_u7A0B" class="headerlink" title="面向函数的编程"></a>面向函数的编程</h3><p>所谓函数式编程，我们又可以叫做是面向函数的编程。所谓面向函数就是使用函数来作为我们分析和抽象程序的主要工具。</p>
+<p>嗯，首先，我们继续来复习一下</p>
+<ul>
+<li>什么叫做面向过程。</li>
+</ul>
+<blockquote>
+<p>“面向过程”(Procedure Oriented)是一种以过程为中心的编程思想。“面向过程”也可称之为“面向记录”编程思想，他们不支持丰富的“面向对象”特性（比如继承、多态），并且它们不允许混合持久化状态和域逻辑。</p>
+</blockquote>
+<p>其实，说白了，就是想到什么写什么。</p>
+<ul>
+<li>什么叫做面向对象</li>
+</ul>
+<blockquote>
+<p>按人们认识客观世界的系统思维方式，采用基于对象（实体）的概念建立模型，模拟客观世界分析、设计、实现软件的办法。通过面向对象的理念使计算机软件系统能与现实世界中的系统一一对应。</p>
+</blockquote>
+<p>在面向对象中，我们都知道<code>类</code>和<code>对象</code>是两个很重要的概念。</p>
+<a id="more"></a>
+<p>我们知道，所谓的类，其实就是：</p>
+<blockquote>
+<p>具有相同特性（数据元素）和行为（功能）的对象的抽象就是类。因此，对象的抽象是类，类的具体化就是对象，也可以说类的实例是对象，类实际上就是一种数据类型。</p>
+</blockquote>
+<p>而我们所说的对象，其实就是：</p>
+<blockquote>
+<p>对象是人们要进行研究的任何事物，从最简单的整数到复杂的飞机等均可看作对象，它不仅能表示具体的事物，还能表示抽象的规则、计划或事件。</p>
+</blockquote>
+<p>我们不难发现，类和对象，其实都是从数据角度出发来思考和解决问题，以数据本身为运算核心来抽象我们的计算行为。但是，很多时候，我们会发现，其实我们的运算行为远远比数据本身要复杂，而且，我们很多时候，其实并不能很好的去抽象一个对象。</p>
+<p>我的数据老师曾经这样教导我们：</p>
+<blockquote>
+<p>所谓程序，就是数据结构加算法。</p>
+</blockquote>
+<p>如果说，面向对象是从数据结构的角度出发的话，面向函数的编程，就是从算法角度出发，也就是从行为的角度出发。</p>
+<h2 id="u4E3A_u4EC0_u4E48_u8981_u7528_u51FD_u6570_u5F0F_u7F16_u7A0B"><a href="#u4E3A_u4EC0_u4E48_u8981_u7528_u51FD_u6570_u5F0F_u7F16_u7A0B" class="headerlink" title="为什么要用函数式编程"></a>为什么要用函数式编程</h2><h3 id="u6570_u636E_u548C_u884C_u4E3A_u7684_u5173_u7CFB"><a href="#u6570_u636E_u548C_u884C_u4E3A_u7684_u5173_u7CFB" class="headerlink" title="数据和行为的关系"></a>数据和行为的关系</h3><p>在计算机中，数据多数指的是存储结构。行为指的多数是计算操作。比如说这段代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">let</span> a = <span class="number">1</span> + <span class="number">1</span>; </span><br><span class="line"><span class="built_in">console</span>.log(a)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码里，作为变量存在的<code>a</code>，<code>say</code>，是我们所熟知的数据，而<code>function say()</code>则是包含了整个说的行为。<br>在面向对象的编程中，我们习惯把对象作为行为的核心，也就是说，先有人，然后，人来执行一个动作。而，对象，其实就是某一种变量，亦或是某一种数据类型。而函数式编程中，则认为数据只是行为加工的产品。将行为和数据分离。我们来看一段代码。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// man.php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Man</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">__constructor</span><span class="params">(<span class="variable">$sexy</span>)</span></span>&#123;</span><br><span class="line"><span class="variable">$this</span>-&gt;sexy = <span class="variable">$sexy</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">sayHello</span><span class="params">(<span class="variable">$string</span>)</span></span>&#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"I'm a "</span>.<span class="variable">$this</span>-&gt;sexy.<span class="string">",I want to say:"</span>.<span class="variable">$string</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// male.php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">'man.php'</span></span><br><span class="line"><span class="variable">$male</span> = <span class="keyword">new</span> Man(<span class="string">"man"</span>);</span><br><span class="line"><span class="variable">$male</span>-&gt;sayHello(<span class="string">"my name is homker"</span>);</span><br><span class="line"><span class="comment">// I'm a man, I want to say: my name is homker</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>tips：<br>因为javascript本身是没有类的概念的，为了更好的说明问题，这里使用了<code>php</code>来作为范例语言，当然，你也可以使用javascript面向对象的方式来重新实现这段代码。就像这样。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;	<span class="function"><span class="keyword">function</span> <span class="title">Man</span>(<span class="params">sexy</span>)</span>&#123;</span><br><span class="line">&gt;		<span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">&gt;		self._sexy = sexy;</span><br><span class="line">&gt;		self.sayHello = <span class="function"><span class="keyword">function</span>(<span class="params">string</span>)</span>&#123;</span><br><span class="line">&gt;			<span class="built_in">console</span>.log(<span class="string">"I'm a "</span>+self._sexy+<span class="string">",I want to say:"</span>+string);</span><br><span class="line">&gt;		&#125;</span><br><span class="line">&gt;	&#125;</span><br><span class="line">&gt;</span><br><span class="line">&gt;	<span class="keyword">var</span> male = <span class="keyword">new</span> Man(<span class="string">"man"</span>);</span><br><span class="line">&gt;	male.sayHello(<span class="string">'my name is homker'</span>);</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>这是一段很简单的面向对象的代码，我们看看同样的功能在函数式中要怎么做。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Man</span>(<span class="params">sexy</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">string</span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"I'm a "</span>+self._sexy+<span class="string">",I want to say:"</span>+string);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sayHello = Man(<span class="string">'man'</span>);</span><br><span class="line">sayHello(<span class="string">'my name is homker'</span>);</span><br></pre></td></tr></table></figure>
+<p>我们会发现，在函数式编程中，我们去除掉了主语。你不知道这个动作是由谁发出的。相比于在面向对象编程中，数据是对象的属性，在函数式编程中，我们并不在乎这个数据的内容是什么，而更在乎其变化。</p>
+<blockquote>
+<p>额，当然，严格意义上来说，其实，这个sayHello的原型是Object，在浏览器端，追溯他的原型链，它是挂在window对象下面的。</p>
+</blockquote>
+<h3 id="u4E13_u6CE8_u4E8E_u8FC7_u7A0B_u672C_u8EAB"><a href="#u4E13_u6CE8_u4E8E_u8FC7_u7A0B_u672C_u8EAB" class="headerlink" title="专注于过程本身"></a>专注于过程本身</h3><p>在实际的开发过程中，我们有的时候很难抽象出一个对象来描述我们到底要做什么，或者说，我们其实并不在乎这堆数据里面的内容是什么，我们要关心的，只是把数据经过加工，得出结果，仅此而已。至于这个数据，到底是用来干什么的，我们其实可以并不用关心。</p>
+<h2 id="u5982_u4F55_u4F7F_u7528_u51FD_u6570_u5F0F_u7F16_u7A0B"><a href="#u5982_u4F55_u4F7F_u7528_u51FD_u6570_u5F0F_u7F16_u7A0B" class="headerlink" title="如何使用函数式编程"></a>如何使用函数式编程</h2><p>上面说的都是一些思维上的东西，可能很稚嫩，希望各位大大们能指出其中的错误，切不可吝啬言语。下面就来说说函数式编程的一些具体的东西。</p>
+<h3 id="u4E00_u7B49_u516C_u6C11"><a href="#u4E00_u7B49_u516C_u6C11" class="headerlink" title="一等公民"></a>一等公民</h3><p>所谓一等公民，说的是函数本身可以成为代码构成中的任意部分。具体的来说，函数可以具有以下的特点：</p>
+<ul>
+<li>函数可以存储为变量</li>
+<li>函数可以成为数组的一个元素</li>
+<li>函数可以成为对象的成员变量</li>
+<li>函数可以在使用的时被直接创建</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="number">1</span> &#125;)(); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>函数可以被作为实参传递</li>
+<li>函数可以被另一个函数返回</li>
+<li>函数可以返回另一个函数</li>
+<li>函数可以作为形参  </li>
+</ul>
+<p>相信大家一看就懂了。</p>
+<h3 id="u7EAF_u51FD_u6570__uFF08Pure_Function_uFF09"><a href="#u7EAF_u51FD_u6570__uFF08Pure_Function_uFF09" class="headerlink" title="纯函数 （Pure Function）"></a>纯函数 （Pure Function）</h3><p>在函数式编程中，有一个很重要的概念是纯函数。所谓纯函数就是</p>
+<blockquote>
+<p>纯函数（Pure Function）与外界交换数据只有唯一渠道——参数和返回值。其在逻辑上没有副作用</p>
+</blockquote>
+<h4 id="u53EF_u9884_u89C1_u6027"><a href="#u53EF_u9884_u89C1_u6027" class="headerlink" title="可预见性"></a>可预见性</h4><p>简单的说，就是你输入什么，就输出什么。输入和输出是可预见的。比如说像酱：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">x = _.isNumber(x)? x : <span class="number">0</span>;</span><br><span class="line">y = _.isNumber(y)? y : <span class="number">0</span>;</span><br><span class="line"><span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">add(<span class="number">1</span>,<span class="number">2</span>); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>这样的一个函数，你输入两个变量，你可以很确定的，你得到的一定是两者之和。与之相异的，在javascript编程中很容易出现的，比如说酱：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">10</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add10</span>(<span class="params">y</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> y+x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">add10(<span class="number">1</span>); <span class="comment">// 11</span></span><br><span class="line"></span><br><span class="line">x = <span class="number">11</span>;</span><br><span class="line"></span><br><span class="line">add10(<span class="number">1</span>); <span class="comment">//12</span></span><br></pre></td></tr></table></figure>
+<p>对于这个函数而言，函数本身是不可控的，如果外部的x发生改变，函数的返回值也随之会发生改变。那么如果想避免，应该怎么写呢：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">y</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> add10 = add(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">add10(<span class="number">1</span>); <span class="comment">//11</span></span><br></pre></td></tr></table></figure>
+<p>这个时候，将函数所需的变量闭包在函数体的内部，函数的运算是不依赖于外界的变量的，你输入什么，就一定会输出什么。</p>
+<h4 id="u5B8C_u6574_u6027"><a href="#u5B8C_u6574_u6027" class="headerlink" title="完整性"></a>完整性</h4><p>为了实现函数的可控性，要保证，函数本省是完整的。函数的完整表现在，函数的运行不依赖于外界的环境变量。同时，函数的逻辑是完整的。比如说，酱：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;a demo&lt;/title&gt;</span><br><span class="line">&lt;link herf="path/to/style" rel="stylesheet" /&gt;</span><br><span class="line">&lt;script src="path/to/jq"&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=“container”&gt;</span><br><span class="line">&lt;span id="display"&gt;&lt;/span&gt;</span><br><span class="line">&lt;button id="getJson"&gt;获取数据&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script type="appliaction/javascript"&gt;</span><br><span class="line">;(function()&#123;</span><br><span class="line">$('#getJson').addEventListener('click',function()&#123;</span><br><span class="line">$.get('path/to/json',function(json)&#123;</span><br><span class="line">$('#display').text(json);</span><br><span class="line">&#125;)</span><br><span class="line">&#125;,false)</span><br><span class="line">&#125;)()</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>上面是我们经常写的方式，当然啦，如果框架复杂一点，可能会多一点回调嵌套。但是，逻辑不出于此。但是呢，如果要函数完整，应该酱，额，我就写重要的部分啦：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> getJson = <span class="function"><span class="keyword">function</span>(<span class="params">url,params</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> $.getJson(url,params);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> display = <span class="function"><span class="keyword">function</span>(<span class="params">text</span>)</span>&#123;</span><br><span class="line">$(<span class="string">'#display'</span>).text(text)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> getJsonClickHandle = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">getJson(<span class="string">'url'</span>,&#123;&#125;).done(display)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">$(<span class="string">'#getJson'</span>).click(getJsonClickHandle);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">init();</span><br></pre></td></tr></table></figure>
+<p>这时候，我们抽象了整个行为。</p>
+<p>点击 -&gt; 获取数据 -&gt; 显示数据。</p>
+<p>酱，我们把每个行为转换成了一个单独的函数行为。这样的，每一个函数都是单独的行为，可以很好的扩展和复制到其他地方。</p>
+<p>同时，我们也引出了一个纯函数很重要的部分。</p>
+<h4 id="u53EF_u6D4B_u8BD5"><a href="#u53EF_u6D4B_u8BD5" class="headerlink" title="可测试"></a>可测试</h4><p>我们发现，当函数功能变的单一的时候，我们可以很清晰的知道函数输入什么，输出什么的时候，我们发现，这个代码的可测试性，得到了很大的提高。还是用上面的两段代码，前者，根本不知道怎么去写测试，或者说，就是错了，你也不知道哪里错的，因为，所有的逻辑被各种匿名函数包裹了，很难很快的定位到问题的所在，后者，则容易了很多。</p>
+<h3 id="u53EF_u7EC4_u5408_uFF08compose_uFF09"><a href="#u53EF_u7EC4_u5408_uFF08compose_uFF09" class="headerlink" title="可组合（compose）"></a>可组合（compose）</h3><p>当函数纯化之后，有一个很鲜明的特点是，这个函数变的可以组合了。我们可以像堆乐高积木一样，把各个我们要用的函数堆起来变成一个更大得函数体。比如说酱：</p>
+<blockquote>
+<p>使用了underscore.js；</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checker</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> validators = _.toArray(<span class="built_in">arguments</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> _.reducer(validators,<span class="function"><span class="keyword">function</span>(<span class="params">err,check</span>)</span>&#123;</span><br><span class="line"><span class="keyword">if</span>(check(obj))&#123;</span><br><span class="line"><span class="keyword">return</span> errs;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"><span class="keyword">return</span> _.chain(errs).push(check.message).value();</span><br><span class="line">&#125;</span><br><span class="line">&#125;,[])</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">validator</span>(<span class="params">message,fun</span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> fun.apply(fun,<span class="built_in">arguments</span>);</span><br><span class="line">&#125;;</span><br><span class="line">f[<span class="string">'message'</span>] = message;</span><br><span class="line"><span class="keyword">return</span> f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasKeys</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> KEYS = _.toArray(<span class="built_in">arguments</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fun = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> _.every(KEYS,<span class="function"><span class="keyword">function</span>(<span class="params">key</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> _.has(obj,key);</span><br><span class="line">&#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">fun.message = KEYS.concat([<span class="string">"，this key is valid"</span>]).join(<span class="string">" "</span>);</span><br><span class="line"><span class="keyword">return</span> fun;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> checkCommand = checker(hasKeys(<span class="string">'msg'</span>,<span class="string">'type'</span>));</span><br><span class="line"></span><br><span class="line">checkCommand(&#123;&#125;); <span class="comment">// msg type , this key is valid</span></span><br></pre></td></tr></table></figure>
+<p><code>checkCommand</code>就是我们最后组合出来的可以进行校验的大城堡了，而且这个城堡可以定制化哦，甚至必要的时候，可以动态定制化。</p>
+<h3 id="u9AD8_u9636_u51FD_u6570_uFF08high-order_function_uFF09"><a href="#u9AD8_u9636_u51FD_u6570_uFF08high-order_function_uFF09" class="headerlink" title="高阶函数（high-order function）"></a>高阶函数（high-order function）</h3><p>高阶函数是函数式编程中，很重要的部分，我们先来看看它是怎么定义的。作为一个高阶函数，他要满足以下定义：</p>
+<ul>
+<li>高阶函数一定是一等公民</li>
+<li>以一个函数为参数</li>
+<li>同时返回一个函数作为函数的返回值</li>
+</ul>
+<p>举一个简单的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> aFunc = (<span class="function"><span class="keyword">function</span>(<span class="params">callback</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">callback&amp;&amp;callback();</span><br><span class="line">&#125;</span><br><span class="line">&#125;)(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="built_in">console</span>.log(<span class="string">"I am a high-order function"</span>) &#125;);</span><br><span class="line"></span><br><span class="line">aFunc();<span class="comment">// I am a high-order function;</span></span><br></pre></td></tr></table></figure>
+<p>额，呵呵，这个例子比较无聊哈，我们看个更有意思的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">calc</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">y</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">method</span>)</span>&#123;</span><br><span class="line">method&amp;&amp;method(x)(y);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">y</span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(x+y);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">calc(<span class="number">1</span>)(<span class="number">2</span>)(add)；<span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+<p>当然，你再无聊点，非要写成这样，也不是不可以。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">calc</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">method</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">y</span>)</span>&#123;</span><br><span class="line">method&amp;&amp;method(x)(y);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">calc(<span class="number">1</span>)(add)(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<p>其中的<code>add</code>方法是可自定义的。你可以把它换成任何一个你想要的函数。</p>
+<h4 id="u67EF_u7406_u5316_u51FD_u6570_uFF08curry_uFF09"><a href="#u67EF_u7406_u5316_u51FD_u6570_uFF08curry_uFF09" class="headerlink" title="柯理化函数（curry）"></a>柯理化函数（curry）</h4><p>柯理化函数，是函数编程中很重要的一个方法。嗯，我们先来看看定义：</p>
+<blockquote>
+<p>只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数。</p>
+</blockquote>
+<p>上文的<code>add</code>,<code>calc</code>都是柯理化的函数。<br>在平时的使用中，我们经常如此使用之：</p>
+<blockquote>
+<ul>
+<li>接收一个函数</li>
+<li>返回一个只接收一个参数的函数</li>
+</ul>
+</blockquote>
+<p>柯理化函数的定义是函数式编程的基础，我们通过返回一个闭包的方式来使得函数参数变的可以捕捉，可以传递，可以保存。同时也使得，函数的行为变的可以分离，可以组合。</p>
+<h5 id="u67EF_u7406_u65B9_u5411"><a href="#u67EF_u7406_u65B9_u5411" class="headerlink" title="柯理方向"></a>柯理方向</h5><p>嗯，我们知道运算符是有方向的，函数组合的大函数也是一样的。比如说，下面两个函数就不一样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> leftdiv(x)&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">y</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> x/y;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> rightdiv(x)&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">y</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> y/x;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="u90E8_u5206_u5F15_u7528"><a href="#u90E8_u5206_u5F15_u7528" class="headerlink" title="部分引用"></a>部分引用</h4><p>我们说到柯理化的函数可以保存参数,或者说成是保留运算场景。比如说我们在上文举的<code>add</code>函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> add10 = add(<span class="number">10</span>);</span><br><span class="line">add10(<span class="number">1</span>);<span class="comment">//11</span></span><br></pre></td></tr></table></figure>
+<p>其中的add10就是部分引用，<code>add10</code>这个函数保留了上一次函数调用时的运算场景，当下一个参数进来的时候，它能够继续运行，并给出结果。这样的好处是什么呢，我们可以实现核心运算的前置条件校验。</p>
+<p>比如说酱：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line"><span class="keyword">if</span>(!isNumber(x)) <span class="keyword">throw</span> <span class="built_in">Error</span>(<span class="string">' x must be a num'</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">y</span>)</span>&#123;</span><br><span class="line"><span class="keyword">if</span>(!isNumber(y)) <span class="keyword">throw</span> <span class="built_in">Error</span>(<span class="string">' y must be a num'</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们在每一次的调用的时候，我们顺便做了输入参数的校验，当最后函数执行的时候，我们可以确保，最后的函数执行是可靠的，也就是该函数是纯的。</p>
+<h4 id="u7EC4_u5408"><a href="#u7EC4_u5408" class="headerlink" title="组合"></a>组合</h4><p>上文在说纯函数的时候，我们就已经说到了组合了，这里，我们再强调的地方是组合函数的<code>管道</code>特性。就是把上一个函数的值作为下一个函数的参数。<br>就像酱：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> compose = <span class="function"><span class="keyword">function</span>(<span class="params">f,g</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> f(g(x));</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="u57FA_u4E8E_u6D41_u7684_u7F16_u7A0B"><a href="#u57FA_u4E8E_u6D41_u7684_u7F16_u7A0B" class="headerlink" title="基于流的编程"></a>基于流的编程</h3><p>其实，对于函数式编程，我们总结其技巧的时候，发现，其功能是围绕于：</p>
+<ul>
+<li>用函数传递函数</li>
+<li>用函数构造函数 </li>
+<li>用函数调用函数</li>
+</ul>
+<p>而这三个综合在一起，使得函数式编程能够实现基于数据流或者控制流。</p>
+<h4 id="u94FE_u5F0F_u7F16_u7A0B"><a href="#u94FE_u5F0F_u7F16_u7A0B" class="headerlink" title="链式编程"></a>链式编程</h4><p>这个我们都很熟悉啦，jquery就是这样干的，通过返回一个自身来实现链式调用。就像酱：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$.prototype.next()&#123;</span><br><span class="line"><span class="comment">//do something</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$(<span class="string">'li'</span>).next().next();</span><br></pre></td></tr></table></figure>
+<h4 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h4><p>这个其实单独拿出来，写一本书。所以这里就不详细说了。例子的话，上文也有举<code>getJson</code>，这里就不举了。</p>
+<p>链式编程和promise能更好的，让我们按照数据处理的阶段去处理函数，在开始的进行参数校验，在加工的时候，进行数据的加工，在最后的时候，进行函数的显示。</p>
+<h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h2><p>其实，这本翻来覆去的看了好几遍，一直想做一个总结，但是并不能做的出来。因为，我们很容易发现，在实际的操作过程中，我们或多或少的都使用了函数式编程的一部分，我们或多或少的都在践行函数式编程的理论，但是，如果说，我们的代码就是使用函数式编程的时候，我们又会发现，我们的代码中，有很大一部分的逻辑，实在是没办法使用函数式编程进行处理。所以，后面有了响应式编程RXJs,通过订阅和发布模式来实现队列化的事件调度和资源分配，但是在实际使用过程中，要想很快的将代码转化成函数式编程，需要对行为逻辑有很深刻的理解和抽象，对步骤的分解，对函数的分解，对行为的分解，这个才是函数式编程中最难的部分，如何去思考你的数据发生了什么变化，你的状态发生了什么变化，去管理你的数据和你的状态。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/01/06/《JavaScript函数式编程》读书笔记/" data-title="《JavaScript函数式编程》读书笔记 | homker" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/01/06/react杂谈/" title="react杂谈">
+  <strong>上一篇：</strong><br/>
+  <span>
+  react杂谈</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/09/17/实习总结/"  title="实习总结">
+ <strong>下一篇：</strong><br/> 
+ <span>实习总结
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/01/06/《JavaScript函数式编程》读书笔记/" data-title="《JavaScript函数式编程》读书笔记" data-url="http://yoursite.com/2016/01/06/《JavaScript函数式编程》读书笔记/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u300AJavaScript_u51FD_u6570_u5F0F_u7F16_u7A0B_u300B_u8BFB_u4E66_u7B14_u8BB0"><span class="toc-number">1.</span> <span class="toc-text">《JavaScript函数式编程》读书笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4EC0_u4E48_u662F_u51FD_u6570_u5F0F_u7F16_u7A0B"><span class="toc-number">1.1.</span> <span class="toc-text">什么是函数式编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u51FD_u6570"><span class="toc-number">1.1.1.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u9762_u5411_u51FD_u6570_u7684_u7F16_u7A0B"><span class="toc-number">1.1.2.</span> <span class="toc-text">面向函数的编程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E3A_u4EC0_u4E48_u8981_u7528_u51FD_u6570_u5F0F_u7F16_u7A0B"><span class="toc-number">1.2.</span> <span class="toc-text">为什么要用函数式编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u636E_u548C_u884C_u4E3A_u7684_u5173_u7CFB"><span class="toc-number">1.2.1.</span> <span class="toc-text">数据和行为的关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E13_u6CE8_u4E8E_u8FC7_u7A0B_u672C_u8EAB"><span class="toc-number">1.2.2.</span> <span class="toc-text">专注于过程本身</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5982_u4F55_u4F7F_u7528_u51FD_u6570_u5F0F_u7F16_u7A0B"><span class="toc-number">1.3.</span> <span class="toc-text">如何使用函数式编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u7B49_u516C_u6C11"><span class="toc-number">1.3.1.</span> <span class="toc-text">一等公民</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EAF_u51FD_u6570__uFF08Pure_Function_uFF09"><span class="toc-number">1.3.2.</span> <span class="toc-text">纯函数 （Pure Function）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u53EF_u9884_u89C1_u6027"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">可预见性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u5B8C_u6574_u6027"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">完整性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u53EF_u6D4B_u8BD5"><span class="toc-number">1.3.2.3.</span> <span class="toc-text">可测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u53EF_u7EC4_u5408_uFF08compose_uFF09"><span class="toc-number">1.3.3.</span> <span class="toc-text">可组合（compose）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u9AD8_u9636_u51FD_u6570_uFF08high-order_function_uFF09"><span class="toc-number">1.3.4.</span> <span class="toc-text">高阶函数（high-order function）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u67EF_u7406_u5316_u51FD_u6570_uFF08curry_uFF09"><span class="toc-number">1.3.4.1.</span> <span class="toc-text">柯理化函数（curry）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#u67EF_u7406_u65B9_u5411"><span class="toc-number">1.3.4.1.1.</span> <span class="toc-text">柯理方向</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u90E8_u5206_u5F15_u7528"><span class="toc-number">1.3.4.2.</span> <span class="toc-text">部分引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u7EC4_u5408"><span class="toc-number">1.3.4.3.</span> <span class="toc-text">组合</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u57FA_u4E8E_u6D41_u7684_u7F16_u7A0B"><span class="toc-number">1.3.5.</span> <span class="toc-text">基于流的编程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u94FE_u5F0F_u7F16_u7A0B"><span class="toc-number">1.3.5.1.</span> <span class="toc-text">链式编程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#promise"><span class="toc-number">1.3.5.2.</span> <span class="toc-text">promise</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u603B_u7ED3"><span class="toc-number">1.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/JavaScript-DOM/" title="JavaScript DOM">JavaScript DOM<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html5/" title="html5">html5<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XSS/" title="XSS">XSS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/生活/" title="生活">生活<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/实习总结/" title="实习总结">实习总结<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CMD-seajs/" title="CMD seajs">CMD seajs<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/badjs/" title="badjs">badjs<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ecjtu.net" target="_blank" title="日新网">日新网</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m homker. a student from ecjtu.net. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/homker## e.g. wuchong1014 or 2176287895 for http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/homker for https://github.com/homker" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="https://www.zhihu.com/people/homker## e.g. jark  for http://www.zhihu.com/people/jark" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:liu15jia@163.com## e.g. imjark@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="homker">homker</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"homker"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

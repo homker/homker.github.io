@@ -86,10 +86,9 @@ php 是一门脚本语言通常用来处理页面端传输过来的数">
 					
 					<li>
  					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:yoursite.com">
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
 					</form>
 					
 					</li>
@@ -120,11 +119,11 @@ php 是一门脚本语言通常用来处理页面端传输过来的数">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP_学习指南"><span class="toc-number">1.</span> <span class="toc-text">PHP 学习指南</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP的使用环境"><span class="toc-number">1.1.</span> <span class="toc-text">PHP的使用环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP的基本语法"><span class="toc-number">1.2.</span> <span class="toc-text">PHP的基本语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP_链接数据库"><span class="toc-number">1.3.</span> <span class="toc-text">PHP 链接数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP_和_http_协议"><span class="toc-number">1.4.</span> <span class="toc-text">PHP 和 http 协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP文件处理"><span class="toc-number">1.5.</span> <span class="toc-text">PHP文件处理</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP__u5B66_u4E60_u6307_u5357"><span class="toc-number">1.</span> <span class="toc-text">PHP 学习指南</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP_u7684_u4F7F_u7528_u73AF_u5883"><span class="toc-number">1.1.</span> <span class="toc-text">PHP的使用环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP_u7684_u57FA_u672C_u8BED_u6CD5"><span class="toc-number">1.2.</span> <span class="toc-text">PHP的基本语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP__u94FE_u63A5_u6570_u636E_u5E93"><span class="toc-number">1.3.</span> <span class="toc-text">PHP 链接数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP__u548C_http__u534F_u8BAE"><span class="toc-number">1.4.</span> <span class="toc-text">PHP 和 http 协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP_u6587_u4EF6_u5904_u7406"><span class="toc-number">1.5.</span> <span class="toc-text">PHP文件处理</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h1 id="PHP_学习指南">PHP 学习指南</h1><p><code>php学习</code>                                  <code>2014 11 29</code>                                         <code>homker</code>  </p>
+		<h1 id="PHP__u5B66_u4E60_u6307_u5357"><a href="#PHP__u5B66_u4E60_u6307_u5357" class="headerlink" title="PHP 学习指南"></a>PHP 学习指南</h1><p><code>php学习</code>                                  <code>2014 11 29</code>                                         <code>homker</code>  </p>
 <ul>
 <li>PHP的使用环境</li>
 <li>PHP的基本语法</li>
@@ -133,7 +132,7 @@ php 是一门脚本语言通常用来处理页面端传输过来的数">
 <li>PHP和文件的读写</li>
 <li>PHP和oop</li>
 </ul>
-<h2 id="PHP的使用环境">PHP的使用环境</h2><ul>
+<h2 id="PHP_u7684_u4F7F_u7528_u73AF_u5883"><a href="#PHP_u7684_u4F7F_u7528_u73AF_u5883" class="headerlink" title="PHP的使用环境"></a>PHP的使用环境</h2><ul>
 <li>php 是一门脚本语言通常用来处理页面端传输过来的数据，并将数据和数据库进行交互。</li>
 <li>php 是一门运行在虚拟机上的语言，这个特点和java的机制是一样的。</li>
 <li>php 是一门运行在服务器上的语言，当然，这个特点在php5.4之后被削弱了，php可以通过<code>Artisan</code> 来运行属于自己的控制台程序，但是大多数情况下，我们还是会使用<code>apache</code>或者<code>nginx</code>来运行php的程序，这样能够减少我们很多工作量，同时提高我们的工作效率。</li>
@@ -143,18 +142,18 @@ php 是一门脚本语言通常用来处理页面端传输过来的数">
 <ul>
 <li><p>在<code>window</code>环境下，你可以选择安装<code>wamp</code>软件来集成化安装php apache mysql phpmyadmin 环境。</p>
 <a id="more"></a>
-<h2 id="PHP的基本语法">PHP的基本语法</h2></li>
+<h2 id="PHP_u7684_u57FA_u672C_u8BED_u6CD5"><a href="#PHP_u7684_u57FA_u672C_u8BED_u6CD5" class="headerlink" title="PHP的基本语法"></a>PHP的基本语法</h2></li>
 <li><p>php 是一门脚本语言，它是基于C的CGI的脚本语言。</p>
 </li>
 <li>php 语法和c的语法是一致的，请看以下的几个范例</li>
 </ul>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$a</span>  =  <span class="number">1</span>;<span class="comment">//定义变量$a 并给它赋值</span></span><br><span class="line"><span class="variable">$b</span> = <span class="variable">$a</span> + <span class="number">1</span>;<span class="comment">//基于变量的传递的同时给变量赋值</span></span><br><span class="line"><span class="variable">$c</span> = <span class="variable">$a</span> + <span class="string">"string"</span>;<span class="comment">//error 不同类型的变量不能直接相加，虽然 php 不会报错</span></span><br><span class="line"><span class="variable">$d</span> = <span class="variable">$a</span>.<span class="string">''</span> . <span class="string">"string"</span>;<span class="comment">//字串的拼接</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//array</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//c int a[num];</span></span><br><span class="line"><span class="variable">$array</span> = <span class="keyword">array</span>(<span class="string">'key'</span>=&gt;<span class="string">'value'</span>,<span class="string">'key2'</span>=&gt;<span class="string">'value2'</span>);</span><br><span class="line"><span class="variable">$value2</span> = <span class="string">"value2"</span>;</span><br><span class="line"><span class="variable">$value2</span> == <span class="variable">$array</span>[<span class="string">'key2'</span>] ? <span class="keyword">true</span> : <span class="keyword">false</span>;<span class="comment">//true</span></span><br><span class="line"><span class="variable">$array</span>[] = <span class="variable">$a</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;num;<span class="variable">$i</span>++)&#123;</span><br><span class="line">   <span class="comment">//循环体 </span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$array</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>)&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">"&lt;li&gt;&lt;a href='"</span>.<span class="variable">$value</span>.<span class="string">"'&gt;"</span>.<span class="variable">$key</span>.<span class="string">"&lt;/a&gt;&lt;/li&gt;"</span>;</span><br><span class="line">    <span class="comment">//循环体</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">true</span>)&#123;&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;&#125;</span><br><span class="line"><span class="keyword">elseif</span>()&#123;&#125;</span><br><span class="line">Conditions ? <span class="keyword">true</span> : <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span>()&#123;</span><br><span class="line">    <span class="keyword">case</span>  : ; <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="PHP_链接数据库">PHP 链接数据库</h2><ul>
+<h2 id="PHP__u94FE_u63A5_u6570_u636E_u5E93"><a href="#PHP__u94FE_u63A5_u6570_u636E_u5E93" class="headerlink" title="PHP 链接数据库"></a>PHP 链接数据库</h2><ul>
 <li>我们在这里使用的是<code>mysql</code>数据库，当然，你们可以选用其他的数据库，使用方式，我就不一一描述了。</li>
 <li>从<code>php5.4</code>之后数据链接都是使用<code>OPD</code>的链接方式。</li>
 </ul>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//传统的数据库链接方式</span></span><br><span class="line">mysql_connect(<span class="string">'database_address:port'</span>,<span class="string">'username'</span>,<span class="string">'password'</span>,<span class="string">'newlink'</span>,<span class="string">'linkflag'</span>);</span><br><span class="line">mysql_select_db(<span class="string">'databases_name'</span>);<span class="comment">//选择数据库</span></span><br><span class="line"><span class="variable">$rs</span> = mysql_query(<span class="string">'sql语句'</span>);<span class="comment">//执行sql语句并返回执行句柄</span></span><br><span class="line"><span class="variable">$result</span> = mysql_fetch_array(<span class="variable">$rs</span>);<span class="comment">//将mysql的数据句柄转换成数组</span></span><br><span class="line">mysql_fetch_row(<span class="variable">$rs</span>);</span><br><span class="line">mysql_fetch_assoc(<span class="variable">$rs</span>);</span><br><span class="line">mysql_fetch_object(<span class="variable">$rs</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//现在的数据库链接方式</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$mysqli</span> = <span class="keyword">new</span> mysqli();</span><br><span class="line"><span class="comment">//$mysqli::connect();</span></span><br><span class="line"><span class="variable">$mysqli</span>-&gt;connect(<span class="string">'database_address:port'</span>,<span class="string">'username'</span>,<span class="string">'password'</span>,<span class="string">"databases_name"</span>);</span><br><span class="line"><span class="variable">$rs</span> = <span class="variable">$mysqli</span>-&gt;query(<span class="string">'sql语句'</span>);</span><br><span class="line"><span class="variable">$result</span> = mysqli-&gt;fetch_array(<span class="variable">$rs</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="PHP_和_http_协议">PHP 和 http 协议</h2><ul>
+<h2 id="PHP__u548C_http__u534F_u8BAE"><a href="#PHP__u548C_http__u534F_u8BAE" class="headerlink" title="PHP 和 http 协议"></a>PHP 和 http 协议</h2><ul>
 <li>URI 路由处理</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;scheme&#62;://&#60;host&#62;:&#60;port&#62;/URI ? query=data&#10; http   :// class.ecjtu.net : 80 /api.php ? classID = 201221100902</span><br></pre></td></tr></table></figure>
@@ -171,7 +170,7 @@ php 是一门脚本语言通常用来处理页面端传输过来的数">
 </li>
 </ul>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$_COOKIE</span>[]<span class="comment">//以数组的方式存放的是所有的cookie</span></span><br><span class="line">set_cookie(cookie_name,cookie_value);</span><br><span class="line">session_start();</span><br><span class="line"><span class="variable">$_SESSION</span>[]<span class="comment">//以数组的形式来存放所有的session</span></span><br><span class="line"><span class="variable">$_SESSION</span>[<span class="string">'name'</span>] = <span class="variable">$value</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="PHP文件处理">PHP文件处理</h2><ul>
+<h2 id="PHP_u6587_u4EF6_u5904_u7406"><a href="#PHP_u6587_u4EF6_u5904_u7406" class="headerlink" title="PHP文件处理"></a>PHP文件处理</h2><ul>
 <li>php <code>file_get_content()</code>函数。</li>
 </ul>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$path</span> = <span class="string">'your_file_path'</span>;</span><br><span class="line"> <span class="keyword">if</span>(file_exist(<span class="variable">$path</span>))&#123;</span><br><span class="line">     <span class="variable">$file_value</span> = file_get_content(<span class="variable">$path</span>);</span><br><span class="line">     <span class="variable">$file_value</span> = fopen(<span class="variable">$path</span>);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
@@ -236,7 +235,7 @@ php 是一门脚本语言通常用来处理页面端传输过来的数">
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP_学习指南"><span class="toc-number">1.</span> <span class="toc-text">PHP 学习指南</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP的使用环境"><span class="toc-number">1.1.</span> <span class="toc-text">PHP的使用环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP的基本语法"><span class="toc-number">1.2.</span> <span class="toc-text">PHP的基本语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP_链接数据库"><span class="toc-number">1.3.</span> <span class="toc-text">PHP 链接数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP_和_http_协议"><span class="toc-number">1.4.</span> <span class="toc-text">PHP 和 http 协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP文件处理"><span class="toc-number">1.5.</span> <span class="toc-text">PHP文件处理</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP__u5B66_u4E60_u6307_u5357"><span class="toc-number">1.</span> <span class="toc-text">PHP 学习指南</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP_u7684_u4F7F_u7528_u73AF_u5883"><span class="toc-number">1.1.</span> <span class="toc-text">PHP的使用环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP_u7684_u57FA_u672C_u8BED_u6CD5"><span class="toc-number">1.2.</span> <span class="toc-text">PHP的基本语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP__u94FE_u63A5_u6570_u636E_u5E93"><span class="toc-number">1.3.</span> <span class="toc-text">PHP 链接数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP__u548C_http__u534F_u8BAE"><span class="toc-number">1.4.</span> <span class="toc-text">PHP 和 http 协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP_u6587_u4EF6_u5904_u7406"><span class="toc-number">1.5.</span> <span class="toc-text">PHP文件处理</span></a></li></ol></li></ol>
  
   </div>
 
@@ -331,6 +330,8 @@ php 是一门脚本语言通常用来处理页面端传输过来的数">
 	 
 	<div class="social-font" class="clearfix">
 		
+		<a href="http://weibo.com/homker## e.g. wuchong1014 or 2176287895 for http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
 		
 		<a href="https://github.com/homker for https://github.com/homker" target="_blank" class="icon-github" title="github"></a>
 		
@@ -339,6 +340,8 @@ php 是一门脚本语言通常用来处理页面端传输过来的数">
 		
 		
 		
+		
+		<a href="https://www.zhihu.com/people/homker## e.g. jark  for http://www.zhihu.com/people/jark" target="_blank" class="icon-zhihu" title="知乎"></a>
 		
 		
 		
@@ -349,7 +352,7 @@ php 是一门脚本语言通常用来处理页面端传输过来的数">
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
 		
 		<a href="/about" target="_blank" title="homker">homker</a>
 		
